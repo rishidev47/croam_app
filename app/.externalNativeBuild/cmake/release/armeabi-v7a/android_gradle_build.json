@@ -1,0 +1,59 @@
+
+{
+	"buildFiles" : 
+	[
+		"/home/rishidev47/StudioProjects/CRoam/app/src/main/cpp/CMakeLists.txt"
+	],
+	"cleanCommands" : 
+	[
+		"/home/rishidev47/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/rishidev47/StudioProjects/CRoam/app/.externalNativeBuild/cmake/release/armeabi-v7a --target clean"
+	],
+	"cppFileExtensions" : [ "cpp" ],
+	"libraries" : 
+	{
+		"native-mfcc-lib-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "native-mfcc-lib",
+			"buildCommand" : "/home/rishidev47/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/rishidev47/StudioProjects/CRoam/app/.externalNativeBuild/cmake/release/armeabi-v7a --target native-mfcc-lib",
+			"buildType" : "release",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi24 --gcc-toolchain=/home/rishidev47/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/rishidev47/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dnative_mfcc_lib_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security   -Oz -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/rishidev47/StudioProjects/CRoam/app/src/main/cpp/native-mfcc-lib.cpp",
+					"workingDirectory" : "/home/rishidev47/StudioProjects/CRoam/app/.externalNativeBuild/cmake/release/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi24 --gcc-toolchain=/home/rishidev47/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/rishidev47/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dnative_mfcc_lib_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security   -Oz -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/rishidev47/StudioProjects/CRoam/app/src/main/cpp/matrix_multiplication.cpp",
+					"workingDirectory" : "/home/rishidev47/StudioProjects/CRoam/app/.externalNativeBuild/cmake/release/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi24 --gcc-toolchain=/home/rishidev47/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/rishidev47/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dnative_mfcc_lib_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security   -Oz -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/rishidev47/StudioProjects/CRoam/app/src/main/cpp/fft.cpp",
+					"workingDirectory" : "/home/rishidev47/StudioProjects/CRoam/app/.externalNativeBuild/cmake/release/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi24 --gcc-toolchain=/home/rishidev47/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/rishidev47/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -Dnative_mfcc_lib_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security   -Oz -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/rishidev47/StudioProjects/CRoam/app/src/main/cpp/mfcc.cpp",
+					"workingDirectory" : "/home/rishidev47/StudioProjects/CRoam/app/.externalNativeBuild/cmake/release/armeabi-v7a"
+				}
+			],
+			"output" : "/home/rishidev47/StudioProjects/CRoam/app/build/intermediates/cmake/release/obj/armeabi-v7a/libnative-mfcc-lib.so",
+			"toolchain" : "7414345000128970032"
+		}
+	},
+	"toolchains" : 
+	{
+		"7414345000128970032" : 
+		{
+			"cCompilerExecutable" : "/home/rishidev47/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/clang",
+			"cppCompilerExecutable" : "/home/rishidev47/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++"
+		}
+	}
+}

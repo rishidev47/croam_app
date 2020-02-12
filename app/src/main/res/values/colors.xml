@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorNavIcon">#dae9f6</color>
+    <color name="colorNavText">#01294b</color>
+    <color name="colorLightGray">#D3D3D3</color>
+    <color name="colorDarkGray">#A9A9A9</color>
+    <color name="colorUltraDarkGray">#777777</color>
+    <color name="colorStartBlue">#23ABD8</color>
+    <color name="colorEndBlue">#1114DF</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="a">#DBF75F</color>
+    <color name="initialColor">#00E2FF</color>
+    <color name="white">#ffffff</color>
+    <color name="switch_on">#00E60A</color>
+    <color name="switch_off">#D3001D</color>
+    <color name="light_green">#DDFFDB</color>
+    <color name="light_red">#FFDBDB</color>
+</resources>

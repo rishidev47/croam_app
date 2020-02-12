@@ -1,0 +1,8 @@
+# ninja log v5
+16	6038	0	CMakeFiles/native-mfcc-lib.dir/native-mfcc-lib.cpp.o	a2aa0512d24353bc
+17	6077	0	CMakeFiles/native-mfcc-lib.dir/fft.cpp.o	d2674e660e21dc9e
+17	6104	0	CMakeFiles/native-mfcc-lib.dir/matrix_multiplication.cpp.o	e16dc1ec5fb86825
+21	6583	0	CMakeFiles/native-mfcc-lib.dir/mfcc.cpp.o	3ce5fb837e0490bd
+6583	7754	0	/home/rishidev47/StudioProjects/CRoam/app/build/intermediates/cmake/debug/obj/x86_64/libnative-mfcc-lib.so	d16229efb0256cd4
+73	3325	0	CMakeFiles/native-mfcc-lib.dir/native-mfcc-lib.cpp.o	a2aa0512d24353bc
+3326	3961	0	/home/rishidev47/StudioProjects/CRoam/app/build/intermediates/cmake/debug/obj/x86_64/libnative-mfcc-lib.so	d16229efb0256cd4

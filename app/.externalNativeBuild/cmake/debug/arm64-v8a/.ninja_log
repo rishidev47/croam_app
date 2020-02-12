@@ -1,0 +1,17 @@
+# ninja log v5
+0	4874	0	CMakeFiles/native-mfcc-lib.dir/fft.cpp.o	f9c2ccecb810d377
+0	4885	0	CMakeFiles/native-mfcc-lib.dir/native-mfcc-lib.cpp.o	f599f285f80a0f61
+0	4951	0	CMakeFiles/native-mfcc-lib.dir/matrix_multiplication.cpp.o	5fd9814371442b88
+1	5070	0	CMakeFiles/native-mfcc-lib.dir/mfcc.cpp.o	b79ae912a539988a
+5070	5552	0	/home/rishidev47/StudioProjects/CRoam/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-mfcc-lib.so	8b6c48f3184c71de
+1	492	0	CMakeFiles/native-mfcc-lib.dir/native-mfcc-lib.cpp.o	f599f285f80a0f61
+492	559	0	/home/rishidev47/StudioProjects/CRoam/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-mfcc-lib.so	8b6c48f3184c71de
+1	1396	0	CMakeFiles/native-mfcc-lib.dir/native-mfcc-lib.cpp.o	f599f285f80a0f61
+1396	2111	0	/home/rishidev47/StudioProjects/CRoam/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-mfcc-lib.so	8b6c48f3184c71de
+1	588	0	CMakeFiles/native-mfcc-lib.dir/fft.cpp.o	f9c2ccecb810d377
+1	609	0	CMakeFiles/native-mfcc-lib.dir/native-mfcc-lib.cpp.o	f599f285f80a0f61
+1	704	0	CMakeFiles/native-mfcc-lib.dir/matrix_multiplication.cpp.o	5fd9814371442b88
+1	1126	0	CMakeFiles/native-mfcc-lib.dir/mfcc.cpp.o	b79ae912a539988a
+1126	1181	0	/home/rishidev47/StudioProjects/CRoam/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-mfcc-lib.so	8b6c48f3184c71de
+42	1194	0	CMakeFiles/native-mfcc-lib.dir/native-mfcc-lib.cpp.o	f599f285f80a0f61
+1195	1994	0	/home/rishidev47/StudioProjects/CRoam/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-mfcc-lib.so	8b6c48f3184c71de

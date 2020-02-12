@@ -1,0 +1,16 @@
+{
+  "buildFiles": [
+    "/home/rishidev47/StudioProjects/CRoam/app/src/main/cpp/CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "/home/rishidev47/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/rishidev47/StudioProjects/CRoam/app/.externalNativeBuild/cmake/release/arm64-v8a --target clean"
+  ],
+  "libraries": {
+    "native-mfcc-lib-Release-arm64-v8a": {
+      "artifactName": "native-mfcc-lib",
+      "buildCommand": "/home/rishidev47/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/rishidev47/StudioProjects/CRoam/app/.externalNativeBuild/cmake/release/arm64-v8a --target native-mfcc-lib",
+      "abi": "arm64-v8a",
+      "output": "/home/rishidev47/StudioProjects/CRoam/app/build/intermediates/cmake/release/obj/arm64-v8a/libnative-mfcc-lib.so"
+    }
+  }
+}

@@ -1,0 +1,368 @@
+-- Merging decision tree log ---
+provider#com.example.croam.GenericFileProvider
+INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:32:9-40:20
+	android:grantUriPermissions
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:36:13-47
+	android:authorities
+		INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:34:13-60
+	android:exported
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:35:13-37
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:33:13-48
+manifest
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:2:1-83:12
+INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:2:1-83:12
+INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:2:1-83:12
+INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:2:1-83:12
+MERGED from [de.hdodenhof:circleimageview:3.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/f3988221642e3661d4d5f50cfb76a5ba/AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:design:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/3d705598a2f6c993090d45074499e3ab/AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:appcompat-v7:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/8918f476f0afe33da6dfa413d305de23/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9a5f1c9c5d4cd2a78b50a1fcb3b96b26/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9151a884b7874d8bd9d425937fab02fb/AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/15695646c94824c989bec8eef44a7c3b/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/fcb0d31670223e3e02b82bd80d637e21/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/b9b28e0d3c062d1cf3ed850fae681787/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-v4:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9bafffa7c303b1ab45fb2fce5a7d4094/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-fragment:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/c0e229d620010a8c5945ac459de8e21a/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/43ece52c768445352dfa895c791251b5/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:recyclerview-v7:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/838c9c653f9e78a3bf3deae4eac5595b/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/47d26b67a0c8e219c39f244a2ff6b6b5/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/55f6a0cfeb807bf55b4cc8fb47d6c0af/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/e4decac82cf3a136c81d672110a66c97/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-media-compat:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/1c58ea7a2edbca0c6a6fec76a405c322/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:transition:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/60a3b50486b9da9a46ccf77a5e033840/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:loader:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/00e233bfa50a44ee043facd3b6fc1fa0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:viewpager:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/0c11d0b1d4982d1fffce0745969bc8fc/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:coordinatorlayout:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/606dc8de7b86a94dccd02eb8819464b2/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:drawerlayout:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/222740ba681738627015899c67dcb486/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:slidingpanelayout:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/175963f7e7b37eea713014ec49e10d69/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:customview:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/4b7a1eb86620fd183d0b8b44eee413e5/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/dbcba383cd1123055e82496a9808bafe/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/a13a360e208a7108bbaa45245bc48e67/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/b13698372119deef49a2a8e7e3291496/AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:cardview-v7:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/d830553723e02a4c933ab749ad5d64ed/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/cd3efc63a0380b7ce6ac4767205806d0/AndroidManifest.xml:2:1-11:12
+MERGED from [org.tensorflow:tensorflow-android:1.13.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/f7ecbefa9de5c4c5da549790bf603f72/AndroidManifest.xml:2:1-8:12
+MERGED from [com.android.support:versionedparcelable:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/886699e1c786924afa032648de5405d1/AndroidManifest.xml:17:1-25:12
+MERGED from [com.android.support:cursoradapter:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/1db91dbead0865c6528d432c577023bf/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/1bc59fc67a00394edeed98d3991b0e91/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:documentfile:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/590284888ef129804a28ab471e5345dc/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/38ee3e124888ced0cebe4f1f65b20087/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:print:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/d30da9677266a4177dbc6b183ef491aa/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/d6f4ad2b6b1a3cf818e21522d64962a8/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata:1.1.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/0ffbfe8ce7aff50b2da6b3fd31310216/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/73758def4afff5e81e02032bce67243c/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/fd06a63077f58f6136fbae007b929179/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:interpolator:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/879190ed521784a9a31340bf681624b2/AndroidManifest.xml:17:1-22:12
+INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:2:1-83:12
+INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:2:1-83:12
+INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:2:1-83:12
+	package
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:3:5-32
+		INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
+		INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:2:1-83:12
+		INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:2:1-83:12
+		INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.CAMERA
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:4:5-65
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:4:22-62
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:5:5-81
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:5:22-78
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:6:5-80
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:6:22-77
+uses-permission#android.permission.SEND_SMS
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:7:5-67
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:7:22-64
+uses-permission#android.permission.RECEIVE_SMS
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:8:5-70
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:8:22-67
+uses-permission#android.permission.READ_CONTACTS
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:9:5-72
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:9:22-69
+uses-permission#android.permission.INTERNET
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:10:5-67
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:10:22-64
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:11:5-79
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:11:22-76
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:12:5-81
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:12:22-78
+uses-permission#android.permission.READ_CALENDAR
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:13:5-72
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:13:22-69
+uses-permission#android.permission.WRITE_CALENDAR
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:14:5-73
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:14:22-70
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:15:5-71
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:15:22-68
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:16:5-79
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:16:22-76
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:17:5-75
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:17:22-72
+uses-permission#android.permission.VIBRATE
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:18:5-65
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:18:22-63
+uses-permission#android.permission.FOREGROUND_SERVICE
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:19:5-76
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:19:22-74
+uses-feature#android.hardware.camera
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:20:5-60
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:20:19-57
+uses-feature#android.hardware.camera.autofocus
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:21:5-70
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:21:19-67
+application
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:25:5-81:19
+MERGED from [de.hdodenhof:circleimageview:3.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/f3988221642e3661d4d5f50cfb76a5ba/AndroidManifest.xml:9:5-20
+MERGED from [de.hdodenhof:circleimageview:3.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/f3988221642e3661d4d5f50cfb76a5ba/AndroidManifest.xml:9:5-20
+MERGED from [com.android.support:design:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/3d705598a2f6c993090d45074499e3ab/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:design:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/3d705598a2f6c993090d45074499e3ab/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9a5f1c9c5d4cd2a78b50a1fcb3b96b26/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9a5f1c9c5d4cd2a78b50a1fcb3b96b26/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9151a884b7874d8bd9d425937fab02fb/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9151a884b7874d8bd9d425937fab02fb/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/15695646c94824c989bec8eef44a7c3b/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/15695646c94824c989bec8eef44a7c3b/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/fcb0d31670223e3e02b82bd80d637e21/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/fcb0d31670223e3e02b82bd80d637e21/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/b9b28e0d3c062d1cf3ed850fae681787/AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/b9b28e0d3c062d1cf3ed850fae681787/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-compat:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/b13698372119deef49a2a8e7e3291496/AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:support-compat:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/b13698372119deef49a2a8e7e3291496/AndroidManifest.xml:22:5-94
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/cd3efc63a0380b7ce6ac4767205806d0/AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/cd3efc63a0380b7ce6ac4767205806d0/AndroidManifest.xml:9:5-20
+MERGED from [org.tensorflow:tensorflow-android:1.13.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/f7ecbefa9de5c4c5da549790bf603f72/AndroidManifest.xml:5:5-6:19
+MERGED from [org.tensorflow:tensorflow-android:1.13.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/f7ecbefa9de5c4c5da549790bf603f72/AndroidManifest.xml:5:5-6:19
+MERGED from [com.android.support:versionedparcelable:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/886699e1c786924afa032648de5405d1/AndroidManifest.xml:22:5-23:19
+MERGED from [com.android.support:versionedparcelable:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/886699e1c786924afa032648de5405d1/AndroidManifest.xml:22:5-23:19
+	android:appComponentFactory
+		ADDED from [com.android.support:support-compat:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/b13698372119deef49a2a8e7e3291496/AndroidManifest.xml:22:18-91
+	android:supportsRtl
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:30:9-35
+	android:label
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:28:9-41
+	android:roundIcon
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:29:9-54
+	android:icon
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:27:9-45
+	android:allowBackup
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:26:9-35
+	android:theme
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:31:9-40
+service#com.example.croam.CRoamService
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:41:9-45:47
+	android:enabled
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:44:13-35
+	android:launchMode
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:43:13-44
+	android:exported
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:45:13-36
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:42:13-41
+meta-data#com.google.android.geo.API_KEY
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:47:9-49:70
+	android:value
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:49:13-68
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:48:13-58
+meta-data#com.google.android.actions
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:50:9-52:48
+	android:resource
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:52:13-45
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:51:13-54
+activity#com.example.croam.PoliceStation
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:54:9-60
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:54:19-48
+activity#com.example.croam.SplashScreen
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:55:9-64:20
+	android:screenOrientation
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:57:13-49
+	android:theme
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:58:13-63
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:56:13-41
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:59:13-63:29
+action#android.intent.action.MAIN
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:60:17-69
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:60:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:62:17-77
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:62:27-74
+activity#com.example.croam.MainActivity
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:65:9-80:20
+	android:screenOrientation
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:68:13-49
+	android:label
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:69:13-45
+	android:launchMode
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:67:13-44
+	android:theme
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:70:13-63
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:66:13-41
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.DEFAULT
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:71:13-75:29
+category#android.intent.category.DEFAULT
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:74:17-76
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:74:27-73
+intent-filter#action:name:android.intent.action.SCREEN_OFF+action:name:android.intent.action.SCREEN_ON
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:76:13-79:29
+action#android.intent.action.SCREEN_OFF
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:77:17-74
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:77:25-72
+action#android.intent.action.SCREEN_ON
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:78:17-73
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:78:25-71
+uses-sdk
+INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
+INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
+MERGED from [de.hdodenhof:circleimageview:3.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/f3988221642e3661d4d5f50cfb76a5ba/AndroidManifest.xml:5:5-7:41
+MERGED from [de.hdodenhof:circleimageview:3.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/f3988221642e3661d4d5f50cfb76a5ba/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:design:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/3d705598a2f6c993090d45074499e3ab/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:design:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/3d705598a2f6c993090d45074499e3ab/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/8918f476f0afe33da6dfa413d305de23/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/8918f476f0afe33da6dfa413d305de23/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9a5f1c9c5d4cd2a78b50a1fcb3b96b26/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9a5f1c9c5d4cd2a78b50a1fcb3b96b26/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9151a884b7874d8bd9d425937fab02fb/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9151a884b7874d8bd9d425937fab02fb/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/15695646c94824c989bec8eef44a7c3b/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/15695646c94824c989bec8eef44a7c3b/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/fcb0d31670223e3e02b82bd80d637e21/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/fcb0d31670223e3e02b82bd80d637e21/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/b9b28e0d3c062d1cf3ed850fae681787/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/b9b28e0d3c062d1cf3ed850fae681787/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9bafffa7c303b1ab45fb2fce5a7d4094/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9bafffa7c303b1ab45fb2fce5a7d4094/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/c0e229d620010a8c5945ac459de8e21a/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/c0e229d620010a8c5945ac459de8e21a/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/43ece52c768445352dfa895c791251b5/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/43ece52c768445352dfa895c791251b5/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/838c9c653f9e78a3bf3deae4eac5595b/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/838c9c653f9e78a3bf3deae4eac5595b/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/47d26b67a0c8e219c39f244a2ff6b6b5/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/47d26b67a0c8e219c39f244a2ff6b6b5/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/55f6a0cfeb807bf55b4cc8fb47d6c0af/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/55f6a0cfeb807bf55b4cc8fb47d6c0af/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/e4decac82cf3a136c81d672110a66c97/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/e4decac82cf3a136c81d672110a66c97/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/1c58ea7a2edbca0c6a6fec76a405c322/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/1c58ea7a2edbca0c6a6fec76a405c322/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/60a3b50486b9da9a46ccf77a5e033840/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/60a3b50486b9da9a46ccf77a5e033840/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/00e233bfa50a44ee043facd3b6fc1fa0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/00e233bfa50a44ee043facd3b6fc1fa0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/0c11d0b1d4982d1fffce0745969bc8fc/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/0c11d0b1d4982d1fffce0745969bc8fc/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/606dc8de7b86a94dccd02eb8819464b2/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/606dc8de7b86a94dccd02eb8819464b2/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/222740ba681738627015899c67dcb486/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/222740ba681738627015899c67dcb486/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/175963f7e7b37eea713014ec49e10d69/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/175963f7e7b37eea713014ec49e10d69/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/4b7a1eb86620fd183d0b8b44eee413e5/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/4b7a1eb86620fd183d0b8b44eee413e5/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/dbcba383cd1123055e82496a9808bafe/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/dbcba383cd1123055e82496a9808bafe/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/a13a360e208a7108bbaa45245bc48e67/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/a13a360e208a7108bbaa45245bc48e67/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/b13698372119deef49a2a8e7e3291496/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/b13698372119deef49a2a8e7e3291496/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/d830553723e02a4c933ab749ad5d64ed/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/d830553723e02a4c933ab749ad5d64ed/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/cd3efc63a0380b7ce6ac4767205806d0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/cd3efc63a0380b7ce6ac4767205806d0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:versionedparcelable:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/886699e1c786924afa032648de5405d1/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/886699e1c786924afa032648de5405d1/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/1db91dbead0865c6528d432c577023bf/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/1db91dbead0865c6528d432c577023bf/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/1bc59fc67a00394edeed98d3991b0e91/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/1bc59fc67a00394edeed98d3991b0e91/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/590284888ef129804a28ab471e5345dc/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/590284888ef129804a28ab471e5345dc/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/38ee3e124888ced0cebe4f1f65b20087/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/38ee3e124888ced0cebe4f1f65b20087/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/d30da9677266a4177dbc6b183ef491aa/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/d30da9677266a4177dbc6b183ef491aa/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/d6f4ad2b6b1a3cf818e21522d64962a8/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/d6f4ad2b6b1a3cf818e21522d64962a8/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/0ffbfe8ce7aff50b2da6b3fd31310216/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/0ffbfe8ce7aff50b2da6b3fd31310216/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/73758def4afff5e81e02032bce67243c/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/73758def4afff5e81e02032bce67243c/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/fd06a63077f58f6136fbae007b929179/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/fd06a63077f58f6136fbae007b929179/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/879190ed521784a9a31340bf681624b2/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/879190ed521784a9a31340bf681624b2/AndroidManifest.xml:20:5-44
+INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
+INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
+		INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
+		INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:37:13-39:57
+	android:resource
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:39:17-55
+	android:name
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:38:17-67
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9151a884b7874d8bd9d425937fab02fb/AndroidManifest.xml:23:9-26:75
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9151a884b7874d8bd9d425937fab02fb/AndroidManifest.xml:25:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9151a884b7874d8bd9d425937fab02fb/AndroidManifest.xml:26:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9151a884b7874d8bd9d425937fab02fb/AndroidManifest.xml:24:13-79
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/b9b28e0d3c062d1cf3ed850fae681787/AndroidManifest.xml:23:9-25:69
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/b9b28e0d3c062d1cf3ed850fae681787/AndroidManifest.xml:25:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/b9b28e0d3c062d1cf3ed850fae681787/AndroidManifest.xml:24:13-58
