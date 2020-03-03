@@ -175,7 +175,7 @@ MERGED from [com.android.support:versionedparcelable:28.0.0] /home/rishidev47/.g
 	android:label
 		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:28:9-41
 	android:roundIcon
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:29:9-54
+		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:29:9-50
 	android:icon
 		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:27:9-45
 	android:allowBackup

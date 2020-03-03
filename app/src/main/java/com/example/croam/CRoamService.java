@@ -79,7 +79,7 @@ public class CRoamService extends Service {
 
     public static CountDownTimer timer;
     public static String API_KEY="AIzaSyB5A7N_tKnjwSdsmRinYaOVLbAOana_A9s";
-    public static String allmobilenumberofpolice="XXXXXXXXXX";
+    public static String allmobilenumberofpolice="01126597272";
     public static String str2="";
     public static String latituteField="";
     public static String longitudeField="";
@@ -96,6 +96,8 @@ public class CRoamService extends Service {
     public final static String DEBUG_TAG = "MainActivity";
     private static final String clientID = "c26974dfd247815";
     private static final String MODEL_FILENAME = "file:///android_asset/tf_help_model10dB.pb";
+//private static final String MODEL_FILENAME = "file:///android_asset/help_model.pb";
+//private static final String MODEL_FILENAME = "file:///android_asset/tf_help_model2_after_removing_noise.pb";
     public static final String MyPREFERENCES = "MyPrefs_Anjaneya" ;
 
     private static final int SAMPLE_RATE = 16000;
@@ -153,6 +155,12 @@ public class CRoamService extends Service {
                 onNewLocation(locationResult.getLastLocation());
             }
         };
+
+        mLocationRequest = new LocationRequest();
+        mLocationRequest.setInterval(1000);
+        mLocationRequest.setFastestInterval(1000);
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+        startLocationUpdates();
         getLastLocation();
 
         IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
@@ -180,6 +188,11 @@ public class CRoamService extends Service {
             }
 
         }
+    }
+    private void startLocationUpdates() {
+        mFusedLocationClient.requestLocationUpdates(mLocationRequest,
+                mLocationCallback,
+                Looper.getMainLooper());
     }
     private void getLastLocation() {
         try {
@@ -337,7 +350,7 @@ public class CRoamService extends Service {
         Log.v(LOG_TAG, "Start recognition");
         short[] inputBuffer = new short[RECORDING_LENGTH];
         double[] doubleInputBuffer = new double[RECORDING_LENGTH];
-        float[] outputScores = new float[1];
+        final float[] outputScores = new float[1];
         String[] outputScoresNames = new String[]{OUTPUT_SCORES_NAME};
         int k=0;
         int temp=0;
@@ -370,10 +383,10 @@ public class CRoamService extends Service {
             inferenceInterface.fetch(OUTPUT_SCORES_NAME, outputScores);
 //            Log.v(LOG_TAG, "OUTPUT======> " + Arrays.toString(outputScores));
 
-            boolean isRecognised = outputScores[0] > 0.7;
-
+            boolean isRecognised = outputScores[0] > 0.8;
+            Log.d(TAG, "Output Score Of recognition: "+Arrays.toString(outputScores));
             if(isRecognised) {
-                Log.d(TAG, "recognize: "+Arrays.toString(outputScores));
+                Log.d(TAG, "recognized: "+Arrays.toString(outputScores));
                 //  getCurrentLocation();
 
                 boolean isPreviousRecognised = false;
@@ -382,6 +395,8 @@ public class CRoamService extends Service {
                 }
                 if(isPreviousRecognised) {
                 } else {
+//                    Log.d(TAG, "recognized: "+Arrays.toString(outputScores));
+
                     onDetectingHelp();
 //                    sendMyLocation();
 //                    takePhoto();

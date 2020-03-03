@@ -81,7 +81,7 @@ public class PhotoHandler implements Camera.PictureCallback {
     private File getDir() {
         File sdDir = Environment
                 .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        return new File(sdDir, "Project1");
+        return new File(sdDir, "CRoam");
     }
 
 

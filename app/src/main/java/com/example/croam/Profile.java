@@ -153,7 +153,7 @@ public class Profile extends Fragment {
 
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
-        intent.setDataAndType(Uri.withAppendedPath(Uri.fromFile(file), "/Project1"), "image/*");
+        intent.setDataAndType(Uri.withAppendedPath(Uri.fromFile(file), "/CRoam"), "image/*");
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
 //        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
