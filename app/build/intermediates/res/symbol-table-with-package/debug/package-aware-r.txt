@@ -1145,6 +1145,9 @@ id barrier
 id beginning
 id blocking
 id bottom
+id btn_login
+id btn_logout
+id btn_signup
 id buttonPanel
 id cancel_action
 id cardView
@@ -1154,6 +1157,7 @@ id center_vertical
 id chains
 id checkbox
 id chronometer
+id circleImageView
 id clip_horizontal
 id clip_vertical
 id collapseActionView
@@ -1183,6 +1187,11 @@ id editTextDob
 id editTextEmail
 id editTextName
 id editTextPhone
+id editText_login_password
+id editText_login_phone
+id editText_signup_name
+id editText_signup_password
+id editText_signup_phone
 id edit_query
 id editbox
 id email
@@ -1227,6 +1236,7 @@ id line3
 id listMode
 id list_contact
 id list_item
+id login_fragment_container
 id masked
 id media_actions
 id message
@@ -1264,6 +1274,9 @@ id progress
 id progress_circular
 id progress_horizontal
 id radio
+id radioFemale
+id radioGroupGender
+id radioMale
 id relativeLayout
 id right
 id right_icon
@@ -1328,6 +1341,7 @@ id textView4
 id textView5
 id textView6
 id text_input_password_toggle
+id text_login
 id textinput_counter
 id textinput_error
 id textinput_helper_text
@@ -1402,6 +1416,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_login
 layout activity_main
 layout activity_splash_screen
 layout design_bottom_navigation_item
@@ -1421,8 +1436,10 @@ layout design_text_input_password_icon
 layout dialog_editprofile
 layout fragment_contact
 layout fragment_home
+layout fragment_login
 layout fragment_police
 layout fragment_profile
+layout fragment_signup
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
 layout notification_action

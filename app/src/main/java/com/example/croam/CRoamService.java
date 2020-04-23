@@ -68,24 +68,10 @@ public class CRoamService extends Service {
     public static boolean screenOff2=false;
     public static boolean screenOn1=false;
     public static boolean screenOn2=false;
-
-    public static boolean btnPress1=false;
-    public static boolean btnPress2=false;
-    public static boolean btnPress3=false;
-
-    public static String policeDetails="";
     public static double lat;
     public static double lng;
-
-    public static CountDownTimer timer;
-    public static String API_KEY="AIzaSyB5A7N_tKnjwSdsmRinYaOVLbAOana_A9s";
     public static String allmobilenumberofpolice="01126597272";
-    public static String str2="";
-    public static String latituteField="";
-    public static String longitudeField="";
-    public boolean isOn;
     public static String url=null;
-    Fragment fragment=null;
     public static String phone;
     private Thread recordingThread;
     private Thread recognitionThread;
@@ -103,10 +89,6 @@ public class CRoamService extends Service {
     private static final int SAMPLE_RATE = 16000;
     private static final int SAMPLE_DURATION_MS = 3000;
     private static final int RECORDING_LENGTH = (int) (SAMPLE_RATE * SAMPLE_DURATION_MS / 1000);
-    private static final int REQUEST_RECORD_AUDIO = 13;
-    public static final int PERMISSION_REQUEST_CODE=200;
-    public static String[] PERMISSIONS=new String[]{RECORD_AUDIO, ACCESS_FINE_LOCATION, CAMERA,RECEIVE_SMS,SEND_SMS,WRITE_EXTERNAL_STORAGE};
-
 
     boolean shouldContinueRecognition = true;
     boolean shouldContinue = true;
@@ -123,14 +105,9 @@ public class CRoamService extends Service {
     private Camera camera;
     private int cameraId = 0;
 
-    private FusedLocationProviderClient clinent;
-
     public static DBHandler db;
     public static int noofemergencycontacts=0;
     public native float[] nativeMFCC(double[] buffer);
-    public FloatingActionButton fab;
-    public BottomNavigationView navView;
-    String str3="";
 
     public MyBroadCastReciever myBroadcastReciever;
     public static final String CHANNEL_ID = "ForegroundServiceChannel";
@@ -138,6 +115,8 @@ public class CRoamService extends Service {
     private FusedLocationProviderClient mFusedLocationClient;
     private LocationRequest mLocationRequest;
     private Location mLocation;
+    public static double threshold = 0.8;
+
     public CRoamService() {
         super();
     }
@@ -167,6 +146,7 @@ public class CRoamService extends Service {
         filter.addAction(Intent.ACTION_SCREEN_OFF);
         myBroadcastReciever=new MyBroadCastReciever(this);
         registerReceiver((myBroadcastReciever),filter);
+
         if (!getPackageManager()
                 .hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
             Toast.makeText(this, "No camera on this device", Toast.LENGTH_LONG)
@@ -229,31 +209,19 @@ public class CRoamService extends Service {
         Toast.makeText(this, "service started", Toast.LENGTH_SHORT).show();
         createNotificationChannel();
         Intent openIntent = new Intent(this, MainActivity.class);
-//        openIntent.putExtra("IS_ON",true);
         openIntent.putExtra("OPENED_FROM_NOTIFICATION",true);
         openIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//
-//        Intent closeIntent = new Intent(this, MainActivity.class);
-//        closeIntent.putExtra("IS_ON",false);
-//        closeIntent.putExtra("OPENED_FROM_NOTIFICATION",true);
-//        closeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         PendingIntent openPendingIntent = PendingIntent.getActivity(this,
                 0, openIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-//        PendingIntent closePendingIntent = PendingIntent.getActivity(this,
-//                1, closeIntent, 0);
 
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle("Help Detection is On")
                 .setContentText("Service is running now")
                 .setSmallIcon(R.drawable.ic_launcher)
                 .setContentIntent(openPendingIntent)
-//                .addAction(R.drawable.ic_launcher, "Open", openPendingIntent)
-//                .addAction(R.drawable.delete_icon, "Close", closePendingIntent)
                 .build();
         startForeground(1, notification);
-        //do heavy work on a background thread
-        //stopSelf();
 
 
         if(shouldContinueRecognition){
@@ -383,8 +351,8 @@ public class CRoamService extends Service {
             inferenceInterface.fetch(OUTPUT_SCORES_NAME, outputScores);
 //            Log.v(LOG_TAG, "OUTPUT======> " + Arrays.toString(outputScores));
 
-            boolean isRecognised = outputScores[0] > 0.8;
-            Log.d(TAG, "Output Score Of recognition: "+Arrays.toString(outputScores));
+            boolean isRecognised = outputScores[0] > threshold;
+           // Log.d(TAG, "Output Score Of recognition: "+Arrays.toString(outputScores));
             if(isRecognised) {
                 Log.d(TAG, "recognized: "+Arrays.toString(outputScores));
                 //  getCurrentLocation();
@@ -433,6 +401,7 @@ public class CRoamService extends Service {
             //        Log.v(LOG_TAG, "End recognition: " +result);
         }
     }
+
     public synchronized void startRecording() {
         if (recordingThread != null) {
             return;
@@ -463,6 +432,7 @@ public class CRoamService extends Service {
                         });
         recognitionThread.start();
     }
+
     public synchronized void stopRecording() {
         if (recordingThread == null) {
             return;
@@ -498,25 +468,7 @@ public class CRoamService extends Service {
         sendMyLocation();
         takePhoto();
     }
-//    public void updateCurrentLoaction(){
-//        clinent.getLastLocation().addOnSuccessListener(MainActivity.this, new OnSuccessListener<Location>() {
-//            @Override
-//            public void onSuccess(Location location) {
-//                Log.v(DEBUG_TAG,"New LOC"+location);
-//                if (location != null) {
-//                    lat = location.getLatitude();
-//                    lng = location.getLongitude();
-//                    latituteField = String.valueOf(lat);
-//                    longitudeField = String.valueOf(lng);
-//                    AddressURL = "http://www.google.com/maps/place/" + latituteField + "," + longitudeField;
-//                    SharedPreferences location1 = getSharedPreferences(MyPREFERENCES,0);
-//                    SharedPreferences.Editor editor = location1.edit();
-//                    editor.putString("location",AddressURL);
-//                    editor.apply();
-//                }
-//            }
-//        });
-//    }
+
     public void sendMyLocation(){
         String message = "Please Help Me. My Location is: "+AddressURL;
         message+="\n"+ "Nearby Police Station Contacts: "+"\n"+ allmobilenumberofpolice;
@@ -524,25 +476,6 @@ public class CRoamService extends Service {
         System.out.println(message);
         final String str=message;
         sendSMS(message);
-
-        //new PoliceLists().execute(message,latituteField,longitudeField);
-
-
-
-
-
-//        if (!TextUtils.isEmpty(message) && !TextUtils.isEmpty(phone)) {
-//            if (checkPermission(Manifest.permission.SEND_SMS)) {
-//                SmsManager smsManager = SmsManager.getDefault();
-//                smsManager.sendTextMessage(phone,null,message,null,null);
-//                Log.v(DEBUG_TAG,"SMS SENDED");
-//
-//            } else {
-//                Toast.makeText(MainActivity.this, "Permission Denied", Toast.LENGTH_SHORT).show();
-//            }
-//        } else {
-//            Toast.makeText(MainActivity.this, "Entered msg or Phone Number", Toast.LENGTH_SHORT).show();
-//        }
 
     }
     public static void sendSMS(String message) {
@@ -571,6 +504,7 @@ public class CRoamService extends Service {
         Log.d("CAMERA", "findCamera: "+cameraId);
         return cameraId;
     }
+
     public void takePhoto(){
         if(camera == null) Log.v(DEBUG_TAG, "Camera object is null");
         else{
@@ -585,11 +519,8 @@ public class CRoamService extends Service {
             }
         }
 
-
-//        camera.startPreview();
-//        camera.takePicture(null, null,
-//                new PhotoHandler(getApplicationContext()));
     }
+
     public static String getImgurContent(String filePath) throws Exception {
 
 
@@ -639,16 +570,15 @@ public class CRoamService extends Service {
         try{
             String charset = "UTF-8";
             File uploadFile1 = new File(filePath);
-            String requestURL = "http://192.168.43.87:8089/api/upload/";
+            String requestURL = "http://192.168.43.68:8089/api/upload/";
             //String requestURL = "https://white-mayfly-15.localtunnel.me/api/upload/";
             MultipartUtility multipart = new MultipartUtility(requestURL, charset);
-            //multipart.addFormField("phone", "9674418222");
-            //multipart.addFormField("userid", "Doraemon");
-            multipart.addFormField("phone", "6678434");
+            multipart.addFormField("name", "Test");
+            multipart.addFormField("phone", "12345");
             multipart.addFormField("uid", "uiduid");
             multipart.addFormField("latitude", "11511");
-            multipart.addFormField("longitude", "hjfh");
-            multipart.addFormField("imagefolg", "vfgffgb");
+            multipart.addFormField("longitude", "1234");
+            multipart.addFormField("imagefolg", "12345");
 
 
             multipart.addFilePart("uploadedfile", uploadFile1);
@@ -663,6 +593,7 @@ public class CRoamService extends Service {
 
             }
         }
+
         catch (Exception e){
             System.out.println("Error in photohandling"+e);
         }
@@ -672,6 +603,7 @@ public class CRoamService extends Service {
 
         return stb.toString();
     }
+
     public static void sendImageLink(String imageURL) {
         sendSMS("Image is at: " + imageURL);
     }
@@ -681,6 +613,7 @@ public class CRoamService extends Service {
     }
 
 }
+
 class MyBroadCastReciever extends BroadcastReceiver {
     CRoamService activity;
 

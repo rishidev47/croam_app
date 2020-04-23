@@ -36,7 +36,9 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:testOnly="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true" >
         <provider
             android:name="com.example.croam.GenericFileProvider"
             android:authorities="com.example.croam.provider"
@@ -61,6 +63,7 @@
             android:resource="@xml/selector" />
         <!-- <activity android:name=".policetemp"></activity> -->
         <activity android:name="com.example.croam.PoliceStation" />
+        <activity android:name="com.example.croam.LoginActivity" />
         <activity
             android:name="com.example.croam.SplashScreen"
             android:screenOrientation="portrait"

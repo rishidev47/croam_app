@@ -3,9 +3,11 @@ package com.example.croam;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -34,10 +36,21 @@ public class Profile extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_profile, container, false);
-
+        Button logout=view.findViewById(R.id.btn_logout);
         final BottomNavigationView navView=((MainActivity)getActivity()).navView;
         navView.setBackgroundColor(getResources().getColor(R.color.white));
 
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext()); //Get the preferences
+                prefs.edit().clear().commit();
+                ((MainActivity)getActivity()).stopService();
+                Intent mIntent = new Intent(getContext(),LoginActivity.class);
+                getActivity().finishAffinity();
+                startActivity(mIntent);
+            }
+        });
 //        if(((MainActivity)getActivity()).isOn){
 //            view.setBackgroundColor(getResources().getColor(R.color.light_green));
 //        }
@@ -69,16 +82,12 @@ public class Profile extends Fragment {
                 editDialog.show();
             }
         });
-        return view;
-    }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+
         editDialog = new AlertDialog.Builder(getActivity());
-        super.onCreate(savedInstanceState);
-        db=new DBHandler(getActivity().getApplicationContext());
-        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        editbox = inflater.inflate(R.layout.dialog_editprofile, null);
+//        db=new DBHandler(getActivity().getApplicationContext());
+        LayoutInflater inflater1 = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        editbox = inflater1.inflate(R.layout.dialog_editprofile, null);
         String name;
         String phone;
         String email;
@@ -127,6 +136,64 @@ public class Profile extends Fragment {
                         dialog.cancel();
                     }
                 });
+        return view;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+//        editDialog = new AlertDialog.Builder(getActivity());
+        super.onCreate(savedInstanceState);
+        db=new DBHandler(getActivity().getApplicationContext());
+//        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        editbox = inflater.inflate(R.layout.dialog_editprofile, null);
+//        String name;
+//        String phone;
+//        String email;
+//        String dob;
+//        //To be retrieved from database or server
+//        String[] profile=db.getProfile();
+//
+//
+//        name=profile[0];
+//        phone=profile[1];
+//        email=profile[2];
+//        dob=profile[3];
+//
+//
+//        final EditText nameText = editbox.findViewById(R.id.editTextName);
+//        final EditText phoneText = editbox.findViewById(R.id.editTextPhone);
+//        final EditText emailText = editbox.findViewById(R.id.editTextEmail);
+//        final EditText dobText = editbox.findViewById(R.id.editTextDob);
+//
+//
+//        nameText.setText(name);
+//        phoneText.setText(phone);
+//        emailText.setText(email);
+//        dobText.setText(dob);
+//
+//
+//        editDialog.setView(editbox);
+//        editDialog.setTitle("Edit Details");
+//        editDialog.setPositiveButton("YES",
+//                new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        String n=nameText.getText().toString();
+//                        String p=phoneText.getText().toString();
+//                        String e=emailText.getText().toString();
+//                        String d=dobText.getText().toString();
+//                        update(n,e,p,d);
+//                        updateView();
+//
+//                    }
+//                });
+//
+//        editDialog.setNegativeButton("NO",
+//                new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        Toast.makeText(getContext(), "Update Cancelled", Toast.LENGTH_SHORT).show();
+//                        dialog.cancel();
+//                    }
+//                });
     }
 
     void update(String name, String email, String phone, String dob){
