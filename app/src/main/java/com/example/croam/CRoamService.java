@@ -24,6 +24,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
@@ -63,7 +64,7 @@ import static android.support.constraint.Constraints.TAG;
 
 public class CRoamService extends Service {
 
-    public static String croam_server_url="http://192.168.43.125:3000";
+    public static String croam_server_url="http://192.168.43.35:3000";
     public static boolean screenOff1=false;
     public static boolean screenOff2=false;
     public static boolean screenOn1=false;
@@ -116,13 +117,13 @@ public class CRoamService extends Service {
     private LocationRequest mLocationRequest;
     private Location mLocation;
     public static double threshold = 0.8;
-
+    public static Context mContext=null;
     public CRoamService() {
         super();
     }
     @Override
     public void onCreate() {
-
+        mContext=getBaseContext();
         db=new DBHandler(getApplicationContext());
         noofemergencycontacts=db.noofemergencycontacts();
         inferenceInterface = new TensorFlowInferenceInterface(getAssets(), MODEL_FILENAME);
@@ -572,13 +573,18 @@ public class CRoamService extends Service {
             String charset = "UTF-8";
             File uploadFile1 = new File(filePath);
             String requestURL = croam_server_url+"/api/upload/";
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext); //Get the preferences
+            String phone = prefs.getString("phone", null); //get a String
+            String name = prefs.getString("name", null); //get a String
+            String id = prefs.getString("id", null); //get a String
             MultipartUtility multipart = new MultipartUtility(requestURL, charset);
-            multipart.addFormField("name", "Test");
-            multipart.addFormField("phone", "12345");
-            multipart.addFormField("uid", "uiduid");
-            multipart.addFormField("latitude", "11511");
-            multipart.addFormField("longitude", "1234");
-            multipart.addFormField("imagefolg", "12345");
+            multipart.addFormField("name", name);
+            multipart.addFormField("phone", phone);
+            multipart.addFormField("uid", id);
+            multipart.addFormField("latitude", String.valueOf(lat));
+            multipart.addFormField("longitude", String.valueOf(lng));
+            multipart.addFormField("imagefolder", phone);
+            multipart.addFormField("dummy", null);
 
 
             multipart.addFilePart("uploadedfile", uploadFile1);

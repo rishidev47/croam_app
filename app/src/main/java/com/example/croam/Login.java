@@ -20,6 +20,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.JsonObject;
+
 import org.json.JSONObject;
 
 import java.util.List;
@@ -77,6 +79,7 @@ public class Login extends Fragment {
         final String msg[]={"Error"};
         final Integer ret[]={-1};
         final boolean status[]={false};
+        final JSONObject user[]={null};
         Runnable login=new Runnable() {
             @Override
             public void run() {
@@ -97,9 +100,11 @@ public class Login extends Fragment {
                     System.out.println("Server Response on login "+res);
                     try{
                         JSONObject jsobj = new JSONObject(res);
+
                         status[0]= jsobj.getBoolean("status");
                         msg[0]= jsobj.getString("message");
                         ret[0]= jsobj.getInt("error");
+                        if(status[0])user[0]= jsobj.getJSONObject("data");
 
                     }catch (Exception ex){
                         System.out.println("JSON Error "+ex);
@@ -120,6 +125,15 @@ public class Login extends Fragment {
                             edit.putString("phone", phone);  //add a String
                             edit.putString("pswd", pswd);
                             edit.putBoolean("isLoggedin", true); //add a boolean
+                            try{
+                                edit.putString("name",user[0].getString("name"));
+                                edit.putInt("age",user[0].getInt("age"));
+                                edit.putInt("gender",user[0].getInt("gender"));
+                                edit.putString("id",user[0].getString("id"));
+
+                            }catch (Exception ex){
+                                System.out.println("Error in getting user data "+ex);
+                            }
                             Log.d("Prefs login", "onClick: " + prefs.toString());
                             edit.commit();  // save the edits.
 
