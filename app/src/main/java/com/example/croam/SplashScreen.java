@@ -20,7 +20,7 @@ public class SplashScreen extends AppCompatActivity {
         Thread splash=new Thread(){
             public void run(){
                 try{
-                    sleep(2000);
+                    sleep(1000);
                     if(isLoggedin()){
                         Intent i=new Intent(getBaseContext(),MainActivity.class);
                         startActivity(i);

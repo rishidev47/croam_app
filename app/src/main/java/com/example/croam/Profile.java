@@ -45,7 +45,7 @@ public class Profile extends Fragment {
             public void onClick(View v) {
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext()); //Get the preferences
                 prefs.edit().clear().commit();
-                ((MainActivity)getActivity()).stopService();
+                ((MainActivity)getActivity()).stopCroamService();
                 Intent mIntent = new Intent(getContext(),LoginActivity.class);
                 getActivity().finishAffinity();
                 startActivity(mIntent);

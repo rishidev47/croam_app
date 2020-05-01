@@ -1,5 +1,7 @@
 package com.example.croam;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,18 +19,16 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-import com.google.gson.JsonObject;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+
+import static android.support.constraint.Constraints.TAG;
+import static com.example.croam.LoginActivity.croam_server_url;
+
 public class Signup extends Fragment {
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,18 +36,19 @@ public class Signup extends Fragment {
 
         // Inflate the layout for this fragment
         final View view= inflater.inflate(R.layout.fragment_signup, container, false);
-        Button login= view.findViewById(R.id.btn_signup);
+        Button signup= view.findViewById(R.id.btn_signup);
         final RadioGroup radioGroupGender=view.findViewById(R.id.radioGroupGender);
         final RadioButton radioGenderButton;
         final EditText name= view.findViewById(R.id.editText_signup_name);
         final EditText phone= view.findViewById(R.id.editText_signup_phone);
         final EditText password= view.findViewById(R.id.editText_signup_password);
+        final EditText age= view.findViewById(R.id.editText_signup_age);
 
         TextView goToLogin=view.findViewById(R.id.text_login);
         goToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new Signup();
+                Fragment fragment = new Login();
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.login_fragment_container, fragment)
@@ -55,29 +56,19 @@ public class Signup extends Fragment {
             }
         });
 
-        login.setOnClickListener(new View.OnClickListener() {
+        signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String input_name=name.getText().toString();
                 String input_phone=phone.getText().toString();
                 String input_pswd=password.getText().toString();
+                String input_age=age.getText().toString();
                 int selectedId = radioGroupGender.getCheckedRadioButtonId();
-                String gender = selectedId==0? "Female":"Male";
+                // Gender 0: Others/Unspecified 1:Female 2: Male
+                String input_gender = selectedId== 2 ? "0": String.valueOf(selectedId+1);
 
-                int regResult=registerUser(input_name, gender, input_phone, input_pswd);
+                registerUser(input_name, input_gender, input_age, input_phone, input_pswd);
 
-
-                if(regResult==0){
-                    Toast.makeText(getContext(), "Successfully Registered", Toast.LENGTH_SHORT).show();
-                    Fragment fragment = new Login();
-                    getActivity().getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.login_fragment_container, fragment)
-                            .commit();
-                }
-                else if(regResult==1){
-
-                }
 
             }
         });
@@ -90,42 +81,89 @@ public class Signup extends Fragment {
         super.onCreate(savedInstanceState);
 
     }
-    int registerUser(String name, String gender, String phone, String pswd){
-        String url="https://enil4oe9ib22.x.pipedream.net/createUser";
-        RequestQueue requestQueue= Volley.newRequestQueue(getContext());
-        JSONObject jsonObject = new JSONObject();
-        try {
-//            jsonObject.put("id", "3");
-            jsonObject.put("name", name);
-            jsonObject.put("phone", phone);
-            jsonObject.put("password", pswd);
-            jsonObject.put("dob", "5/5/1993");
+    void registerUser(final String name, final String gender, final String age, final String phone, final String pswd){
+        Log.v("REGISTER", phone+" "+pswd);
+        final String msg[]={"Error"};
+        final Integer ret[]={-1};
+        final boolean status[]={false};
+        Runnable register=new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    String charset = "UTF-8";
+                    String requestURL = croam_server_url + "/register/";
+                    MultipartUtility multipart = new MultipartUtility(requestURL, charset);
+                    multipart.addFormField("phone", phone);
+                    multipart.addFormField("password", pswd);
+                    multipart.addFormField("name",name);
+                    multipart.addFormField("gender",gender);
+                    multipart.addFormField("age",age);
+                    multipart.addFormField("dummy",null);
+                    Log.v("REGISTER", multipart.toString());
+                    List<String> response = multipart.finish();
+                    String res = "";
+                    for (String line : response) {
+                        Log.v("rht", "Line : " + line);
+                        res = res + line + "\n";
+                    }
+                    System.out.println("Server Response on login "+res);
+                    try{
+                        JSONObject jsobj = new JSONObject(res);
+                        status[0]= jsobj.getBoolean("status");
+                        msg[0]= jsobj.getString("message");
+                        ret[0]= jsobj.getInt("error");
 
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+                    }catch (Exception ex){
+                        System.out.println("JSON Error "+ex);
+                    }
+
+                } catch (Exception e) {
+                    msg[0]=" Connection Error:\n Check Your Internet Connection ";
+                    System.out.println("Error in signup" + e);
+                }
+//                if(getActivity()==null)return;
+                LoginActivity.activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        new AlertDialog.Builder(LoginActivity.activity)
+                                .setTitle("Signup Result")
+                                .setMessage(msg[0])
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                    }
+                                })
+                                .setNegativeButton(android.R.string.no, null)
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+                        Toast.makeText(LoginActivity.activity, msg[0], Toast.LENGTH_SHORT).show();
+
+                        if(ret[0]==0){
+                            Fragment fragment = new Login();
+                            getActivity().getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.login_fragment_container, fragment)
+                                    .commit();
+                        }
+                        else if(ret[0]==101){
+                            Fragment fragment = new Login();
+                            getActivity().getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.login_fragment_container, fragment)
+                                    .commit();
+                        }
+                        else{
+//                    Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+            }
+        };
+        try{
+            Thread t1 =new Thread(register); t1.start();
+        }catch (Exception ex){
+            System.out.println(ex);
         }
 
-        JsonObjectRequest objectRequest=new JsonObjectRequest(
-                Request.Method.POST,
-                url,
-                jsonObject,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d("REST response", "onResponse: "+response.toString());
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d("REST response", "onErrorResponse: "+error.toString());
-
-                    }
-                }
-
-        );
-        requestQueue.add(objectRequest);
-        return 0;
     }
 }

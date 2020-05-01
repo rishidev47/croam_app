@@ -90,7 +90,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.support.constraint.Constraints.TAG;
 
 public class MainActivity extends AppCompatActivity {
-
+    public static String SERVER_URL="http://192.168.43.125:3000";
     public static String policeDetails = "";
     public static String API_KEY = "AIzaSyB5A7N_tKnjwSdsmRinYaOVLbAOana_A9s";
     public static String latituteField = "";

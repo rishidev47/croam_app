@@ -1,6 +1,10 @@
 package com.example.croam;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DownloadManager;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,28 +20,26 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+
+import static android.support.constraint.Constraints.TAG;
+import static com.example.croam.LoginActivity.croam_server_url;
+
 public class Login extends Fragment {
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        final View view= inflater.inflate(R.layout.fragment_login, container, false);
-        Button login= view.findViewById(R.id.btn_login);
-        final EditText phone= view.findViewById(R.id.editText_login_phone);
-        final EditText password= view.findViewById(R.id.editText_login_password);
+        final View view = inflater.inflate(R.layout.fragment_login, container, false);
+        Button login = view.findViewById(R.id.btn_login);
+        final EditText phone = view.findViewById(R.id.editText_login_phone);
+        final EditText password = view.findViewById(R.id.editText_login_password);
 
-        TextView goToSignup=view.findViewById(R.id.text_login);
+        TextView goToSignup = view.findViewById(R.id.text_login);
         goToSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,42 +54,12 @@ public class Login extends Fragment {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String input_phone=phone.getText().toString();
-                String input_pswd=password.getText().toString();
+                String input_phone = phone.getText().toString();
+                String input_pswd = password.getText().toString();
 
-                int loginStatus=doLogin(input_phone,input_pswd);
-
-                if(loginStatus==0){
-                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext()); //Get the preferences
-                    SharedPreferences.Editor edit = prefs.edit(); //Needed to edit the preferences
-
-                    edit.putString("phone", input_phone);  //add a String
-                    edit.putString("pswd",input_pswd);
-                    edit.putBoolean("isLoggedin", true); //add a boolean
-                    Log.d("Prefs login", "onClick: "+prefs.toString());
-                    edit.commit();  // save the edits.
-                    Toast.makeText(getContext(), "User Loggedin Successfully", Toast.LENGTH_SHORT).show();
-                    Intent mIntent = new Intent(getContext(),MainActivity.class);
-                    getActivity().finishAffinity();
-                    startActivity(mIntent);
-                }
-                else if(loginStatus==1){
-                    //user does not exist
-                    Toast.makeText(getContext(), "User Not Present", Toast.LENGTH_SHORT).show();
-                    Fragment fragment = new Signup();
-                    getActivity().getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.login_fragment_container, fragment)
-                            .commit();
-                }
-                else{
-                    // wrong password
-                    Toast.makeText(getContext(), "Wrong Password", Toast.LENGTH_SHORT).show();
-                }
+                doLogin(input_phone, input_pswd);
             }
         });
-
-
 
 
         return view;
@@ -98,40 +70,104 @@ public class Login extends Fragment {
         super.onCreate(savedInstanceState);
 
     }
-    int doLogin(String phone, String pswd){
-        String url="http://192.168.43.68:8089/login/";
-        RequestQueue requestQueue= Volley.newRequestQueue(getContext());
-        JSONObject jsonObject = new JSONObject();
-        try {
-//            jsonObject.put("id", "3");
-            jsonObject.put("phone", phone);
-            jsonObject.put("password", pswd);
 
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        JsonObjectRequest objectRequest=new JsonObjectRequest(
-                Request.Method.GET,
-                url,
-                jsonObject,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d("REST response", "onResponse: "+response.toString());
+    void doLogin(final String phone, final String pswd) {
+        final Context mContext=getContext();
+        Log.v("DOLOGIN", phone+" "+pswd);
+        final String msg[]={"Error"};
+        final Integer ret[]={-1};
+        final boolean status[]={false};
+        Runnable login=new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    String charset = "UTF-8";
+                    String requestURL = croam_server_url + "/login/";
+                    MultipartUtility multipart = new MultipartUtility(requestURL, charset);
+                    multipart.addFormField("phone", phone);
+                    multipart.addFormField("password", pswd);
+                    multipart.addFormField("dummy",null);
+                    Log.v("DOLOGIN", multipart.toString());
+                    List<String> response = multipart.finish();
+                    String res = "";
+                    for (String line : response) {
+                        Log.v("rht", "Line : " + line);
+                        res = res + line + "\n";
                     }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d("REST response", "onErrorResponse: "+error.toString());
+                    System.out.println("Server Response on login "+res);
+                    try{
+                        JSONObject jsobj = new JSONObject(res);
+                        status[0]= jsobj.getBoolean("status");
+                        msg[0]= jsobj.getString("message");
+                        ret[0]= jsobj.getInt("error");
 
+                    }catch (Exception ex){
+                        System.out.println("JSON Error "+ex);
                     }
+
+                } catch (Exception e) {
+                    msg[0]=" Connection Error:\n Check Your Internet Connection ";
+                    System.out.println("Error in login" + e);
                 }
+//                if(getActivity()==null)return;
+                //using LoginActivity.activity to avoid crash in case of switching fragments while results are awaited
+               LoginActivity.activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(status[0]){
+                            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext()); //Get the preferences
+                            SharedPreferences.Editor edit = prefs.edit(); //Needed to edit the preference
+                            edit.putString("phone", phone);  //add a String
+                            edit.putString("pswd", pswd);
+                            edit.putBoolean("isLoggedin", true); //add a boolean
+                            Log.d("Prefs login", "onClick: " + prefs.toString());
+                            edit.commit();  // save the edits.
 
-        );
-        requestQueue.add(objectRequest);
-        return 0;
+                     Toast.makeText(getContext(), msg[0], Toast.LENGTH_SHORT).show();
+                        }else {
+
+                            new AlertDialog.Builder(LoginActivity.activity)
+                                    .setTitle("Login Result")
+                                    .setMessage(msg[0])
+                                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                        }
+                                    })
+                                    .setNegativeButton(android.R.string.no, null)
+                                    .setIcon(android.R.drawable.ic_dialog_alert)
+                                    .show();
+                            Toast.makeText(LoginActivity.activity, msg[0], Toast.LENGTH_SHORT).show();
+                        }
+                            if (ret[0] == 0) {
+
+                                Intent mIntent = new Intent(getContext(), MainActivity.class);
+                                getActivity().finishAffinity();
+                                startActivity(mIntent);
+
+                            } else if (ret[0] == 201) {
+                                //user does not exist
+                                Fragment fragment = new Signup();
+                                getActivity().getSupportFragmentManager()
+                                        .beginTransaction()
+                                        .replace(R.id.login_fragment_container, fragment)
+                                        .commit();
+                            } else if(ret[0] == 202) {
+                                // wrong password
+//                    Toast.makeText(getContext(), "Wrong Password", Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+//                    Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+                            }
+                    }
+                });
+
+            }
+        };
+        try{
+            Thread t1 =new Thread(login); t1.start();
+        }catch (Exception ex){
+            System.out.println(ex);
+        }
+//
     }
 }
-

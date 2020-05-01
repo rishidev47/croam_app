@@ -63,7 +63,7 @@ import static android.support.constraint.Constraints.TAG;
 
 public class CRoamService extends Service {
 
-
+    public static String croam_server_url="http://192.168.43.125:3000";
     public static boolean screenOff1=false;
     public static boolean screenOff2=false;
     public static boolean screenOn1=false;
@@ -122,6 +122,7 @@ public class CRoamService extends Service {
     }
     @Override
     public void onCreate() {
+
         db=new DBHandler(getApplicationContext());
         noofemergencycontacts=db.noofemergencycontacts();
         inferenceInterface = new TensorFlowInferenceInterface(getAssets(), MODEL_FILENAME);
@@ -570,8 +571,7 @@ public class CRoamService extends Service {
         try{
             String charset = "UTF-8";
             File uploadFile1 = new File(filePath);
-            String requestURL = "http://192.168.43.68:8089/api/upload/";
-            //String requestURL = "https://white-mayfly-15.localtunnel.me/api/upload/";
+            String requestURL = croam_server_url+"/api/upload/";
             MultipartUtility multipart = new MultipartUtility(requestURL, charset);
             multipart.addFormField("name", "Test");
             multipart.addFormField("phone", "12345");

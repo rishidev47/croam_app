@@ -1148,6 +1148,7 @@ id bottom
 id btn_login
 id btn_logout
 id btn_signup
+id btn_update_threshold
 id buttonPanel
 id cancel_action
 id cardView
@@ -1189,9 +1190,11 @@ id editTextName
 id editTextPhone
 id editText_login_password
 id editText_login_phone
+id editText_signup_age
 id editText_signup_name
 id editText_signup_password
 id editText_signup_phone
+id editText_threshold
 id edit_query
 id editbox
 id email
@@ -1277,6 +1280,7 @@ id radio
 id radioFemale
 id radioGroupGender
 id radioMale
+id radioOther
 id relativeLayout
 id right
 id right_icon
