@@ -26,6 +26,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.StrictMode;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
@@ -90,7 +91,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.support.constraint.Constraints.TAG;
 
 public class MainActivity extends AppCompatActivity {
-    public static String SERVER_URL="http://192.168.43.125:3000";
+    public static String SERVER_URL="http://192.168.43.35:3000";
     public static String policeDetails = "";
     public static String API_KEY = "AIzaSyB5A7N_tKnjwSdsmRinYaOVLbAOana_A9s";
     public static String latituteField = "";
@@ -186,6 +187,8 @@ public class MainActivity extends AppCompatActivity {
         if (isMyServiceRunning(CRoamService.class)) {
             isOn = true;
         }
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); //Get the preferences
+        SERVER_URL=prefs.getString("server_url",SERVER_URL);
 
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
@@ -364,8 +367,6 @@ public class MainActivity extends AppCompatActivity {
 
             requestAllPermissions();
         }
-
-
     }
 
     public void onSwitchOff() {

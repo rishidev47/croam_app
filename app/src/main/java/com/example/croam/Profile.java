@@ -43,7 +43,7 @@ public class Profile extends Fragment {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext()); //Get the preferences
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext().getApplicationContext()); //Get the preferences
                 prefs.edit().clear().commit();
                 ((MainActivity)getActivity()).stopCroamService();
                 Intent mIntent = new Intent(getContext(),LoginActivity.class);
@@ -93,13 +93,20 @@ public class Profile extends Fragment {
         String email;
         String dob;
         //To be retrieved from database or server
-        String[] profile=db.getProfile();
+//        String[] profile=db.getProfile();
+//        name=profile[0];
+//        phone=profile[1];
+//        email=profile[2];
+//        dob=profile[3];
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext().getApplicationContext()); //Get the preferences
+        phone = prefs.getString("phone", null); //get a String
+        name = prefs.getString("name", null); //get a String
+        email = prefs.getString("email", null); //get a String
+        int age = prefs.getInt("age", 0); //get a String
+        dob = prefs.getString("dob", null); //get a String
 
 
-        name=profile[0];
-        phone=profile[1];
-        email=profile[2];
-        dob=profile[3];
 
 
         final EditText nameText = editbox.findViewById(R.id.editTextName);
@@ -141,72 +148,43 @@ public class Profile extends Fragment {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-//        editDialog = new AlertDialog.Builder(getActivity());
         super.onCreate(savedInstanceState);
         db=new DBHandler(getActivity().getApplicationContext());
-//        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        editbox = inflater.inflate(R.layout.dialog_editprofile, null);
-//        String name;
-//        String phone;
-//        String email;
-//        String dob;
-//        //To be retrieved from database or server
-//        String[] profile=db.getProfile();
-//
-//
-//        name=profile[0];
-//        phone=profile[1];
-//        email=profile[2];
-//        dob=profile[3];
-//
-//
-//        final EditText nameText = editbox.findViewById(R.id.editTextName);
-//        final EditText phoneText = editbox.findViewById(R.id.editTextPhone);
-//        final EditText emailText = editbox.findViewById(R.id.editTextEmail);
-//        final EditText dobText = editbox.findViewById(R.id.editTextDob);
-//
-//
-//        nameText.setText(name);
-//        phoneText.setText(phone);
-//        emailText.setText(email);
-//        dobText.setText(dob);
-//
-//
-//        editDialog.setView(editbox);
-//        editDialog.setTitle("Edit Details");
-//        editDialog.setPositiveButton("YES",
-//                new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        String n=nameText.getText().toString();
-//                        String p=phoneText.getText().toString();
-//                        String e=emailText.getText().toString();
-//                        String d=dobText.getText().toString();
-//                        update(n,e,p,d);
-//                        updateView();
-//
-//                    }
-//                });
-//
-//        editDialog.setNegativeButton("NO",
-//                new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        Toast.makeText(getContext(), "Update Cancelled", Toast.LENGTH_SHORT).show();
-//                        dialog.cancel();
-//                    }
-//                });
     }
 
     void update(String name, String email, String phone, String dob){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext().getApplicationContext()); //Get the preferences
+        SharedPreferences.Editor edit = prefs.edit(); //Needed to edit the preference
+        edit.putString("name",name);
+        edit.putString("email",email);
+        edit.putString("phone",phone);
+        edit.putString("dob",dob);
+        edit.commit();
         db.updateProfile(name, email, phone, dob);
+        doUpdate();
+    }
+    void doUpdate(){
+
     }
     void updateView(){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext().getApplicationContext()); //Get the preferences
+        String phone = prefs.getString("phone", null); //get a String
+        String name = prefs.getString("name", null); //get a String
+        String email = prefs.getString("email", null); //get a String
+        int age = prefs.getInt("age", 0); //get a String
+        String dob = prefs.getString("dob", null); //get a String
+        nametxt.setText(name);
+        phonetxt.setText(phone);
+        emailtxt.setText(email);
+        dobtxt.setText(dob);
+
         String[] details=db.getProfile();
         if(details[0]!=null){
             if(!details[0].equals("")){
-                nametxt.setText(details[0]);
-                phonetxt.setText(details[1]);
-                emailtxt.setText(details[2]);
-                dobtxt.setText(details[3]);
+//                nametxt.setText(details[0]);
+//                phonetxt.setText(details[1]);
+//                emailtxt.setText(details[2]);
+//                dobtxt.setText(details[3]);
             }
 
         }

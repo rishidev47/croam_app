@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,7 +36,6 @@ public class Signup extends Fragment {
         final View view= inflater.inflate(R.layout.fragment_signup, container, false);
         Button signup= view.findViewById(R.id.btn_signup);
         final RadioGroup radioGroupGender=view.findViewById(R.id.radioGroupGender);
-        final RadioButton radioGenderButton;
         final EditText name= view.findViewById(R.id.editText_signup_name);
         final EditText phone= view.findViewById(R.id.editText_signup_phone);
         final EditText password= view.findViewById(R.id.editText_signup_password);
@@ -64,8 +61,23 @@ public class Signup extends Fragment {
                 String input_pswd=password.getText().toString();
                 String input_age=age.getText().toString();
                 int selectedId = radioGroupGender.getCheckedRadioButtonId();
-                // Gender 0: Others/Unspecified 1:Female 2: Male
-                String input_gender = selectedId== 2 ? "0": String.valueOf(selectedId+1);
+                String input_gender="0";
+
+                RadioButton radioGenderButton=radioGroupGender.findViewById(selectedId);
+                if(radioGenderButton==null){
+                    input_gender="0";
+                }else if(radioGenderButton.getText().equals("Male")){
+                    input_gender="2";
+
+                }else if(radioGenderButton.getText().equals("Other")){
+                    input_gender="3";
+
+                }else if(radioGenderButton.getText().equals("Female")){
+                    input_gender="1";
+
+                }
+                // Gender 0:Not specified 1:Female 2: Male 3:Other
+
 
                 registerUser(input_name, input_gender, input_age, input_phone, input_pswd);
 
@@ -91,7 +103,7 @@ public class Signup extends Fragment {
             public void run() {
                 try {
                     String charset = "UTF-8";
-                    String requestURL = croam_server_url + "/register/";
+                    String requestURL = croam_server_url + "/register";
                     MultipartUtility multipart = new MultipartUtility(requestURL, charset);
                     multipart.addFormField("phone", phone);
                     multipart.addFormField("password", pswd);
@@ -99,7 +111,7 @@ public class Signup extends Fragment {
                     multipart.addFormField("gender",gender);
                     multipart.addFormField("age",age);
                     multipart.addFormField("dummy",null);
-                    Log.v("REGISTER", multipart.toString());
+                    Log.v("REGISTER", name+gender+age+phone+pswd);
                     List<String> response = multipart.finish();
                     String res = "";
                     for (String line : response) {

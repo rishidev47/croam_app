@@ -40,7 +40,7 @@ public class SplashScreen extends AppCompatActivity {
         splash.start();
     }
     boolean isLoggedin(){
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext()); //Get the preferences
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); //Get the preferences
         String phone = prefs.getString("phone", null); //get a String
         String pswd =prefs.getString("pswd", null); //get a String
         boolean isLoggedin = prefs.getBoolean("isLoggedin", false); //get a boolean.

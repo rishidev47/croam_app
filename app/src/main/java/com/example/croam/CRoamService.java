@@ -128,7 +128,8 @@ public class CRoamService extends Service {
         noofemergencycontacts=db.noofemergencycontacts();
         inferenceInterface = new TensorFlowInferenceInterface(getAssets(), MODEL_FILENAME);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); //Get the preferences
+        croam_server_url=prefs.getString("server_url",croam_server_url);
         mLocationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(LocationResult locationResult) {
@@ -317,6 +318,7 @@ public class CRoamService extends Service {
         record.release();
     }
     private void recognize() {
+        threshold=MainActivity.threshold;
         Log.v(LOG_TAG, "Start recognition");
         short[] inputBuffer = new short[RECORDING_LENGTH];
         double[] doubleInputBuffer = new double[RECORDING_LENGTH];
@@ -572,7 +574,7 @@ public class CRoamService extends Service {
         try{
             String charset = "UTF-8";
             File uploadFile1 = new File(filePath);
-            String requestURL = croam_server_url+"/api/upload/";
+            String requestURL = croam_server_url+"/api/upload";
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext); //Get the preferences
             String phone = prefs.getString("phone", null); //get a String
             String name = prefs.getString("name", null); //get a String
@@ -580,7 +582,7 @@ public class CRoamService extends Service {
             MultipartUtility multipart = new MultipartUtility(requestURL, charset);
             multipart.addFormField("name", name);
             multipart.addFormField("phone", phone);
-            multipart.addFormField("uid", id);
+            multipart.addFormField("id", id);
             multipart.addFormField("latitude", String.valueOf(lat));
             multipart.addFormField("longitude", String.valueOf(lng));
             multipart.addFormField("imagefolder", phone);

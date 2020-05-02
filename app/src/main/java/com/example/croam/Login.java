@@ -85,12 +85,12 @@ public class Login extends Fragment {
             public void run() {
                 try {
                     String charset = "UTF-8";
-                    String requestURL = croam_server_url + "/login/";
+                    String requestURL = croam_server_url + "/login";
                     MultipartUtility multipart = new MultipartUtility(requestURL, charset);
                     multipart.addFormField("phone", phone);
                     multipart.addFormField("password", pswd);
                     multipart.addFormField("dummy",null);
-                    Log.v("DOLOGIN", multipart.toString());
+                    Log.v("DOLOGIN", phone+ " "  +pswd);
                     List<String> response = multipart.finish();
                     String res = "";
                     for (String line : response) {
@@ -104,7 +104,7 @@ public class Login extends Fragment {
                         status[0]= jsobj.getBoolean("status");
                         msg[0]= jsobj.getString("message");
                         ret[0]= jsobj.getInt("error");
-                        if(status[0])user[0]= jsobj.getJSONObject("data");
+                        if(status[0])user[0]= jsobj.getJSONArray("data").getJSONObject(0);
 
                     }catch (Exception ex){
                         System.out.println("JSON Error "+ex);
@@ -120,7 +120,7 @@ public class Login extends Fragment {
                     @Override
                     public void run() {
                         if(status[0]){
-                            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext()); //Get the preferences
+                            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext().getApplicationContext()); //Get the preferences
                             SharedPreferences.Editor edit = prefs.edit(); //Needed to edit the preference
                             edit.putString("phone", phone);  //add a String
                             edit.putString("pswd", pswd);

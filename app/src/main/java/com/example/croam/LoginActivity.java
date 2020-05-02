@@ -3,7 +3,9 @@ package com.example.croam;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -28,21 +30,17 @@ public class LoginActivity extends AppCompatActivity {
         final EditText input = new EditText(this);
         new AlertDialog.Builder(this)
                 .setTitle("Server Detail")
-                .setMessage("Enter Server Url \nIf you don't know what is this click on Cancel")
+                .setMessage("Enter Server Url without trailing \"\\\" \nIf you don't know what is this click on Cancel")
                 .setView(input)
-
-// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-//        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-
-
-                // Specifying a listener allows you to take an action before dismissing the dialog.
-                // The dialog is automatically dismissed when a dialog button is clicked.
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // Continue with delete operation
                         String url= input.getText().toString();
                         if(URLUtil.isValidUrl(url)){
+                            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); //Get the preferences
+                            prefs.edit().putString("server_url",url).commit();
                             croam_server_url=url;
+                            CRoamService.croam_server_url=url;
                         }
                     }
                 })
