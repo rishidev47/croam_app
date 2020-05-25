@@ -94,9 +94,9 @@ public class Signup extends Fragment {
     private void registerUser(final String name, final String gender, final String age,
             final String phone, final String pswd){
         Log.v("REGISTER", phone+" "+pswd);
-        final String msg[]={"Error"};
-        final Integer ret[]={-1};
-        final boolean status[]={false};
+        final String[] msg ={"Error"};
+        final Integer[] ret ={-1};
+        final boolean[] status ={false};
         Runnable register=new Runnable() {
             @Override
             public void run() {

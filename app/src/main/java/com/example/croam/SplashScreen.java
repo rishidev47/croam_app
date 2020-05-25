@@ -32,7 +32,7 @@ public class SplashScreen extends AppCompatActivity {
                     }
 
                 }catch (Exception e){
-
+                    e.printStackTrace();
                 }
             }
         };
