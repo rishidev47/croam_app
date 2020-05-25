@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/rishidev47/StudioProjects/CRoam/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rCA/values-en-rCA.xml",
+            "outputFile": "/home/shubham/croam_app/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rCA/values-en-rCA.xml",
             "map": [
                 {
-                    "source": "/home/rishidev47/.gradle/caches/transforms-2/files-2.1/8918f476f0afe33da6dfa413d305de23/res/values-en-rCA/values-en-rCA.xml",
+                    "source": "/home/shubham/.gradle/caches/transforms-2/files-2.1/b0d113c0a2caebb2dfa9cffaa5a8e14b/res/values-en-rCA/values-en-rCA.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "/home/rishidev47/.gradle/caches/transforms-2/files-2.1/b13698372119deef49a2a8e7e3291496/res/values-en-rCA/values-en-rCA.xml",
+                    "source": "/home/shubham/.gradle/caches/transforms-2/files-2.1/724541db962545ffe419773515ce9c68/res/values-en-rCA/values-en-rCA.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

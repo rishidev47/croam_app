@@ -1,379 +1,394 @@
 -- Merging decision tree log ---
 provider#com.example.croam.GenericFileProvider
-INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:33:9-41:20
+INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:33:9-41:20
 	android:grantUriPermissions
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:37:13-47
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:37:13-47
 	android:authorities
-		INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:35:13-60
+		INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:35:13-60
 	android:exported
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:36:13-37
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:36:13-37
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:34:13-48
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:34:13-48
 manifest
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:2:1-85:12
-INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:2:1-85:12
-INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:2:1-85:12
-INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:2:1-85:12
-MERGED from [de.hdodenhof:circleimageview:3.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/f3988221642e3661d4d5f50cfb76a5ba/AndroidManifest.xml:2:1-11:12
-MERGED from [com.android.volley:volley:1.1.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/f28be0cf5bfda0a506384db708e5b68f/AndroidManifest.xml:2:1-11:12
-MERGED from [com.android.support:design:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/3d705598a2f6c993090d45074499e3ab/AndroidManifest.xml:17:1-24:12
-MERGED from [com.android.support:appcompat-v7:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/8918f476f0afe33da6dfa413d305de23/AndroidManifest.xml:17:1-22:12
-MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9a5f1c9c5d4cd2a78b50a1fcb3b96b26/AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.android.gms:play-services-base:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9151a884b7874d8bd9d425937fab02fb/AndroidManifest.xml:17:1-29:12
-MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/15695646c94824c989bec8eef44a7c3b/AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/fcb0d31670223e3e02b82bd80d637e21/AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.android.gms:play-services-basement:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/b9b28e0d3c062d1cf3ed850fae681787/AndroidManifest.xml:17:1-28:12
-MERGED from [com.android.support:support-v4:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9bafffa7c303b1ab45fb2fce5a7d4094/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-fragment:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/c0e229d620010a8c5945ac459de8e21a/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:animated-vector-drawable:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/43ece52c768445352dfa895c791251b5/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:recyclerview-v7:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/838c9c653f9e78a3bf3deae4eac5595b/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-core-ui:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/47d26b67a0c8e219c39f244a2ff6b6b5/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-core-utils:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/55f6a0cfeb807bf55b4cc8fb47d6c0af/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-vector-drawable:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/e4decac82cf3a136c81d672110a66c97/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-media-compat:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/1c58ea7a2edbca0c6a6fec76a405c322/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:transition:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/60a3b50486b9da9a46ccf77a5e033840/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:loader:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/00e233bfa50a44ee043facd3b6fc1fa0/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:viewpager:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/0c11d0b1d4982d1fffce0745969bc8fc/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:coordinatorlayout:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/606dc8de7b86a94dccd02eb8819464b2/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:drawerlayout:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/222740ba681738627015899c67dcb486/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:slidingpanelayout:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/175963f7e7b37eea713014ec49e10d69/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:customview:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/4b7a1eb86620fd183d0b8b44eee413e5/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:swiperefreshlayout:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/dbcba383cd1123055e82496a9808bafe/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:asynclayoutinflater:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/a13a360e208a7108bbaa45245bc48e67/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-compat:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/b13698372119deef49a2a8e7e3291496/AndroidManifest.xml:17:1-24:12
-MERGED from [com.android.support:cardview-v7:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/d830553723e02a4c933ab749ad5d64ed/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/cd3efc63a0380b7ce6ac4767205806d0/AndroidManifest.xml:2:1-11:12
-MERGED from [org.tensorflow:tensorflow-android:1.13.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/f7ecbefa9de5c4c5da549790bf603f72/AndroidManifest.xml:2:1-8:12
-MERGED from [com.android.support:versionedparcelable:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/886699e1c786924afa032648de5405d1/AndroidManifest.xml:17:1-25:12
-MERGED from [com.android.support:cursoradapter:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/1db91dbead0865c6528d432c577023bf/AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:runtime:1.1.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/1bc59fc67a00394edeed98d3991b0e91/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:documentfile:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/590284888ef129804a28ab471e5345dc/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:localbroadcastmanager:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/38ee3e124888ced0cebe4f1f65b20087/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:print:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/d30da9677266a4177dbc6b183ef491aa/AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/d6f4ad2b6b1a3cf818e21522d64962a8/AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:livedata:1.1.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/0ffbfe8ce7aff50b2da6b3fd31310216/AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/73758def4afff5e81e02032bce67243c/AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.core:runtime:1.1.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/fd06a63077f58f6136fbae007b929179/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:interpolator:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/879190ed521784a9a31340bf681624b2/AndroidManifest.xml:17:1-22:12
-INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:2:1-85:12
-INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:2:1-85:12
-INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:2:1-85:12
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:2:1-85:12
+INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:2:1-85:12
+INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:2:1-85:12
+INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:2:1-85:12
+MERGED from [de.hdodenhof:circleimageview:3.0.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/b26a299ca3e9bb4a392fd9b26a953ec9/AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.volley:volley:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/c274159704d8e470a0c623e0d4b1c644/AndroidManifest.xml:2:1-11:12
+MERGED from [com.google.android.material:material:1.2.0-alpha06] /home/shubham/.gradle/caches/transforms-2/files-2.1/f45a6641a687147c828fda4f6710cc4c/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/b0d113c0a2caebb2dfa9cffaa5a8e14b/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/14f4aaf44c912a63ef1ca43feb021aee/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/efb186556fbec6fa9397e490e287e4c9/AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/e95fefccf224c1dce460e2accf1875dd/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/ac50e29c29273902360b4b0838bba1f2/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/204001aa9c2d7ff2dac3a7936cc9353f/AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/b47095048451bf313ec1c061ccf3e421/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/d9a13a256a739604e1a776fddd46be5a/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.fragment:fragment:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/f5bd923f61f724c82cc5683374434614/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/e90c1ae3a0b82b355ca16ea3beb66879/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/702ae74094f2e4766246c59a455e844f/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/4eaada3f62747618e0e03d092b7f01f4/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media:media:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/0f4d3f2aa3ac59967cae71ce09ff4aeb/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/9ff904f406638b45609c428bdaac1767/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/e599cb234429a0ff25f02bdb56d6b9f5/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.transition:transition:1.2.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/2c7ccf050f1cec4308363a7aeb6b2c63/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/eaddfc6a13b1346afd0c6fa49db7ed9b/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/3306e3cee83566aa1a2a3971e5be5946/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/5c1cb2231646cabfa842cb82ea2e8985/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/6458b808126a761cc9955aca903923cc/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/9a05b6d1a52421bcefcdd464aea6125b/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/65654519677c4dd22411c5149027fee1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/d746d8c1b9c00c5ac63b8148ac2a79d1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/f9106fc69e278ed62207c6430dfdc06c/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/c20a23fea316d9079828c9c2001499fa/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/93f55a2939af29d1f2db3e4502642a00/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.2.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/724541db962545ffe419773515ce9c68/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.cardview:cardview:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/e889cc28140ab0bba9a455968c61a89a/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /home/shubham/.gradle/caches/transforms-2/files-2.1/1ac840ad010b81fadfcef94ab0c7f9a0/AndroidManifest.xml:2:1-11:12
+MERGED from [org.tensorflow:tensorflow-android:1.13.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/72ffb9f4f2be5da6aae0fc2795edaca8/AndroidManifest.xml:2:1-8:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/67e9cd89dc779a685e3675897164abc1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/309f6bffe74e8864bcf3cb56cb44f339/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/2af5426026b696de402d9d5c9d913f01/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/7f0db596a0f2221f68bac86121947134/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/490dfab17d52eb4aa8623b28091eaefc/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/bc819238ac95417fe6d52486ec4a69bf/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/b673b7e1def2f7dd1c627de981fb4493/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/c1eb4f67e4fa84d3ecb5494010093079/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/fbb90d26ee02f0c2ff657d08eb95a2d1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/6b7d5d1e8dcfc731fef8859d54865111/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/d03d352f92477bce92702d08d55b144c/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/1925da4451e118bc81daabcf8d3140e3/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/9b0bb0641dde5823e0d25b422ff77789/AndroidManifest.xml:17:1-24:12
+INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:2:1-85:12
+INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:2:1-85:12
+INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:2:1-85:12
 	package
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:3:5-32
-		INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
-		INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:3:5-32
+		INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml
+		INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml
 	android:versionName
-		INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:2:1-85:12
-		INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
+		INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:2:1-85:12
+		INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml
 	android:versionCode
-		INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:2:1-85:12
-		INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
+		INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:2:1-85:12
+		INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:2:11-69
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:2:11-69
 uses-permission#android.permission.CAMERA
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:4:5-65
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:4:5-65
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:4:22-62
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:4:22-62
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:5:5-81
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:5:5-81
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:5:22-78
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:5:22-78
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:6:5-80
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:6:5-80
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:6:22-77
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:6:22-77
 uses-permission#android.permission.SEND_SMS
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:7:5-67
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:7:5-67
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:7:22-64
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:7:22-64
 uses-permission#android.permission.RECEIVE_SMS
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:8:5-70
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:8:5-70
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:8:22-67
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:8:22-67
 uses-permission#android.permission.READ_CONTACTS
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:9:5-72
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:9:5-72
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:9:22-69
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:9:22-69
 uses-permission#android.permission.INTERNET
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:10:5-67
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:10:5-67
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:10:22-64
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:10:22-64
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:11:5-79
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:11:5-79
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:11:22-76
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:11:22-76
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:12:5-81
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:12:5-81
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:12:22-78
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:12:22-78
 uses-permission#android.permission.READ_CALENDAR
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:13:5-72
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:13:5-72
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:13:22-69
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:13:22-69
 uses-permission#android.permission.WRITE_CALENDAR
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:14:5-73
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:14:5-73
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:14:22-70
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:14:22-70
 uses-permission#android.permission.RECORD_AUDIO
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:15:5-71
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:15:5-71
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:15:22-68
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:15:22-68
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:16:5-79
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:16:5-79
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:16:22-76
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:16:22-76
 uses-permission#android.permission.READ_PHONE_STATE
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:17:5-75
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:17:5-75
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:17:22-72
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:17:22-72
 uses-permission#android.permission.VIBRATE
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:18:5-65
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:18:5-65
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:18:22-63
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:18:22-63
 uses-permission#android.permission.FOREGROUND_SERVICE
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:19:5-76
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:19:5-76
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:19:22-74
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:19:22-74
 uses-feature#android.hardware.camera
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:20:5-60
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:20:5-60
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:20:19-57
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:20:19-57
 uses-feature#android.hardware.camera.autofocus
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:21:5-70
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:21:5-70
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:21:19-67
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:21:19-67
 application
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:25:5-83:19
-MERGED from [de.hdodenhof:circleimageview:3.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/f3988221642e3661d4d5f50cfb76a5ba/AndroidManifest.xml:9:5-20
-MERGED from [de.hdodenhof:circleimageview:3.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/f3988221642e3661d4d5f50cfb76a5ba/AndroidManifest.xml:9:5-20
-MERGED from [com.android.volley:volley:1.1.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/f28be0cf5bfda0a506384db708e5b68f/AndroidManifest.xml:9:5-20
-MERGED from [com.android.volley:volley:1.1.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/f28be0cf5bfda0a506384db708e5b68f/AndroidManifest.xml:9:5-20
-MERGED from [com.android.support:design:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/3d705598a2f6c993090d45074499e3ab/AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:design:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/3d705598a2f6c993090d45074499e3ab/AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9a5f1c9c5d4cd2a78b50a1fcb3b96b26/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9a5f1c9c5d4cd2a78b50a1fcb3b96b26/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-base:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9151a884b7874d8bd9d425937fab02fb/AndroidManifest.xml:22:5-27:19
-MERGED from [com.google.android.gms:play-services-base:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9151a884b7874d8bd9d425937fab02fb/AndroidManifest.xml:22:5-27:19
-MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/15695646c94824c989bec8eef44a7c3b/AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/15695646c94824c989bec8eef44a7c3b/AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/fcb0d31670223e3e02b82bd80d637e21/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/fcb0d31670223e3e02b82bd80d637e21/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-basement:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/b9b28e0d3c062d1cf3ed850fae681787/AndroidManifest.xml:22:5-26:19
-MERGED from [com.google.android.gms:play-services-basement:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/b9b28e0d3c062d1cf3ed850fae681787/AndroidManifest.xml:22:5-26:19
-MERGED from [com.android.support:support-compat:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/b13698372119deef49a2a8e7e3291496/AndroidManifest.xml:22:5-94
-MERGED from [com.android.support:support-compat:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/b13698372119deef49a2a8e7e3291496/AndroidManifest.xml:22:5-94
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/cd3efc63a0380b7ce6ac4767205806d0/AndroidManifest.xml:9:5-20
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/cd3efc63a0380b7ce6ac4767205806d0/AndroidManifest.xml:9:5-20
-MERGED from [org.tensorflow:tensorflow-android:1.13.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/f7ecbefa9de5c4c5da549790bf603f72/AndroidManifest.xml:5:5-6:19
-MERGED from [org.tensorflow:tensorflow-android:1.13.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/f7ecbefa9de5c4c5da549790bf603f72/AndroidManifest.xml:5:5-6:19
-MERGED from [com.android.support:versionedparcelable:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/886699e1c786924afa032648de5405d1/AndroidManifest.xml:22:5-23:19
-MERGED from [com.android.support:versionedparcelable:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/886699e1c786924afa032648de5405d1/AndroidManifest.xml:22:5-23:19
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:25:5-83:19
+MERGED from [de.hdodenhof:circleimageview:3.0.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/b26a299ca3e9bb4a392fd9b26a953ec9/AndroidManifest.xml:9:5-20
+MERGED from [de.hdodenhof:circleimageview:3.0.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/b26a299ca3e9bb4a392fd9b26a953ec9/AndroidManifest.xml:9:5-20
+MERGED from [com.android.volley:volley:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/c274159704d8e470a0c623e0d4b1c644/AndroidManifest.xml:9:5-20
+MERGED from [com.android.volley:volley:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/c274159704d8e470a0c623e0d4b1c644/AndroidManifest.xml:9:5-20
+MERGED from [com.google.android.material:material:1.2.0-alpha06] /home/shubham/.gradle/caches/transforms-2/files-2.1/f45a6641a687147c828fda4f6710cc4c/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.2.0-alpha06] /home/shubham/.gradle/caches/transforms-2/files-2.1/f45a6641a687147c828fda4f6710cc4c/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/14f4aaf44c912a63ef1ca43feb021aee/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/14f4aaf44c912a63ef1ca43feb021aee/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/efb186556fbec6fa9397e490e287e4c9/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/efb186556fbec6fa9397e490e287e4c9/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/e95fefccf224c1dce460e2accf1875dd/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/e95fefccf224c1dce460e2accf1875dd/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/ac50e29c29273902360b4b0838bba1f2/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/ac50e29c29273902360b4b0838bba1f2/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/204001aa9c2d7ff2dac3a7936cc9353f/AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/204001aa9c2d7ff2dac3a7936cc9353f/AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.core:core:1.2.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/724541db962545ffe419773515ce9c68/AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.2.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/724541db962545ffe419773515ce9c68/AndroidManifest.xml:24:5-89
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /home/shubham/.gradle/caches/transforms-2/files-2.1/1ac840ad010b81fadfcef94ab0c7f9a0/AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /home/shubham/.gradle/caches/transforms-2/files-2.1/1ac840ad010b81fadfcef94ab0c7f9a0/AndroidManifest.xml:9:5-20
+MERGED from [org.tensorflow:tensorflow-android:1.13.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/72ffb9f4f2be5da6aae0fc2795edaca8/AndroidManifest.xml:5:5-6:19
+MERGED from [org.tensorflow:tensorflow-android:1.13.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/72ffb9f4f2be5da6aae0fc2795edaca8/AndroidManifest.xml:5:5-6:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/309f6bffe74e8864bcf3cb56cb44f339/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/309f6bffe74e8864bcf3cb56cb44f339/AndroidManifest.xml:24:5-25:19
 	android:appComponentFactory
-		ADDED from [com.android.support:support-compat:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/b13698372119deef49a2a8e7e3291496/AndroidManifest.xml:22:18-91
+		ADDED from [androidx.core:core:1.2.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/724541db962545ffe419773515ce9c68/AndroidManifest.xml:24:18-86
 	android:supportsRtl
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:30:9-35
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:30:9-35
 	android:label
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:28:9-41
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:28:9-41
 	android:roundIcon
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:29:9-50
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:29:9-50
 	android:icon
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:27:9-45
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:27:9-45
 	android:allowBackup
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:26:9-35
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:26:9-35
 	android:theme
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:32:9-40
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:32:9-40
 	android:usesCleartextTraffic
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:31:9-44
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:31:9-44
 service#com.example.croam.CRoamService
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:42:9-46:47
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:42:9-46:47
 	android:enabled
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:45:13-35
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:45:13-35
 	android:launchMode
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:44:13-44
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:44:13-44
 	android:exported
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:46:13-36
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:46:13-36
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:43:13-41
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:43:13-41
 meta-data#com.google.android.geo.API_KEY
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:48:9-50:70
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:48:9-50:70
 	android:value
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:50:13-68
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:50:13-68
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:49:13-58
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:49:13-58
 meta-data#com.google.android.actions
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:51:9-53:48
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:51:9-53:48
 	android:resource
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:53:13-45
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:53:13-45
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:52:13-54
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:52:13-54
 activity#com.example.croam.PoliceStation
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:55:9-60
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:55:9-60
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:55:19-48
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:55:19-48
 activity#com.example.croam.LoginActivity
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:56:9-60
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:56:9-60
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:56:19-48
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:56:19-48
 activity#com.example.croam.SplashScreen
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:57:9-66:20
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:57:9-66:20
 	android:screenOrientation
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:59:13-49
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:59:13-49
 	android:theme
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:60:13-63
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:60:13-63
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:58:13-41
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:58:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:61:13-65:29
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:61:13-65:29
 action#android.intent.action.MAIN
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:62:17-69
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:62:17-69
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:62:25-66
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:62:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:64:17-77
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:64:17-77
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:64:27-74
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:64:27-74
 activity#com.example.croam.MainActivity
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:67:9-82:20
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:67:9-82:20
 	android:screenOrientation
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:70:13-49
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:70:13-49
 	android:label
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:71:13-45
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:71:13-45
 	android:launchMode
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:69:13-44
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:69:13-44
 	android:theme
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:72:13-63
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:72:13-63
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:68:13-41
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:68:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.DEFAULT
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:73:13-77:29
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:73:13-77:29
 category#android.intent.category.DEFAULT
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:76:17-76
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:76:17-76
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:76:27-73
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:76:27-73
 intent-filter#action:name:android.intent.action.SCREEN_OFF+action:name:android.intent.action.SCREEN_ON
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:78:13-81:29
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:78:13-81:29
 action#android.intent.action.SCREEN_OFF
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:79:17-74
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:79:17-74
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:79:25-72
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:79:25-72
 action#android.intent.action.SCREEN_ON
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:80:17-73
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:80:17-73
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:80:25-71
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:80:25-71
 uses-sdk
-INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
-INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
-MERGED from [de.hdodenhof:circleimageview:3.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/f3988221642e3661d4d5f50cfb76a5ba/AndroidManifest.xml:5:5-7:41
-MERGED from [de.hdodenhof:circleimageview:3.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/f3988221642e3661d4d5f50cfb76a5ba/AndroidManifest.xml:5:5-7:41
-MERGED from [com.android.volley:volley:1.1.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/f28be0cf5bfda0a506384db708e5b68f/AndroidManifest.xml:7:5-43
-MERGED from [com.android.volley:volley:1.1.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/f28be0cf5bfda0a506384db708e5b68f/AndroidManifest.xml:7:5-43
-MERGED from [com.android.support:design:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/3d705598a2f6c993090d45074499e3ab/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:design:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/3d705598a2f6c993090d45074499e3ab/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:appcompat-v7:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/8918f476f0afe33da6dfa413d305de23/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:appcompat-v7:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/8918f476f0afe33da6dfa413d305de23/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9a5f1c9c5d4cd2a78b50a1fcb3b96b26/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9a5f1c9c5d4cd2a78b50a1fcb3b96b26/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-base:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9151a884b7874d8bd9d425937fab02fb/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-base:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9151a884b7874d8bd9d425937fab02fb/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/15695646c94824c989bec8eef44a7c3b/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/15695646c94824c989bec8eef44a7c3b/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/fcb0d31670223e3e02b82bd80d637e21/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/fcb0d31670223e3e02b82bd80d637e21/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-basement:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/b9b28e0d3c062d1cf3ed850fae681787/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-basement:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/b9b28e0d3c062d1cf3ed850fae681787/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-v4:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9bafffa7c303b1ab45fb2fce5a7d4094/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-v4:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9bafffa7c303b1ab45fb2fce5a7d4094/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-fragment:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/c0e229d620010a8c5945ac459de8e21a/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-fragment:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/c0e229d620010a8c5945ac459de8e21a/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:animated-vector-drawable:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/43ece52c768445352dfa895c791251b5/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:animated-vector-drawable:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/43ece52c768445352dfa895c791251b5/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:recyclerview-v7:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/838c9c653f9e78a3bf3deae4eac5595b/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:recyclerview-v7:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/838c9c653f9e78a3bf3deae4eac5595b/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-ui:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/47d26b67a0c8e219c39f244a2ff6b6b5/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-ui:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/47d26b67a0c8e219c39f244a2ff6b6b5/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-utils:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/55f6a0cfeb807bf55b4cc8fb47d6c0af/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-utils:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/55f6a0cfeb807bf55b4cc8fb47d6c0af/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/e4decac82cf3a136c81d672110a66c97/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/e4decac82cf3a136c81d672110a66c97/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-media-compat:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/1c58ea7a2edbca0c6a6fec76a405c322/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-media-compat:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/1c58ea7a2edbca0c6a6fec76a405c322/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:transition:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/60a3b50486b9da9a46ccf77a5e033840/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:transition:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/60a3b50486b9da9a46ccf77a5e033840/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:loader:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/00e233bfa50a44ee043facd3b6fc1fa0/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:loader:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/00e233bfa50a44ee043facd3b6fc1fa0/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:viewpager:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/0c11d0b1d4982d1fffce0745969bc8fc/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:viewpager:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/0c11d0b1d4982d1fffce0745969bc8fc/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:coordinatorlayout:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/606dc8de7b86a94dccd02eb8819464b2/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:coordinatorlayout:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/606dc8de7b86a94dccd02eb8819464b2/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:drawerlayout:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/222740ba681738627015899c67dcb486/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:drawerlayout:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/222740ba681738627015899c67dcb486/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:slidingpanelayout:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/175963f7e7b37eea713014ec49e10d69/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:slidingpanelayout:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/175963f7e7b37eea713014ec49e10d69/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:customview:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/4b7a1eb86620fd183d0b8b44eee413e5/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:customview:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/4b7a1eb86620fd183d0b8b44eee413e5/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:swiperefreshlayout:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/dbcba383cd1123055e82496a9808bafe/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:swiperefreshlayout:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/dbcba383cd1123055e82496a9808bafe/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:asynclayoutinflater:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/a13a360e208a7108bbaa45245bc48e67/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:asynclayoutinflater:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/a13a360e208a7108bbaa45245bc48e67/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-compat:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/b13698372119deef49a2a8e7e3291496/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-compat:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/b13698372119deef49a2a8e7e3291496/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:cardview-v7:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/d830553723e02a4c933ab749ad5d64ed/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:cardview-v7:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/d830553723e02a4c933ab749ad5d64ed/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/cd3efc63a0380b7ce6ac4767205806d0/AndroidManifest.xml:5:5-7:41
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/cd3efc63a0380b7ce6ac4767205806d0/AndroidManifest.xml:5:5-7:41
-MERGED from [com.android.support:versionedparcelable:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/886699e1c786924afa032648de5405d1/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:versionedparcelable:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/886699e1c786924afa032648de5405d1/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:cursoradapter:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/1db91dbead0865c6528d432c577023bf/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:cursoradapter:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/1db91dbead0865c6528d432c577023bf/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:runtime:1.1.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/1bc59fc67a00394edeed98d3991b0e91/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:runtime:1.1.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/1bc59fc67a00394edeed98d3991b0e91/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:documentfile:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/590284888ef129804a28ab471e5345dc/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:documentfile:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/590284888ef129804a28ab471e5345dc/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:localbroadcastmanager:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/38ee3e124888ced0cebe4f1f65b20087/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:localbroadcastmanager:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/38ee3e124888ced0cebe4f1f65b20087/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:print:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/d30da9677266a4177dbc6b183ef491aa/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:print:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/d30da9677266a4177dbc6b183ef491aa/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/d6f4ad2b6b1a3cf818e21522d64962a8/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/d6f4ad2b6b1a3cf818e21522d64962a8/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata:1.1.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/0ffbfe8ce7aff50b2da6b3fd31310216/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata:1.1.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/0ffbfe8ce7aff50b2da6b3fd31310216/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/73758def4afff5e81e02032bce67243c/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/73758def4afff5e81e02032bce67243c/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.core:runtime:1.1.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/fd06a63077f58f6136fbae007b929179/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.core:runtime:1.1.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/fd06a63077f58f6136fbae007b929179/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:interpolator:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/879190ed521784a9a31340bf681624b2/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:interpolator:28.0.0] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/879190ed521784a9a31340bf681624b2/AndroidManifest.xml:20:5-44
-INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
-INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
+INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml
+INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml
+MERGED from [de.hdodenhof:circleimageview:3.0.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/b26a299ca3e9bb4a392fd9b26a953ec9/AndroidManifest.xml:5:5-7:41
+MERGED from [de.hdodenhof:circleimageview:3.0.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/b26a299ca3e9bb4a392fd9b26a953ec9/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.volley:volley:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/c274159704d8e470a0c623e0d4b1c644/AndroidManifest.xml:7:5-43
+MERGED from [com.android.volley:volley:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/c274159704d8e470a0c623e0d4b1c644/AndroidManifest.xml:7:5-43
+MERGED from [com.google.android.material:material:1.2.0-alpha06] /home/shubham/.gradle/caches/transforms-2/files-2.1/f45a6641a687147c828fda4f6710cc4c/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.2.0-alpha06] /home/shubham/.gradle/caches/transforms-2/files-2.1/f45a6641a687147c828fda4f6710cc4c/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/b0d113c0a2caebb2dfa9cffaa5a8e14b/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/b0d113c0a2caebb2dfa9cffaa5a8e14b/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/14f4aaf44c912a63ef1ca43feb021aee/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/14f4aaf44c912a63ef1ca43feb021aee/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/efb186556fbec6fa9397e490e287e4c9/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/efb186556fbec6fa9397e490e287e4c9/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/e95fefccf224c1dce460e2accf1875dd/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/e95fefccf224c1dce460e2accf1875dd/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/ac50e29c29273902360b4b0838bba1f2/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/ac50e29c29273902360b4b0838bba1f2/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/204001aa9c2d7ff2dac3a7936cc9353f/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/204001aa9c2d7ff2dac3a7936cc9353f/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/b47095048451bf313ec1c061ccf3e421/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/b47095048451bf313ec1c061ccf3e421/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/d9a13a256a739604e1a776fddd46be5a/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/d9a13a256a739604e1a776fddd46be5a/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/f5bd923f61f724c82cc5683374434614/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/f5bd923f61f724c82cc5683374434614/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/e90c1ae3a0b82b355ca16ea3beb66879/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/e90c1ae3a0b82b355ca16ea3beb66879/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/702ae74094f2e4766246c59a455e844f/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/702ae74094f2e4766246c59a455e844f/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/4eaada3f62747618e0e03d092b7f01f4/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/4eaada3f62747618e0e03d092b7f01f4/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/0f4d3f2aa3ac59967cae71ce09ff4aeb/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/0f4d3f2aa3ac59967cae71ce09ff4aeb/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/9ff904f406638b45609c428bdaac1767/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/9ff904f406638b45609c428bdaac1767/AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/e599cb234429a0ff25f02bdb56d6b9f5/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/e599cb234429a0ff25f02bdb56d6b9f5/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/2c7ccf050f1cec4308363a7aeb6b2c63/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/2c7ccf050f1cec4308363a7aeb6b2c63/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/eaddfc6a13b1346afd0c6fa49db7ed9b/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/eaddfc6a13b1346afd0c6fa49db7ed9b/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/3306e3cee83566aa1a2a3971e5be5946/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/3306e3cee83566aa1a2a3971e5be5946/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/5c1cb2231646cabfa842cb82ea2e8985/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/5c1cb2231646cabfa842cb82ea2e8985/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/6458b808126a761cc9955aca903923cc/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/6458b808126a761cc9955aca903923cc/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/9a05b6d1a52421bcefcdd464aea6125b/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/9a05b6d1a52421bcefcdd464aea6125b/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/65654519677c4dd22411c5149027fee1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/65654519677c4dd22411c5149027fee1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/d746d8c1b9c00c5ac63b8148ac2a79d1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/d746d8c1b9c00c5ac63b8148ac2a79d1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/f9106fc69e278ed62207c6430dfdc06c/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/f9106fc69e278ed62207c6430dfdc06c/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/c20a23fea316d9079828c9c2001499fa/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/c20a23fea316d9079828c9c2001499fa/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/93f55a2939af29d1f2db3e4502642a00/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/93f55a2939af29d1f2db3e4502642a00/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.2.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/724541db962545ffe419773515ce9c68/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.2.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/724541db962545ffe419773515ce9c68/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cardview:cardview:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/e889cc28140ab0bba9a455968c61a89a/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/e889cc28140ab0bba9a455968c61a89a/AndroidManifest.xml:20:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /home/shubham/.gradle/caches/transforms-2/files-2.1/1ac840ad010b81fadfcef94ab0c7f9a0/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /home/shubham/.gradle/caches/transforms-2/files-2.1/1ac840ad010b81fadfcef94ab0c7f9a0/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/67e9cd89dc779a685e3675897164abc1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/67e9cd89dc779a685e3675897164abc1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/309f6bffe74e8864bcf3cb56cb44f339/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/309f6bffe74e8864bcf3cb56cb44f339/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/2af5426026b696de402d9d5c9d913f01/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/2af5426026b696de402d9d5c9d913f01/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/7f0db596a0f2221f68bac86121947134/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/7f0db596a0f2221f68bac86121947134/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/490dfab17d52eb4aa8623b28091eaefc/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/490dfab17d52eb4aa8623b28091eaefc/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/bc819238ac95417fe6d52486ec4a69bf/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/bc819238ac95417fe6d52486ec4a69bf/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/b673b7e1def2f7dd1c627de981fb4493/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/b673b7e1def2f7dd1c627de981fb4493/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/c1eb4f67e4fa84d3ecb5494010093079/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/c1eb4f67e4fa84d3ecb5494010093079/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/fbb90d26ee02f0c2ff657d08eb95a2d1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/fbb90d26ee02f0c2ff657d08eb95a2d1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/6b7d5d1e8dcfc731fef8859d54865111/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/6b7d5d1e8dcfc731fef8859d54865111/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/d03d352f92477bce92702d08d55b144c/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/d03d352f92477bce92702d08d55b144c/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/1925da4451e118bc81daabcf8d3140e3/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/1925da4451e118bc81daabcf8d3140e3/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/9b0bb0641dde5823e0d25b422ff77789/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/9b0bb0641dde5823e0d25b422ff77789/AndroidManifest.xml:20:5-22:41
+INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml
+INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
-		INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
+		INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml
+		INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
-		INJECTED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml
+		INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml
+		INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml
 meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:38:13-40:57
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:38:13-40:57
 	android:resource
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:40:17-55
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:40:17-55
 	android:name
-		ADDED from /home/rishidev47/StudioProjects/CRoam/app/src/main/AndroidManifest.xml:39:17-67
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:39:17-67
 activity#com.google.android.gms.common.api.GoogleApiActivity
-ADDED from [com.google.android.gms:play-services-base:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9151a884b7874d8bd9d425937fab02fb/AndroidManifest.xml:23:9-26:75
+ADDED from [com.google.android.gms:play-services-base:16.0.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/efb186556fbec6fa9397e490e287e4c9/AndroidManifest.xml:23:9-26:75
 	android:exported
-		ADDED from [com.google.android.gms:play-services-base:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9151a884b7874d8bd9d425937fab02fb/AndroidManifest.xml:25:13-37
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/efb186556fbec6fa9397e490e287e4c9/AndroidManifest.xml:25:13-37
 	android:theme
-		ADDED from [com.google.android.gms:play-services-base:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9151a884b7874d8bd9d425937fab02fb/AndroidManifest.xml:26:13-72
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/efb186556fbec6fa9397e490e287e4c9/AndroidManifest.xml:26:13-72
 	android:name
-		ADDED from [com.google.android.gms:play-services-base:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/9151a884b7874d8bd9d425937fab02fb/AndroidManifest.xml:24:13-79
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/efb186556fbec6fa9397e490e287e4c9/AndroidManifest.xml:24:13-79
 meta-data#com.google.android.gms.version
-ADDED from [com.google.android.gms:play-services-basement:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/b9b28e0d3c062d1cf3ed850fae681787/AndroidManifest.xml:23:9-25:69
+ADDED from [com.google.android.gms:play-services-basement:16.0.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/204001aa9c2d7ff2dac3a7936cc9353f/AndroidManifest.xml:23:9-25:69
 	android:value
-		ADDED from [com.google.android.gms:play-services-basement:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/b9b28e0d3c062d1cf3ed850fae681787/AndroidManifest.xml:25:13-66
+		ADDED from [com.google.android.gms:play-services-basement:16.0.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/204001aa9c2d7ff2dac3a7936cc9353f/AndroidManifest.xml:25:13-66
 	android:name
-		ADDED from [com.google.android.gms:play-services-basement:16.0.1] /home/rishidev47/.gradle/caches/transforms-2/files-2.1/b9b28e0d3c062d1cf3ed850fae681787/AndroidManifest.xml:24:13-58
+		ADDED from [com.google.android.gms:play-services-basement:16.0.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/204001aa9c2d7ff2dac3a7936cc9353f/AndroidManifest.xml:24:13-58

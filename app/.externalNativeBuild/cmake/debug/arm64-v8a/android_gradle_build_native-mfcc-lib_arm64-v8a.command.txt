@@ -1,7 +1,7 @@
-Executable : /home/rishidev47/Android/Sdk/cmake/3.6.4111459/bin/cmake
+Executable : /home/shubham/Android/Sdk/cmake/3.6.4111459/bin/cmake
 arguments : 
 --build
-/home/rishidev47/StudioProjects/CRoam/app/.externalNativeBuild/cmake/debug/arm64-v8a
+/home/shubham/croam_app/app/.externalNativeBuild/cmake/debug/arm64-v8a
 --target
 native-mfcc-lib
 jvmArgs : 

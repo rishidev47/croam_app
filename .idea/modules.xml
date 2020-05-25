@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CRoam.iml" filepath="$PROJECT_DIR$/CRoam.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="croam_app/app" />
+      <module fileurl="file://$PROJECT_DIR$/croam_app.iml" filepath="$PROJECT_DIR$/croam_app.iml" group="croam_app" />
     </modules>
   </component>
 </project>

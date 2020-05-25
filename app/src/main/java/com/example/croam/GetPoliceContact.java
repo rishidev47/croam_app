@@ -11,7 +11,6 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
-import static android.support.constraint.Constraints.TAG;
 
 public class GetPoliceContact extends Thread {
     double lat;
@@ -83,7 +82,7 @@ public class GetPoliceContact extends Thread {
                                     idobj.getJSONObject("result").getString("formatted_phone_number");
                                 }
                                 catch (JSONException e){
-                                    Log.v(TAG, name+" No Number of this Police Station found", e);
+//                                    Log.v(TAG, name+" No Number of this Police Station found", e);
                                     continue;
                                 }
 

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/rishidev47/StudioProjects/CRoam/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v26/values-v26.xml",
+            "outputFile": "/home/shubham/croam_app/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v26/values-v26.xml",
             "map": [
                 {
-                    "source": "/home/rishidev47/.gradle/caches/transforms-2/files-2.1/8918f476f0afe33da6dfa413d305de23/res/values-v26/values-v26.xml",
+                    "source": "/home/shubham/.gradle/caches/transforms-2/files-2.1/b0d113c0a2caebb2dfa9cffaa5a8e14b/res/values-v26/values-v26.xml",
                     "from": {
                         "startLines": "2,3,4,8,12,16",
                         "startColumns": "4,4,4,4,4,4",

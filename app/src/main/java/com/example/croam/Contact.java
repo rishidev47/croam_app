@@ -1,25 +1,26 @@
 package com.example.croam;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.support.annotation.Nullable;
-import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-import static android.app.Activity.RESULT_OK;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 public class Contact extends Fragment {
     private static final int ADD_CONTACT=1;

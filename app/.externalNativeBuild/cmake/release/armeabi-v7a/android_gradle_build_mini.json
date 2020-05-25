@@ -1,16 +1,16 @@
 {
   "buildFiles": [
-    "/home/rishidev47/StudioProjects/CRoam/app/src/main/cpp/CMakeLists.txt"
+    "/home/shubham/croam_app/app/src/main/cpp/CMakeLists.txt"
   ],
   "cleanCommands": [
-    "/home/rishidev47/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/rishidev47/StudioProjects/CRoam/app/.externalNativeBuild/cmake/release/armeabi-v7a --target clean"
+    "/home/shubham/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/shubham/croam_app/app/.externalNativeBuild/cmake/release/armeabi-v7a --target clean"
   ],
   "libraries": {
     "native-mfcc-lib-Release-armeabi-v7a": {
       "artifactName": "native-mfcc-lib",
-      "buildCommand": "/home/rishidev47/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/rishidev47/StudioProjects/CRoam/app/.externalNativeBuild/cmake/release/armeabi-v7a --target native-mfcc-lib",
+      "buildCommand": "/home/shubham/Android/Sdk/cmake/3.6.4111459/bin/cmake --build /home/shubham/croam_app/app/.externalNativeBuild/cmake/release/armeabi-v7a --target native-mfcc-lib",
       "abi": "armeabi-v7a",
-      "output": "/home/rishidev47/StudioProjects/CRoam/app/build/intermediates/cmake/release/obj/armeabi-v7a/libnative-mfcc-lib.so"
+      "output": "/home/shubham/croam_app/app/build/intermediates/cmake/release/obj/armeabi-v7a/libnative-mfcc-lib.so"
     }
   }
 }

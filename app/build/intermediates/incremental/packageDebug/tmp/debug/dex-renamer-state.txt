@@ -1,7 +1,7 @@
-#Sat May 02 15:34:43 IST 2020
-base.0=/home/rishidev47/StudioProjects/CRoam/app/build/intermediates/dex/debug/mergeExtDexDebug/out
+#Mon May 25 18:20:35 IST 2020
+base.0=/home/shubham/croam_app/app/build/intermediates/dex/debug/mergeExtDexDebug/out
 path.1=classes.dex
 renamed.1=classes2.dex
 path.0=classes.dex
 renamed.0=classes.dex
-base.1=/home/rishidev47/StudioProjects/CRoam/app/build/intermediates/dex/debug/mergeProjectDexDebug/out
+base.1=/home/shubham/croam_app/app/build/intermediates/dex/debug/mergeProjectDexDebug/out
