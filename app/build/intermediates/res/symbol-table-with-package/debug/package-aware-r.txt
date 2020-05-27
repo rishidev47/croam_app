@@ -1482,6 +1482,7 @@ drawable gradientbackground
 drawable ic_call
 drawable ic_dob
 drawable ic_email
+drawable ic_folder_open_black_24dp
 drawable ic_launcher
 drawable ic_launcher_background
 drawable ic_launcher_foreground
@@ -1493,6 +1494,7 @@ drawable ic_nav_contacts
 drawable ic_nav_home
 drawable ic_nav_police
 drawable ic_nav_profile
+drawable ic_power_settings_new_black_24dp
 drawable material_ic_calendar_black_24dp
 drawable material_ic_clear_black_24dp
 drawable material_ic_edit_black_24dp
@@ -1784,7 +1786,6 @@ id radioFemale
 id radioGroupGender
 id radioMale
 id radioOther
-id relativeLayout
 id right
 id right_icon
 id right_side
@@ -1886,7 +1887,7 @@ id uniform
 id unlabeled
 id up
 id useLogo
-id userid
+id userImage
 id view_offset_helper
 id visible
 id wide

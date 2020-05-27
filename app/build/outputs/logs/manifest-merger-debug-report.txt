@@ -11,10 +11,10 @@ INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:33:9-41:2
 	android:name
 		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:34:13-48
 manifest
-ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:2:1-85:12
-INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:2:1-85:12
-INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:2:1-85:12
-INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:2:1-85:12
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:2:1-84:12
+INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:2:1-84:12
+INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:2:1-84:12
+INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:2:1-84:12
 MERGED from [de.hdodenhof:circleimageview:3.0.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/b26a299ca3e9bb4a392fd9b26a953ec9/AndroidManifest.xml:2:1-11:12
 MERGED from [com.android.volley:volley:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/c274159704d8e470a0c623e0d4b1c644/AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.android.material:material:1.2.0-alpha06] /home/shubham/.gradle/caches/transforms-2/files-2.1/f45a6641a687147c828fda4f6710cc4c/AndroidManifest.xml:17:1-24:12
@@ -61,20 +61,20 @@ MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/shubham/.gradle/
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/d03d352f92477bce92702d08d55b144c/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.arch.core:core-runtime:2.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/1925da4451e118bc81daabcf8d3140e3/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.annotation:annotation-experimental:1.0.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/9b0bb0641dde5823e0d25b422ff77789/AndroidManifest.xml:17:1-24:12
-INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:2:1-85:12
-INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:2:1-85:12
-INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:2:1-85:12
+INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:2:1-84:12
+INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:2:1-84:12
+INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:2:1-84:12
 	package
 		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:3:5-32
 		INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml
 		INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml
-		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:2:1-85:12
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:2:1-84:12
 		INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml
-		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:2:1-85:12
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:2:1-84:12
 		INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:2:11-69
@@ -151,7 +151,7 @@ ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:21:5-70
 	android:name
 		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:21:19-67
 application
-ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:25:5-83:19
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:25:5-82:19
 MERGED from [de.hdodenhof:circleimageview:3.0.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/b26a299ca3e9bb4a392fd9b26a953ec9/AndroidManifest.xml:9:5-20
 MERGED from [de.hdodenhof:circleimageview:3.0.1] /home/shubham/.gradle/caches/transforms-2/files-2.1/b26a299ca3e9bb4a392fd9b26a953ec9/AndroidManifest.xml:9:5-20
 MERGED from [com.android.volley:volley:1.1.0] /home/shubham/.gradle/caches/transforms-2/files-2.1/c274159704d8e470a0c623e0d4b1c644/AndroidManifest.xml:9:5-20
@@ -193,7 +193,7 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/shubh
 	android:usesCleartextTraffic
 		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:31:9-44
 service#com.example.croam.CRoamService
-ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:42:9-46:47
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:42:9-46:39
 	android:enabled
 		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:45:13-35
 	android:launchMode
@@ -215,59 +215,57 @@ ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:51:9-53:48
 	android:name
 		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:52:13-54
 activity#com.example.croam.PoliceStation
-ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:55:9-60
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:55:9-51
 	android:name
 		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:55:19-48
 activity#com.example.croam.LoginActivity
-ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:56:9-60
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:56:9-51
 	android:name
 		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:56:19-48
 activity#com.example.croam.SplashScreen
-ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:57:9-66:20
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:57:9-61:20
 	android:screenOrientation
 		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:59:13-49
 	android:theme
-		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:60:13-63
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:60:13-72
 	android:name
 		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:58:13-41
-intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:61:13-65:29
-action#android.intent.action.MAIN
-ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:62:17-69
-	android:name
-		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:62:25-66
-category#android.intent.category.LAUNCHER
-ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:64:17-77
-	android:name
-		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:64:27-74
 activity#com.example.croam.MainActivity
-ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:67:9-82:20
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:62:9-81:20
 	android:screenOrientation
-		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:70:13-49
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:65:13-49
 	android:label
-		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:71:13-45
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:66:13-45
 	android:launchMode
-		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:69:13-44
-	android:theme
-		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:72:13-63
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:64:13-44
 	android:name
-		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:68:13-41
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:63:13-41
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:67:13-71:29
+action#android.intent.action.MAIN
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:68:17-69
+	android:name
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:68:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:70:17-77
+	android:name
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:70:27-74
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.DEFAULT
-ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:73:13-77:29
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:72:13-76:29
 category#android.intent.category.DEFAULT
-ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:76:17-76
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:75:17-76
 	android:name
-		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:76:27-73
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:75:27-73
 intent-filter#action:name:android.intent.action.SCREEN_OFF+action:name:android.intent.action.SCREEN_ON
-ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:78:13-81:29
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:77:13-80:29
 action#android.intent.action.SCREEN_OFF
-ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:79:17-74
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:78:17-74
 	android:name
-		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:79:25-72
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:78:25-72
 action#android.intent.action.SCREEN_ON
-ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:80:17-73
+ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:79:17-73
 	android:name
-		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:80:25-71
+		ADDED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml:79:25-71
 uses-sdk
 INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/shubham/croam_app/app/src/main/AndroidManifest.xml

@@ -44,6 +44,10 @@
         "source": "/home/shubham/.gradle/caches/transforms-2/files-2.1/724541db962545ffe419773515ce9c68/res/drawable-xhdpi-v4/notification_bg_low_normal.9.png"
     },
     {
+        "merged": "/home/shubham/croam_app/app/build/intermediates/res/merged/debug/drawable_ic_folder_open_black_24dp.xml.flat",
+        "source": "/home/shubham/croam_app/app/src/main/res/drawable/ic_folder_open_black_24dp.xml"
+    },
+    {
         "merged": "/home/shubham/croam_app/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_list_focused_holo.9.png.flat",
         "source": "/home/shubham/.gradle/caches/transforms-2/files-2.1/b0d113c0a2caebb2dfa9cffaa5a8e14b/res/drawable-xxhdpi-v4/abc_list_focused_holo.9.png"
     },
@@ -1902,6 +1906,10 @@
     {
         "merged": "/home/shubham/croam_app/app/build/intermediates/res/merged/debug/layout-sw600dp-v13_design_layout_snackbar.xml.flat",
         "source": "/home/shubham/.gradle/caches/transforms-2/files-2.1/f45a6641a687147c828fda4f6710cc4c/res/layout-sw600dp-v13/design_layout_snackbar.xml"
+    },
+    {
+        "merged": "/home/shubham/croam_app/app/build/intermediates/res/merged/debug/drawable_ic_power_settings_new_black_24dp.xml.flat",
+        "source": "/home/shubham/croam_app/app/src/main/res/drawable/ic_power_settings_new_black_24dp.xml"
     },
     {
         "merged": "/home/shubham/croam_app/app/build/intermediates/res/merged/debug/color_material_slider_halo_color.xml.flat",

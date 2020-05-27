@@ -17,38 +17,43 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.File;
+import java.util.Objects;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 public class Profile extends Fragment {
-    AlertDialog.Builder editDialog;
-    TextView nametxt;
-    TextView phonetxt;
-    TextView emailtxt;
-    TextView dobtxt;
-    View editbox;
-    DBHandler db;
+    private AlertDialog.Builder editDialog;
+    private TextView nametxt;
+    private TextView phonetxt;
+    private TextView emailtxt;
+    private TextView dobtxt;
+    private View editbox;
+//    DBHandler db;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_profile, container, false);
-        Button logout=view.findViewById(R.id.btn_logout);
-        final BottomNavigationView navView=((MainActivity)getActivity()).navView;
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        Button logout = view.findViewById(R.id.btn_logout);
+        final BottomNavigationView navView = ((MainActivity) Objects.requireNonNull(
+                getActivity())).navView;
         navView.setBackgroundColor(getResources().getColor(R.color.white));
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext().getApplicationContext()); //Get the preferences
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
+                        Objects.requireNonNull(
+                                getContext()).getApplicationContext()); //Get the preferences
                 prefs.edit().clear().commit();
-                ((MainActivity)getActivity()).stopCroamService();
-                Intent mIntent = new Intent(getContext(),LoginActivity.class);
+                ((MainActivity) Objects.requireNonNull(getActivity())).stopCroamService();
+                Intent mIntent = new Intent(getContext(), LoginActivity.class);
                 getActivity().finishAffinity();
                 startActivity(mIntent);
             }
@@ -66,8 +71,8 @@ public class Profile extends Fragment {
 
         updateView();
 
-        final Button editButton=view.findViewById(R.id.editButton);
-        final Button openFolder=view.findViewById(R.id.openFolder);
+        final FloatingActionButton editButton = view.findViewById(R.id.editButton);
+        final Button openFolder = view.findViewById(R.id.openFolder);
 
         openFolder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,8 +84,9 @@ public class Profile extends Fragment {
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(editbox.getParent()!=null)
-                    ((ViewGroup)editbox.getParent()).removeView(editbox); // <- fix
+                if (editbox.getParent() != null) {
+                    ((ViewGroup) editbox.getParent()).removeView(editbox); // <- fix
+                }
                 editDialog.show();
             }
         });
@@ -88,7 +94,8 @@ public class Profile extends Fragment {
 
         editDialog = new AlertDialog.Builder(getActivity());
 //        db=new DBHandler(getActivity().getApplicationContext());
-        LayoutInflater inflater1 = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater1 = (LayoutInflater) Objects.requireNonNull(
+                getContext()).getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         editbox = inflater1.inflate(R.layout.dialog_editprofile, null);
         String name;
         String phone;
@@ -101,14 +108,13 @@ public class Profile extends Fragment {
 //        email=profile[2];
 //        dob=profile[3];
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext().getApplicationContext()); //Get the preferences
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
+                getContext().getApplicationContext()); //Get the preferences
         phone = prefs.getString("phone", null); //get a String
         name = prefs.getString("name", null); //get a String
         email = prefs.getString("email", null); //get a String
         int age = prefs.getInt("age", 0); //get a String
         dob = prefs.getString("dob", null); //get a String
-
-
 
 
         final EditText nameText = editbox.findViewById(R.id.editTextName);
@@ -128,11 +134,11 @@ public class Profile extends Fragment {
         editDialog.setPositiveButton("YES",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        String n=nameText.getText().toString();
-                        String p=phoneText.getText().toString();
-                        String e=emailText.getText().toString();
-                        String d=dobText.getText().toString();
-                        update(n,e,p,d);
+                        String n = nameText.getText().toString();
+                        String p = phoneText.getText().toString();
+                        String e = emailText.getText().toString();
+                        String d = dobText.getText().toString();
+                        update(n, e, p, d);
                         updateView();
 
                     }
@@ -151,25 +157,28 @@ public class Profile extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        db=new DBHandler(getActivity().getApplicationContext());
+//        db=new DBHandler(getActivity().getApplicationContext());
     }
 
-    void update(String name, String email, String phone, String dob){
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext().getApplicationContext()); //Get the preferences
+    private void update(String name, String email, String phone, String dob) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
+                getContext().getApplicationContext()); //Get the preferences
         SharedPreferences.Editor edit = prefs.edit(); //Needed to edit the preference
-        edit.putString("name",name);
-        edit.putString("email",email);
-        edit.putString("phone",phone);
-        edit.putString("dob",dob);
+        edit.putString("name", name);
+        edit.putString("email", email);
+        edit.putString("phone", phone);
+        edit.putString("dob", dob);
         edit.commit();
-        db.updateProfile(name, email, phone, dob);
-        doUpdate();
+//        db.updateProfile(name, email, phone, dob);
+//        doUpdate();
     }
-    void doUpdate(){
 
-    }
-    void updateView(){
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext().getApplicationContext()); //Get the preferences
+    //    void doUpdate(){
+//
+//    }
+    private void updateView() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
+                getContext().getApplicationContext()); //Get the preferences
         String phone = prefs.getString("phone", null); //get a String
         String name = prefs.getString("name", null); //get a String
         String email = prefs.getString("email", null); //get a String
@@ -180,23 +189,23 @@ public class Profile extends Fragment {
         emailtxt.setText(email);
         dobtxt.setText(dob);
 
-        String[] details=db.getProfile();
-        if(details[0]!=null){
-            if(!details[0].equals("")){
-//                nametxt.setText(details[0]);
-//                phonetxt.setText(details[1]);
-//                emailtxt.setText(details[2]);
-//                dobtxt.setText(details[3]);
-            }
-
-        }
-
+//        String[] details=db.getProfile();
+//        if(details[0]!=null){
+//            if(!details[0].equals("")){
+////                nametxt.setText(details[0]);
+////                phonetxt.setText(details[1]);
+////                emailtxt.setText(details[2]);
+////                dobtxt.setText(details[3]);
+//            }
+//
+//        }
+//
 
     }
-    public void openFolder()
-    {
+
+    private void openFolder() {
         File sdDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        File file = new File(sdDir,"");
+        File file = new File(sdDir, "");
 
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
@@ -206,7 +215,8 @@ public class Profile extends Fragment {
 //        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
 //        File sdDir = Environment
 //                .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-//        Uri uri = Uri.parse(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getPath()
+//        Uri uri = Uri.parse(Environment.getExternalStoragePublicDirectory(Environment
+//        .DIRECTORY_PICTURES).getPath()
 //                + "/Project1/");
 //        intent.setDataAndType(uri, "image/jpeg");
 ////        startActivity(Intent.createChooser(intent, "Open folder"));
