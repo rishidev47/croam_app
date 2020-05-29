@@ -17,8 +17,6 @@ public class DBHandler extends SQLiteOpenHelper{
     private static final String HELP_TABLE="detection";
 
 
-    ;
-
     public DBHandler(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
@@ -54,21 +52,6 @@ public class DBHandler extends SQLiteOpenHelper{
         db.close();
     }
 
-//    public String getRecords(){
-//        String query="SELECT * FROM "+E_CONTACT_TABLE;
-//        String result="";
-//        SQLiteDatabase db=this.getReadableDatabase();
-//        Cursor cursor=db.rawQuery(query,null);
-//
-//        cursor.moveToFirst();
-//        while(cursor.isAfterLast()==false){
-//            result+=cursor.getString(1)+"  ("+cursor.getString(2)+")"+"\n";
-//            cursor.moveToNext();
-//        }
-//
-//        db.close();
-//        return result;
-//    }
     public String getRecords(){
         String query="SELECT * FROM "+E_CONTACT_TABLE;
         String result="";
@@ -99,27 +82,6 @@ public class DBHandler extends SQLiteOpenHelper{
         db.delete(E_CONTACT_TABLE,"Contact=?",new String[]{number});
 
         db.close();
-    }
-
-    public boolean checkUser(String name,String pass){
-        SQLiteDatabase db=this.getWritableDatabase();
-        String query="SELECT * FROM "+E_CONTACT_TABLE;
-        Cursor cursor=db.rawQuery(query,null);
-        cursor.moveToFirst();
-        String tempuser,temppass;
-        Boolean valid=false;
-
-        while(cursor.isAfterLast()==false){
-            tempuser=cursor.getString(1);
-            temppass=cursor.getString(2);
-            System.out.println("-"+tempuser+"-"+temppass+"-");
-            if(tempuser.equals(name) && temppass.equals(pass)){
-                valid=true;
-                break;
-            }
-            cursor.moveToNext();
-        }
-        return valid;
     }
     public String getphone(int i){
         String query="SELECT * FROM "+E_CONTACT_TABLE;
@@ -165,62 +127,4 @@ public class DBHandler extends SQLiteOpenHelper{
         return check;
     }
 
-    public String[] getProfile(){
-        String[] ret= new String[4];
-        String query="SELECT * FROM "+PROFILE_TABLE;
-        SQLiteDatabase db=this.getReadableDatabase();
-        Cursor cursor=db.rawQuery(query,null);
-        cursor.moveToFirst();
-        if( cursor != null && cursor.moveToFirst() ){
-            Log.d("DB",""+cursor.getColumnCount());
-            for(int q=0; q<4; q++){
-                ret[q]=cursor.getString(q+1).trim();
-            }
-            cursor.close();
-        }
-        else
-            cursor.close();
-
-        return ret;
-    }
-
-    public void updateProfile(String name, String email, String phone, String dob){
-        SQLiteDatabase db=this.getWritableDatabase();
-        ContentValues values=new ContentValues();
-        values.put("id",1);
-        values.put("Name",name);
-        values.put("Phone",phone);
-        values.put("Email",email);
-        values.put("Dob",dob);
-        int numberOfRowsUpdated=db.update(PROFILE_TABLE,values,"id=?",new String[]{"1"});
-        if(numberOfRowsUpdated==0){
-            db.insert(PROFILE_TABLE,null,values);
-        }
-        db.close();
-    }
-
-//    public void dummy(){
-//        SQLiteDatabase temp=this.getWritableDatabase();
-//        String query="SELECT * FROM "+PROFILE_TABLE;
-//        Cursor cursor=temp.rawQuery(query,null);
-//
-//        if(cursor.isAfterLast()==false) {
-//            ContentValues values=new ContentValues();
-//            values.put("id",1);
-//            values.put("Name","Name");
-//            values.put("Phone","xxxxxxxxxx");
-//            values.put("Email","email@gmail.com");
-//            values.put("Dob", "xx/xx/xxxx");
-//            Log.d("DB",""+temp.insert(PROFILE_TABLE,null,values));
-//        }
-//        else{
-//            cursor.moveToFirst();
-//            while(cursor.isAfterLast()==false){
-//                Log.d("IN_DATABASE",""+cursor.getString(0)+cursor.getString(1)+cursor.getString(2)+cursor.getString(3));
-//                if(!cursor.moveToNext()) break;
-//            }
-//        }
-//
-//        temp.close();
-//    }
 }
