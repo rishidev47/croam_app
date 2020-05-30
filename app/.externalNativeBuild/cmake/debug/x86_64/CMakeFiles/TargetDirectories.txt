@@ -1,3 +1,0 @@
-/home/shubham/croam_app/app/.externalNativeBuild/cmake/debug/x86_64/CMakeFiles/edit_cache.dir
-/home/shubham/croam_app/app/.externalNativeBuild/cmake/debug/x86_64/CMakeFiles/rebuild_cache.dir
-/home/shubham/croam_app/app/.externalNativeBuild/cmake/debug/x86_64/CMakeFiles/native-mfcc-lib.dir

@@ -1,6 +1,0 @@
-# ninja log v5
-1	2658	0	CMakeFiles/native-mfcc-lib.dir/matrix_multiplication.cpp.o	c43a0dc4f962ae8e
-1	2659	0	CMakeFiles/native-mfcc-lib.dir/native-mfcc-lib.cpp.o	6b31d81da6837212
-1	2659	0	CMakeFiles/native-mfcc-lib.dir/fft.cpp.o	b291c34e64429d28
-1	2663	0	CMakeFiles/native-mfcc-lib.dir/mfcc.cpp.o	11ba3c3fc485eb8f
-2663	4187	0	/home/shubham/croam_app/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-mfcc-lib.so	15148ca605e154b8
