@@ -13,12 +13,12 @@ import java.net.URLConnection;
 
 
 public class GetPoliceContact extends Thread {
-    double lat;
-    double lng;
-    String API_KEY;
-    String policeList=null;
-    String policeDetails="";
-    MainActivity activity=null;
+    private double lat;
+    private double lng;
+    private String API_KEY;
+    private String policeList=null;
+    private String policeDetails="";
+    private MainActivity activity=null;
     public GetPoliceContact(MainActivity activity, double lat, double lng) {
         this.lat=lat;
         this.lng=lng;
@@ -37,7 +37,7 @@ public class GetPoliceContact extends Thread {
             String line;
             while ((line = bufferedReader.readLine()) != null)
             {
-                content.append(line + "\n");
+                content.append(line).append("\n");
             }
             bufferedReader.close();
             policeList=content.toString();

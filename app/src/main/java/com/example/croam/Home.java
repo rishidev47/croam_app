@@ -14,19 +14,21 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.Objects;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public class Home extends Fragment {
-    Switch toggleSwitch;
-    Button btn_update_threshold;
+    private Switch toggleSwitch;
+    private Button btn_update_threshold;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
         final View view= inflater.inflate(R.layout.fragment_home, container, false);
-        final BottomNavigationView navView=((MainActivity)getActivity()).navView;
+        final BottomNavigationView navView=((MainActivity) Objects.requireNonNull(getActivity())).navView;
         final EditText txt_threshold = view.findViewById(R.id.editText_threshold);
         btn_update_threshold=view.findViewById(R.id.btn_update_threshold);
         toggleSwitch=view.findViewById(R.id.switch_main);
@@ -47,7 +49,7 @@ public class Home extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
-                    ((MainActivity)getActivity()).onSwitchOn();
+                    ((MainActivity) Objects.requireNonNull(getActivity())).onSwitchOn();
                     if(((MainActivity) getActivity()).isOn){
                         navView.setBackgroundColor(getResources().getColor(R.color.light_green));
                         view.setBackgroundColor(getResources().getColor(R.color.light_green));
@@ -59,7 +61,7 @@ public class Home extends Fragment {
 
                 }
                 else{
-                    ((MainActivity)getActivity()).onSwitchOff();
+                    ((MainActivity) Objects.requireNonNull(getActivity())).onSwitchOff();
                     if(!((MainActivity) getActivity()).isOn){
                         navView.setBackgroundColor(getResources().getColor(R.color.light_red));
                         view.setBackgroundColor(getResources().getColor(R.color.light_red));
@@ -78,7 +80,7 @@ public class Home extends Fragment {
                 if(!thd.equals("")){
                     double threshold=Float.parseFloat(txt_threshold.getText().toString());
                     if(threshold<=1 && threshold>=0){
-                        if(((MainActivity)getActivity()).isOn){
+                        if(((MainActivity) Objects.requireNonNull(getActivity())).isOn){
                             ((MainActivity)getActivity()).onSwitchOff();
                             ((MainActivity)getActivity()).threshold=threshold;
                             ((MainActivity)getActivity()).onSwitchOn();

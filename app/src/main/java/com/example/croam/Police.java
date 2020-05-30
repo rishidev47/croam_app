@@ -36,6 +36,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -44,31 +45,23 @@ import androidx.fragment.app.Fragment;
 
 public class Police extends Fragment {
 
-    public static String allmobilenumberofpolice11="";
-    static String str2_="";
-    String latitude="",longitude="";
+    private static String allmobilenumberofpolice11="";
+    private static String str2_="";
+    private String latitude="",longitude="";
     private String[] placeName;
 
-    TextView json_textview;
-    Button getpolicestationsbtn;
-    TextView intro;
-    public String policenames="";
+    private TextView json_textview;
+    private Button getpolicestationsbtn;
+    private TextView intro;
+    private String policenames="";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_police, container, false);
-        final BottomNavigationView navView=((MainActivity)getActivity()).navView;
+        final BottomNavigationView navView=((MainActivity) Objects.requireNonNull(getActivity())).navView;
         navView.setBackgroundColor(getResources().getColor(R.color.white));
-
-//        if(((MainActivity)getActivity()).isOn){
-//            view.setBackgroundColor(getResources().getColor(R.color.light_green));
-//        }
-//        else {
-//            view.setBackgroundColor(getResources().getColor(R.color.light_red));
-//        }
-
         return view;
     }
 
@@ -77,8 +70,10 @@ public class Police extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Bundle b1=getArguments();
-        latitude=b1.getString("lat");
-        longitude= b1.getString("long");
+        if (b1 != null) {
+            latitude=b1.getString("lat");
+            longitude= b1.getString("long");
+        }
         json_textview= (TextView)view.findViewById(R.id.policedetails);
         intro=(TextView)view.findViewById(R.id.intro);
         getpolicestationsbtn=(Button)view.findViewById(R.id.policegetdetailbtn);
@@ -88,67 +83,6 @@ public class Police extends Fragment {
                 new GetPolice(getActivity()).execute();
             }
         });
-//        new GetPolice(getActivity()).execute();
-
-
-        /*
-        Thread thread=new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                try {
-                    StringBuilder content1 = new StringBuilder();
-                    String phoneurl = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + "ChIJPUCONxLiDDkRoJVWyuYkDjI" + "&fields=name,rating,formatted_phone_number&key=AIzaSyDW4eROan5nUX9HxHhTo_ntwqinJCZeoAI";
-                    URL url = new URL(phoneurl);
-                    URLConnection urlConnection = url.openConnection();
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()), 8);
-                    String line;
-                    while ((line = bufferedReader.readLine()) != null) {
-                        content1.append(line + "\n");
-                    }
-                    String phone = content1.toString();
-                    System.out.println("PHONE = " + phone);
-                }
-                catch(Exception e){
-                    System.out.println("ERROR...");
-                }
-            }
-        });
-        thread.start();*/
-
-
-        /*
-        newdetail(latitude,longitude);
-
-        final View view1=view;
-
-        progressDialog=new ProgressDialog(getActivity().getApplicationContext());
-        Button btn=(Button)view.findViewById(R.id.error);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                progressDialog=new ProgressDialog(getActivity());
-                progressDialog.setMessage("Retreiving data..."+"\n"+"Please wait for a moment...");
-                progressDialog.show();
-                Handler handler=new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        progressDialog.dismiss();
-                        if(str2_.equalsIgnoreCase("")){
-                            Toast.makeText(getActivity(),"Network issue"+"\n"+"Please try again!",Toast.LENGTH_LONG).show();
-                        }
-                        else {
-                            TextView json_textview = (TextView) view1.findViewById(R.id.policedetails);
-                            json_textview.setText(str2_);
-                        }
-                    }
-                },8000);
-
-            }
-        });
-
-        */
 
     }
 
@@ -156,7 +90,7 @@ public class Police extends Fragment {
         public Context context;
         ProgressDialog progressDialog;
 
-        public GetPolice(Context context) {
+        GetPolice(Context context) {
             this.context=context;
 
         }
@@ -262,7 +196,7 @@ public class Police extends Fragment {
                 String line;
                 while ((line = bufferedReader.readLine()) != null)
                 {
-                    content.append(line + "\n");
+                    content.append(line).append("\n");
                 }
 
                 bufferedReader.close();

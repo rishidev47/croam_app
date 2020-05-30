@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         for(String c:contacts){
             if(prefs.getString(c,null)!=null){
                 ++x;
-                contactinfo.set(x, prefs.getString(c, null));
+                contactinfo.add(x-1, prefs.getString(c, null));
             }
         }
         return x;

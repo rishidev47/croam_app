@@ -18,7 +18,7 @@ public class PhotoHandler implements Camera.PictureCallback {
     // private static final String LOG_TAG = "ImageInBackground";
     private final Context context;
 
-    public PhotoHandler(Context context) {
+    PhotoHandler(Context context) {
         this.context = context;
 
     }
