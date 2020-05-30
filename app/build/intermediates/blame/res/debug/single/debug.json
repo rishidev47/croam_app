@@ -56,20 +56,20 @@
         "source": "/home/shubham/.gradle/caches/transforms-2/files-2.1/b0d113c0a2caebb2dfa9cffaa5a8e14b/res/layout/abc_search_dropdown_item_icons_2line.xml"
     },
     {
-        "merged": "/home/shubham/croam_app/app/build/intermediates/res/merged/debug/drawable-v21_abc_edit_text_material.xml.flat",
-        "source": "/home/shubham/.gradle/caches/transforms-2/files-2.1/b0d113c0a2caebb2dfa9cffaa5a8e14b/res/drawable-v21/abc_edit_text_material.xml"
-    },
-    {
         "merged": "/home/shubham/croam_app/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_list_selector_disabled_holo_light.9.png.flat",
         "source": "/home/shubham/.gradle/caches/transforms-2/files-2.1/b0d113c0a2caebb2dfa9cffaa5a8e14b/res/drawable-xxhdpi-v4/abc_list_selector_disabled_holo_light.9.png"
     },
     {
-        "merged": "/home/shubham/croam_app/app/build/intermediates/res/merged/debug/layout_fragment_police.xml.flat",
-        "source": "/home/shubham/croam_app/app/src/main/res/layout/fragment_police.xml"
+        "merged": "/home/shubham/croam_app/app/build/intermediates/res/merged/debug/drawable-v21_abc_edit_text_material.xml.flat",
+        "source": "/home/shubham/.gradle/caches/transforms-2/files-2.1/b0d113c0a2caebb2dfa9cffaa5a8e14b/res/drawable-v21/abc_edit_text_material.xml"
     },
     {
         "merged": "/home/shubham/croam_app/app/build/intermediates/res/merged/debug/drawable-ldrtl-xxhdpi-v17_abc_ic_menu_cut_mtrl_alpha.png.flat",
         "source": "/home/shubham/.gradle/caches/transforms-2/files-2.1/b0d113c0a2caebb2dfa9cffaa5a8e14b/res/drawable-ldrtl-xxhdpi-v17/abc_ic_menu_cut_mtrl_alpha.png"
+    },
+    {
+        "merged": "/home/shubham/croam_app/app/build/intermediates/res/merged/debug/layout_fragment_police.xml.flat",
+        "source": "/home/shubham/croam_app/app/src/main/res/layout/fragment_police.xml"
     },
     {
         "merged": "/home/shubham/croam_app/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_ic_star_half_black_48dp.png.flat",
@@ -84,12 +84,12 @@
         "source": "/home/shubham/.gradle/caches/transforms-2/files-2.1/f45a6641a687147c828fda4f6710cc4c/res/color/mtrl_chip_text_color.xml"
     },
     {
-        "merged": "/home/shubham/croam_app/app/build/intermediates/res/merged/debug/drawable_abc_seekbar_tick_mark_material.xml.flat",
-        "source": "/home/shubham/.gradle/caches/transforms-2/files-2.1/b0d113c0a2caebb2dfa9cffaa5a8e14b/res/drawable/abc_seekbar_tick_mark_material.xml"
-    },
-    {
         "merged": "/home/shubham/croam_app/app/build/intermediates/res/merged/debug/layout_design_layout_tab_text.xml.flat",
         "source": "/home/shubham/.gradle/caches/transforms-2/files-2.1/f45a6641a687147c828fda4f6710cc4c/res/layout/design_layout_tab_text.xml"
+    },
+    {
+        "merged": "/home/shubham/croam_app/app/build/intermediates/res/merged/debug/drawable_abc_seekbar_tick_mark_material.xml.flat",
+        "source": "/home/shubham/.gradle/caches/transforms-2/files-2.1/b0d113c0a2caebb2dfa9cffaa5a8e14b/res/drawable/abc_seekbar_tick_mark_material.xml"
     },
     {
         "merged": "/home/shubham/croam_app/app/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher_round.png.flat",
@@ -116,12 +116,12 @@
         "source": "/home/shubham/croam_app/app/src/main/res/layout/activity_splash_screen.xml"
     },
     {
-        "merged": "/home/shubham/croam_app/app/build/intermediates/res/merged/debug/interpolator-v21_mtrl_fast_out_slow_in.xml.flat",
-        "source": "/home/shubham/.gradle/caches/transforms-2/files-2.1/f45a6641a687147c828fda4f6710cc4c/res/interpolator-v21/mtrl_fast_out_slow_in.xml"
-    },
-    {
         "merged": "/home/shubham/croam_app/app/build/intermediates/res/merged/debug/layout_mtrl_alert_select_dialog_singlechoice.xml.flat",
         "source": "/home/shubham/.gradle/caches/transforms-2/files-2.1/f45a6641a687147c828fda4f6710cc4c/res/layout/mtrl_alert_select_dialog_singlechoice.xml"
+    },
+    {
+        "merged": "/home/shubham/croam_app/app/build/intermediates/res/merged/debug/interpolator-v21_mtrl_fast_out_slow_in.xml.flat",
+        "source": "/home/shubham/.gradle/caches/transforms-2/files-2.1/f45a6641a687147c828fda4f6710cc4c/res/interpolator-v21/mtrl_fast_out_slow_in.xml"
     },
     {
         "merged": "/home/shubham/croam_app/app/build/intermediates/res/merged/debug/layout_notification_template_big_media_narrow.xml.flat",
@@ -152,24 +152,24 @@
         "source": "/home/shubham/.gradle/caches/transforms-2/files-2.1/efb186556fbec6fa9397e490e287e4c9/res/drawable-xxhdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
     },
     {
-        "merged": "/home/shubham/croam_app/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_abc_ic_star_half_black_48dp.png.flat",
-        "source": "/home/shubham/.gradle/caches/transforms-2/files-2.1/b0d113c0a2caebb2dfa9cffaa5a8e14b/res/drawable-mdpi-v4/abc_ic_star_half_black_48dp.png"
-    },
-    {
         "merged": "/home/shubham/croam_app/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_abc_ic_star_half_black_36dp.png.flat",
         "source": "/home/shubham/.gradle/caches/transforms-2/files-2.1/b0d113c0a2caebb2dfa9cffaa5a8e14b/res/drawable-mdpi-v4/abc_ic_star_half_black_36dp.png"
+    },
+    {
+        "merged": "/home/shubham/croam_app/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_abc_ic_star_half_black_48dp.png.flat",
+        "source": "/home/shubham/.gradle/caches/transforms-2/files-2.1/b0d113c0a2caebb2dfa9cffaa5a8e14b/res/drawable-mdpi-v4/abc_ic_star_half_black_48dp.png"
     },
     {
         "merged": "/home/shubham/croam_app/app/build/intermediates/res/merged/debug/drawable_btn_checkbox_unchecked_mtrl.xml.flat",
         "source": "/home/shubham/.gradle/caches/transforms-2/files-2.1/b0d113c0a2caebb2dfa9cffaa5a8e14b/res/drawable/btn_checkbox_unchecked_mtrl.xml"
     },
     {
-        "merged": "/home/shubham/croam_app/app/build/intermediates/res/merged/debug/drawable_notification_icon_background.xml.flat",
-        "source": "/home/shubham/.gradle/caches/transforms-2/files-2.1/724541db962545ffe419773515ce9c68/res/drawable/notification_icon_background.xml"
-    },
-    {
         "merged": "/home/shubham/croam_app/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_ic_menu_share_mtrl_alpha.png.flat",
         "source": "/home/shubham/.gradle/caches/transforms-2/files-2.1/b0d113c0a2caebb2dfa9cffaa5a8e14b/res/drawable-xhdpi-v4/abc_ic_menu_share_mtrl_alpha.png"
+    },
+    {
+        "merged": "/home/shubham/croam_app/app/build/intermediates/res/merged/debug/drawable_notification_icon_background.xml.flat",
+        "source": "/home/shubham/.gradle/caches/transforms-2/files-2.1/724541db962545ffe419773515ce9c68/res/drawable/notification_icon_background.xml"
     },
     {
         "merged": "/home/shubham/croam_app/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_text_select_handle_left_mtrl_light.png.flat",

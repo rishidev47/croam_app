@@ -28,6 +28,8 @@ import android.widget.Toast;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,11 +56,31 @@ public class MainActivity extends AppCompatActivity {
     private int cameraId = 0;
 
     private FusedLocationProviderClient clinent;
-
-    public static DBHandler db;
     public static int noofemergencycontacts = 0;
     public BottomNavigationView navView;
     public static double threshold=0.8;
+
+    static SharedPreferences prefs;
+    private static final String CONTACT1 = "contact1";
+    private static final String CONTACT2 = "contact2";
+    private static final String CONTACT3 = "contact3";
+    private static final String CONTACT4 = "contact4";
+    private static final String CONTACT5 = "contact5";
+    private static String[] contacts = {CONTACT1, CONTACT2, CONTACT3, CONTACT4, CONTACT5};
+
+
+    static ArrayList<String> contactinfo = new ArrayList<>();
+
+    public static int emergencycontacts(){
+        int x=0;
+        for(String c:contacts){
+            if(prefs.getString(c,null)!=null){
+                ++x;
+                contactinfo.set(x, prefs.getString(c, null));
+            }
+        }
+        return x;
+    }
 
     private boolean loadFragment(Fragment fragment) {
         //switching fragment
@@ -132,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
         if (isMyServiceRunning(CRoamService.class)) {
             isOn = true;
         }
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); //Get the preferences
+        prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); //Get the preferences
         SERVER_URL=prefs.getString("server_url",SERVER_URL);
 
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
@@ -144,8 +166,7 @@ public class MainActivity extends AppCompatActivity {
         loadFragment(new Home());
 
         // Emergency contact
-        db = new DBHandler(getApplicationContext());
-        noofemergencycontacts = db.noofemergencycontacts();
+        noofemergencycontacts = emergencycontacts();
 
         // Requesting Permissions
         requestAllPermissions();
@@ -300,7 +321,7 @@ public class MainActivity extends AppCompatActivity {
     public void onSwitchOn() {
         if (checkPermissions()) {
             if (camera == null) camera = Camera.open(cameraId);
-            if (db.noofemergencycontacts() == 0) {
+            if (emergencycontacts() == 0) {
                 fragment = new Contact();
                 loadFragment(fragment);
             } else {
