@@ -11,15 +11,14 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
-import static android.support.constraint.Constraints.TAG;
 
 public class GetPoliceContact extends Thread {
-    double lat;
-    double lng;
-    String API_KEY;
-    String policeList=null;
-    String policeDetails="";
-    MainActivity activity=null;
+    private double lat;
+    private double lng;
+    private String API_KEY;
+    private String policeList=null;
+    private String policeDetails="";
+    private MainActivity activity=null;
     public GetPoliceContact(MainActivity activity, double lat, double lng) {
         this.lat=lat;
         this.lng=lng;
@@ -38,7 +37,7 @@ public class GetPoliceContact extends Thread {
             String line;
             while ((line = bufferedReader.readLine()) != null)
             {
-                content.append(line + "\n");
+                content.append(line).append("\n");
             }
             bufferedReader.close();
             policeList=content.toString();
@@ -83,7 +82,7 @@ public class GetPoliceContact extends Thread {
                                     idobj.getJSONObject("result").getString("formatted_phone_number");
                                 }
                                 catch (JSONException e){
-                                    Log.v(TAG, name+" No Number of this Police Station found", e);
+//                                    Log.v(TAG, name+" No Number of this Police Station found", e);
                                     continue;
                                 }
 

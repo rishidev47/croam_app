@@ -1,6 +1,5 @@
 package com.example.croam;
 
-import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -19,20 +18,12 @@ import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.NotificationCompat;
 import android.telephony.SmsManager;
-import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -42,28 +33,30 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
 import org.tensorflow.contrib.android.TensorFlowInferenceInterface;
 
 import java.io.File;
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.locks.ReentrantLock;
 
-import static android.Manifest.permission.ACCESS_FINE_LOCATION;
-import static android.Manifest.permission.CAMERA;
-import static android.Manifest.permission.RECEIVE_SMS;
-import static android.Manifest.permission.RECORD_AUDIO;
-import static android.Manifest.permission.SEND_SMS;
-import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
-import static android.app.Notification.EXTRA_NOTIFICATION_ID;
-import static android.support.constraint.Constraints.TAG;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 
 public class CRoamService extends Service {
+    private static final String CONTACT1 = "contact1";
+    private static final String CONTACT2 = "contact2";
+    private static final String CONTACT3 = "contact3";
+    private static final String CONTACT4 = "contact4";
+    private static final String CONTACT5 = "contact5";
+    private static String[] contacts = {CONTACT1, CONTACT2, CONTACT3, CONTACT4, CONTACT5};
 
+    private static String TAG="croamService";
     public static String croam_server_url="http://192.168.43.35:3000";
     public static boolean screenOff1=false;
     public static boolean screenOff2=false;
@@ -104,9 +97,7 @@ public class CRoamService extends Service {
 
     public String AddressURL;
     private Camera camera;
-    private int cameraId = 0;
 
-    public static DBHandler db;
     public static int noofemergencycontacts=0;
     public native float[] nativeMFCC(double[] buffer);
 
@@ -118,17 +109,30 @@ public class CRoamService extends Service {
     private Location mLocation;
     public static double threshold = 0.8;
     public static Context mContext=null;
+    static SharedPreferences prefs;
+
+    static ArrayList<String> contactinfo = new ArrayList<>();
     public CRoamService() {
         super();
+    }
+
+    public static int emergencycontacts(){
+        int x=0;
+        for(String c:contacts){
+            if(prefs.getString(c,null)!=null){
+                ++x;
+                contactinfo.add(x-1, prefs.getString(c, null));
+            }
+        }
+        return x;
     }
     @Override
     public void onCreate() {
         mContext=getBaseContext();
-        db=new DBHandler(getApplicationContext());
-        noofemergencycontacts=db.noofemergencycontacts();
         inferenceInterface = new TensorFlowInferenceInterface(getAssets(), MODEL_FILENAME);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); //Get the preferences
+        prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); //Get the preferences
+        noofemergencycontacts=emergencycontacts();
         croam_server_url=prefs.getString("server_url",croam_server_url);
         mLocationCallback = new LocationCallback() {
             @Override
@@ -155,7 +159,7 @@ public class CRoamService extends Service {
             Toast.makeText(this, "No camera on this device", Toast.LENGTH_LONG)
                     .show();
         } else {
-            cameraId = findCamera();
+            int cameraId = findCamera();
             if (cameraId < 0) {
                 Toast.makeText(this, "No front facing camera found."+ cameraId,
                         Toast.LENGTH_LONG).show();
@@ -387,22 +391,6 @@ public class CRoamService extends Service {
             }
             recognitionResult[recognitionResultLength-1] = isRecognised;
 
-            //Output the result.
-            //        String result = "";
-            //        for (int i = 0;i<outputScores.length;i++) {
-            //            if (outputScores[i] == 0)
-            //                break;
-            //            result += map[(int) outputScores[i]];
-            //        }
-            //        final String r = result;
-            //        this.runOnUiThread(new Runnable() {
-            //            @Override
-            //            public void run() {
-            //                outputText.setText(r);
-            //            }
-            //        });
-
-            //        Log.v(LOG_TAG, "End recognition: " +result);
         }
     }
 
@@ -483,12 +471,13 @@ public class CRoamService extends Service {
 
     }
     public static void sendSMS(String message) {
-        noofemergencycontacts=db.noofemergencycontacts();
+        noofemergencycontacts=emergencycontacts();
         System.out.println("Number of emergency contacts "+noofemergencycontacts);
+
         for(int i=1; i<=noofemergencycontacts; i++) {
             SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(db.getphone(i), null, message, null, null);
-            Log.v(DEBUG_TAG, "SMS SENT TO "+db.getphone(i));
+            smsManager.sendTextMessage(contactinfo.get(i), null, message, null, null);
+            Log.v(DEBUG_TAG, "SMS SENT TO "+contactinfo.get(i));
         }
     }
 
@@ -527,47 +516,6 @@ public class CRoamService extends Service {
 
     public static String getImgurContent(String filePath) throws Exception {
 
-
-/*
-        URL url;
-        url = new URL("https://api.imgur.com/3/image");
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-//        String data = URLEncoder.encode("image", "UTF-8") + "="
-//                + URLEncoder.encode(IMAGE_URL, "UTF-8");
-        Bitmap bm = BitmapFactory.decodeFile(filePath);
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bm.compress(Bitmap.CompressFormat.JPEG, 100, baos); //bm is the bitmap object
-        String data = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
-
-
-        conn.setDoOutput(true);
-        conn.setDoInput(true);
-        conn.setRequestMethod("POST");
-        conn.setRequestProperty("Authorization", "Client-ID " + clientID);
-        conn.setRequestMethod("POST");
-        conn.setRequestProperty("Content-Type",
-                "application/x-www-form-urlencoded");
-
-        conn.connect();
-        StringBuilder stb = new StringBuilder();
-        OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-        wr.write(data);
-        wr.flush();
-
-        // Get the response
-        BufferedReader rd = new BufferedReader(
-                new InputStreamReader(conn.getInputStream()));
-        String line;
-        while ((line = rd.readLine()) != null) {
-            stb.append(line).append("\n");
-        }
-        wr.close();
-        rd.close();
-
-
-*/
-
         StringBuilder stb=new StringBuilder();
         String res=null;
 
@@ -575,7 +523,6 @@ public class CRoamService extends Service {
             String charset = "UTF-8";
             File uploadFile1 = new File(filePath);
             String requestURL = croam_server_url+"/api/upload";
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext); //Get the preferences
             String phone = prefs.getString("phone", null); //get a String
             String name = prefs.getString("name", null); //get a String
             String id = prefs.getString("id", null); //get a String
@@ -633,9 +580,9 @@ class MyBroadCastReciever extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
                 Log.d("HELP_HARDWARE_BTN", "BroadcastReceiver :"+CRoamService.screenOff1+CRoamService.screenOff2+CRoamService.screenOn1+CRoamService.screenOn2);
 
-        if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
+        if (Objects.equals(intent.getAction(), Intent.ACTION_SCREEN_OFF)) {
             //DO HERE
-            if(CRoamService.screenOff1==false){
+            if(!CRoamService.screenOff1){
                 (new CountDownTimer(1500, 500) {
                     @Override
                     public void onTick(long millisUntilFinished) {
@@ -651,15 +598,15 @@ class MyBroadCastReciever extends BroadcastReceiver {
 
                 CRoamService.screenOff1=true;
             }
-            else if(CRoamService.screenOff1==true&&CRoamService.screenOff2==false){
+            else if(CRoamService.screenOff1 && !CRoamService.screenOff2){
                 CRoamService.screenOff2=true;
                 Log.d("HELP_HARDWARE_BTN", "screenOff: Help detected");
                 (activity).onDetectingHelp();
             }
 
-        } else if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
+        } else if (Objects.equals(intent.getAction(), Intent.ACTION_SCREEN_ON)) {
             //DO HERE
-            if(CRoamService.screenOn1==false){
+            if(!CRoamService.screenOn1){
                 (new CountDownTimer(1500, 500) {
                     @Override
                     public void onTick(long millisUntilFinished) {
@@ -675,7 +622,7 @@ class MyBroadCastReciever extends BroadcastReceiver {
 
                 CRoamService.screenOn1=true;
             }
-            else if(CRoamService.screenOn1==true&&CRoamService.screenOn2==false){
+            else if(CRoamService.screenOn1 && !CRoamService.screenOn2){
                 CRoamService.screenOn2=true;
 
                 Log.d("HELP_HARDWARE_BTN", "screenOn: Help detected");

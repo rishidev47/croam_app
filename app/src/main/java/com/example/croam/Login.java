@@ -1,16 +1,13 @@
 package com.example.croam;
 
-import android.app.Activity;
+import static com.example.croam.LoginActivity.croam_server_url;
+
 import android.app.AlertDialog;
-import android.app.DownloadManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,14 +17,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.JsonObject;
-
 import org.json.JSONObject;
 
 import java.util.List;
+import java.util.Objects;
 
-import static android.support.constraint.Constraints.TAG;
-import static com.example.croam.LoginActivity.croam_server_url;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 public class Login extends Fragment {
 
@@ -73,13 +69,13 @@ public class Login extends Fragment {
 
     }
 
-    void doLogin(final String phone, final String pswd) {
-        final Context mContext=getContext();
+    private void doLogin(final String phone, final String pswd) {
+
         Log.v("DOLOGIN", phone+" "+pswd);
-        final String msg[]={"Error"};
-        final Integer ret[]={-1};
-        final boolean status[]={false};
-        final JSONObject user[]={null};
+        final String[] msg ={"Error"};
+        final Integer[] ret ={-1};
+        final boolean[] status ={false};
+        final JSONObject[] user ={null};
         Runnable login=new Runnable() {
             @Override
             public void run() {
@@ -92,14 +88,14 @@ public class Login extends Fragment {
                     multipart.addFormField("dummy",null);
                     Log.v("DOLOGIN", phone+ " "  +pswd);
                     List<String> response = multipart.finish();
-                    String res = "";
+                    StringBuilder res = new StringBuilder();
                     for (String line : response) {
                         Log.v("rht", "Line : " + line);
-                        res = res + line + "\n";
+                        res.append(line).append("\n");
                     }
                     System.out.println("Server Response on login "+res);
                     try{
-                        JSONObject jsobj = new JSONObject(res);
+                        JSONObject jsobj = new JSONObject(res.toString());
 
                         status[0]= jsobj.getBoolean("status");
                         msg[0]= jsobj.getString("message");
@@ -120,7 +116,8 @@ public class Login extends Fragment {
                     @Override
                     public void run() {
                         if(status[0]){
-                            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext().getApplicationContext()); //Get the preferences
+                            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
+                                    Objects.requireNonNull(getContext()).getApplicationContext()); //Get the preferences
                             SharedPreferences.Editor edit = prefs.edit(); //Needed to edit the preference
                             edit.putString("phone", phone);  //add a String
                             edit.putString("pswd", pswd);
@@ -155,13 +152,13 @@ public class Login extends Fragment {
                             if (ret[0] == 0) {
 
                                 Intent mIntent = new Intent(getContext(), MainActivity.class);
-                                getActivity().finishAffinity();
+                                Objects.requireNonNull(getActivity()).finishAffinity();
                                 startActivity(mIntent);
 
                             } else if (ret[0] == 201) {
                                 //user does not exist
                                 Fragment fragment = new Signup();
-                                getActivity().getSupportFragmentManager()
+                                Objects.requireNonNull(getActivity()).getSupportFragmentManager()
                                         .beginTransaction()
                                         .replace(R.id.login_fragment_container, fragment)
                                         .commit();

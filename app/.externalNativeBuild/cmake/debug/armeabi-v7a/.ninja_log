@@ -1,8 +1,0 @@
-# ninja log v5
-9	1182	0	CMakeFiles/native-mfcc-lib.dir/fft.cpp.o	931765d0ce46bf25
-8	1188	0	CMakeFiles/native-mfcc-lib.dir/native-mfcc-lib.cpp.o	bcac1e149c25366
-9	1291	0	CMakeFiles/native-mfcc-lib.dir/matrix_multiplication.cpp.o	c07a8e45199608f5
-9	1663	0	CMakeFiles/native-mfcc-lib.dir/mfcc.cpp.o	8f740268df71107b
-1663	2280	0	/home/rishidev47/StudioProjects/CRoam/app/build/intermediates/cmake/debug/obj/armeabi-v7a/libnative-mfcc-lib.so	677f980117f4f314
-15	780	0	CMakeFiles/native-mfcc-lib.dir/native-mfcc-lib.cpp.o	bcac1e149c25366
-780	1437	0	/home/rishidev47/StudioProjects/CRoam/app/build/intermediates/cmake/debug/obj/armeabi-v7a/libnative-mfcc-lib.so	677f980117f4f314

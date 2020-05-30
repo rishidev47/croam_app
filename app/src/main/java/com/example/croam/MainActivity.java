@@ -1,94 +1,41 @@
 package com.example.croam;
 
-import android.Manifest;
-import android.app.Activity;
-import android.app.ActivityManager;
-import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.SurfaceTexture;
-import android.hardware.Camera;
-import android.location.Location;
-import android.location.LocationManager;
-import android.media.AudioFormat;
-import android.media.AudioRecord;
-import android.media.Image;
-import android.media.MediaRecorder;
-import android.os.AsyncTask;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.os.StrictMode;
-import android.preference.PreferenceManager;
-import android.provider.MediaStore;
-import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
-import android.telephony.SmsManager;
-import android.telephony.TelephonyManager;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.util.Base64;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.View;
-import android.support.v4.view.GravityCompat;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.view.MenuItem;
-import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.tensorflow.contrib.android.TensorFlowInferenceInterface;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.widget.ImageView;
-import android.widget.Switch;
-import android.widget.Toast;
-import android.widget.ToggleButton;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.locks.ReentrantLock;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.Manifest.permission.CAMERA;
-import static android.Manifest.permission.READ_CALENDAR;
 import static android.Manifest.permission.READ_CONTACTS;
 import static android.Manifest.permission.RECEIVE_SMS;
 import static android.Manifest.permission.RECORD_AUDIO;
 import static android.Manifest.permission.SEND_SMS;
-import static android.Manifest.permission.WRITE_CALENDAR;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
-import static android.support.constraint.Constraints.TAG;
+
+import android.app.ActivityManager;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.hardware.Camera;
+import android.location.LocationManager;
+import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.StrictMode;
+import android.preference.PreferenceManager;
+import android.provider.Settings;
+import android.util.Log;
+import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+
 
 public class MainActivity extends AppCompatActivity {
     public static String SERVER_URL="http://192.168.43.35:3000";
@@ -109,11 +56,31 @@ public class MainActivity extends AppCompatActivity {
     private int cameraId = 0;
 
     private FusedLocationProviderClient clinent;
-
-    public static DBHandler db;
     public static int noofemergencycontacts = 0;
     public BottomNavigationView navView;
     public static double threshold=0.8;
+
+    static SharedPreferences prefs;
+    private static final String CONTACT1 = "contact1";
+    private static final String CONTACT2 = "contact2";
+    private static final String CONTACT3 = "contact3";
+    private static final String CONTACT4 = "contact4";
+    private static final String CONTACT5 = "contact5";
+    private static String[] contacts = {CONTACT1, CONTACT2, CONTACT3, CONTACT4, CONTACT5};
+
+
+    static ArrayList<String> contactinfo = new ArrayList<>();
+
+    public static int emergencycontacts(){
+        int x=0;
+        for(String c:contacts){
+            if(prefs.getString(c,null)!=null){
+                ++x;
+                contactinfo.add(x-1, prefs.getString(c, null));
+            }
+        }
+        return x;
+    }
 
     private boolean loadFragment(Fragment fragment) {
         //switching fragment
@@ -163,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         if (intent.getBooleanExtra("OPENED_FROM_NOTIFICATION", false)) {
-            Log.d(TAG, "onNewIntent: opened");
+//            Log.d(TAG, "onNewIntent: opened");
             isOn = true;
             loadFragment(new Home());
         }
@@ -187,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
         if (isMyServiceRunning(CRoamService.class)) {
             isOn = true;
         }
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); //Get the preferences
+        prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); //Get the preferences
         SERVER_URL=prefs.getString("server_url",SERVER_URL);
 
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
@@ -199,8 +166,7 @@ public class MainActivity extends AppCompatActivity {
         loadFragment(new Home());
 
         // Emergency contact
-        db = new DBHandler(getApplicationContext());
-        noofemergencycontacts = db.noofemergencycontacts();
+        noofemergencycontacts = emergencycontacts();
 
         // Requesting Permissions
         requestAllPermissions();
@@ -355,7 +321,7 @@ public class MainActivity extends AppCompatActivity {
     public void onSwitchOn() {
         if (checkPermissions()) {
             if (camera == null) camera = Camera.open(cameraId);
-            if (db.noofemergencycontacts() == 0) {
+            if (emergencycontacts() == 0) {
                 fragment = new Contact();
                 loadFragment(fragment);
             } else {
@@ -385,7 +351,7 @@ public class MainActivity extends AppCompatActivity {
 //        ContextCompat.startForegroundService(this, serviceIntent);
         startService(serviceIntent);
         Toast.makeText(getBaseContext(), "Service Started", Toast.LENGTH_SHORT).show();
-        Log.v(TAG, "Service Started");
+//        Log.v(TAG, "Service Started");
     }
 
     public void stopCroamService() {

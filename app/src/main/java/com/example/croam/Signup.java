@@ -1,11 +1,10 @@
 package com.example.croam;
 
+import static com.example.croam.LoginActivity.croam_server_url;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,13 +16,12 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import org.json.JSONObject;
 
 import java.util.List;
 
-import static android.support.constraint.Constraints.TAG;
-import static com.example.croam.LoginActivity.croam_server_url;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 public class Signup extends Fragment {
 
@@ -93,11 +91,12 @@ public class Signup extends Fragment {
         super.onCreate(savedInstanceState);
 
     }
-    void registerUser(final String name, final String gender, final String age, final String phone, final String pswd){
+    private void registerUser(final String name, final String gender, final String age,
+            final String phone, final String pswd){
         Log.v("REGISTER", phone+" "+pswd);
-        final String msg[]={"Error"};
-        final Integer ret[]={-1};
-        final boolean status[]={false};
+        final String[] msg ={"Error"};
+        final Integer[] ret ={-1};
+        final boolean[] status ={false};
         Runnable register=new Runnable() {
             @Override
             public void run() {

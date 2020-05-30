@@ -1,5 +1,11 @@
 package com.example.croam;
 
+import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -8,12 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.util.Log;
-import android.widget.TextView;
 
 public class PlacesService {
 
@@ -71,31 +71,6 @@ public class PlacesService {
         urlString.append("&radius=10000");
         urlString.append("&types=police");
         urlString.append("&key=" + API_KEY);
-
-//        //StringBuilder urlString = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=22.625071,88.329514&radius=5000&type=bank&keyword=cruise&key=AIzaSyDW4eROan5nUX9HxHhTo_ntwqinJCZeoAI");
-//        //StringBuilder urlString = new StringBuilder("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=chicken%20biryani&inputtype=textquery&fields=photos,formatted_address,name,opening_hours,rating&locationbias=circle:10000@422.625071,88.329514&key=AIzaSyDW4eROan5nUX9HxHhTo_ntwqinJCZeoAI");
-//
-////        StringBuilder urlString=new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=22.625071,88.329514&radius=5000&types=police&key=AIzaSyB5A7N_tKnjwSdsmRinYaOVLbAOana_A9s");
-//
-//        if (place.equals("")) {
-//            urlString.append("&location=");
-//            urlString.append(Double.toString(latitude));
-//            urlString.append(",");
-//            urlString.append(Double.toString(longitude));
-//            urlString.append("&radius=10000");
-//            //   urlString.append("&types="+place);
-//            urlString.append("&sensor=false&key=" + API_KEY);
-//        } else {
-//            urlString.append("&location=");
-//            urlString.append(Double.toString(latitude));
-//            urlString.append(",");
-//            urlString.append(Double.toString(longitude));
-//            urlString.append("&radius=10000");
-//            urlString.append("&types="+place);
-////            urlString.append("&sensor=false&key=" + API_KEY);
-//            urlString.append("&key=" + API_KEY);
-//        }
-
 
         return urlString.toString();
     }
