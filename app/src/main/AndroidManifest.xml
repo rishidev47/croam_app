@@ -21,7 +21,6 @@
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
 
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -39,6 +38,16 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths"/>
         </provider>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.croam.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
         <service
             android:name=".CRoamService"
             android:launchMode="singleTask"
