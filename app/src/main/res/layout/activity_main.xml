@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragment_container"
-    android:background="#fff"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,16 +10,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="8dp"
+        android:animateLayoutChanges="true"
+        android:clickable="true"
+        android:focusable="auto"
+        android:textAlignment="center"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:background="#fff"
-        app:itemIconTint="@color/colorEndBlue"
-        app:itemTextColor="@color/colorEndBlue"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bottom_navigation_background"
+        android:elevation="8dp"
+        app:itemIconTint="@xml/bottom_navigation_color_selector"
         app:labelVisibilityMode="labeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/bottom_nav_menu">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>

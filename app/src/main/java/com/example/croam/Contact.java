@@ -63,9 +63,6 @@ public class Contact extends Fragment {
                 startActivityForResult(intent, ADD_CONTACT);
             }
         });
-        final BottomNavigationView navView = ((MainActivity) Objects.requireNonNull(
-                getActivity())).navView;
-        navView.setBackgroundColor(getResources().getColor(R.color.white));
         list.setAdapter(adapter);
         updateContactList();
         return view;

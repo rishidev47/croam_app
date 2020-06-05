@@ -41,10 +41,6 @@ public class Profile extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         Button logout = view.findViewById(R.id.btn_logout);
-        final BottomNavigationView navView = ((MainActivity) Objects.requireNonNull(
-                getActivity())).navView;
-        navView.setBackgroundColor(getResources().getColor(R.color.white));
-
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
