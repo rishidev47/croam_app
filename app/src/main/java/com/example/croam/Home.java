@@ -49,8 +49,8 @@ public class Home extends Fragment {
 
         // Inflate the layout for this fragment
         final View view= inflater.inflate(R.layout.fragment_home, container, false);
-        final EditText txt_threshold = view.findViewById(R.id.editText_threshold);
-        btn_update_threshold=view.findViewById(R.id.btn_update_threshold);
+//        final EditText txt_threshold = view.findViewById(R.id.editText_threshold);
+//        btn_update_threshold=view.findViewById(R.id.btn_update_threshold);
         toggleSwitch=view.findViewById(R.id.switch_main);
 //        videoView = view.findViewById(R.id.videoView);
 
@@ -89,40 +89,40 @@ public class Home extends Fragment {
             }
         });
 
-        btn_update_threshold.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String thd=txt_threshold.getText().toString();
-
-                if(!thd.equals("")){
-                    double threshold=Float.parseFloat(txt_threshold.getText().toString());
-                    if(threshold<=1 && threshold>=0){
-                        if(((MainActivity) Objects.requireNonNull(getActivity())).isOn){
-                            ((MainActivity)getActivity()).onSwitchOff();
-                            ((MainActivity)getActivity()).threshold=threshold;
-                            ((MainActivity)getActivity()).onSwitchOn();
-                        }else{
-                            ((MainActivity)getActivity()).threshold=threshold;
-                        }
-
-                        Toast.makeText(getActivity(), "Threshold set to: "+threshold, Toast.LENGTH_SHORT).show();
-                    }else{
-                        new AlertDialog.Builder(getActivity())
-                                .setTitle("Setting Threshold")
-                                .setMessage("Enter a value only between 0 to 1")
-                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                    }
-                                })
-                                .setNegativeButton(android.R.string.no, null)
-                                .setIcon(android.R.drawable.ic_dialog_alert)
-                                .show();
-                        Toast.makeText(getActivity(), "Could not set threshold value ", Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-            }
-        });
+//        btn_update_threshold.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String thd=txt_threshold.getText().toString();
+//
+//                if(!thd.equals("")){
+//                    double threshold=Float.parseFloat(txt_threshold.getText().toString());
+//                    if(threshold<=1 && threshold>=0){
+//                        if(((MainActivity) Objects.requireNonNull(getActivity())).isOn){
+//                            ((MainActivity)getActivity()).onSwitchOff();
+//                            ((MainActivity)getActivity()).threshold=threshold;
+//                            ((MainActivity)getActivity()).onSwitchOn();
+//                        }else{
+//                            ((MainActivity)getActivity()).threshold=threshold;
+//                        }
+//
+//                        Toast.makeText(getActivity(), "Threshold set to: "+threshold, Toast.LENGTH_SHORT).show();
+//                    }else{
+//                        new AlertDialog.Builder(getActivity())
+//                                .setTitle("Setting Threshold")
+//                                .setMessage("Enter a value only between 0 to 1")
+//                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+//                                    public void onClick(DialogInterface dialog, int which) {
+//                                    }
+//                                })
+//                                .setNegativeButton(android.R.string.no, null)
+//                                .setIcon(android.R.drawable.ic_dialog_alert)
+//                                .show();
+//                        Toast.makeText(getActivity(), "Could not set threshold value ", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//
+//            }
+//        });
 
 
         return view;

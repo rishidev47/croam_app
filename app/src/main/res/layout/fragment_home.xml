@@ -6,6 +6,42 @@
     android:layout_height="match_parent"
     tools:context="com.example.croam.MainActivity">
 
+
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:id="@+id/cardView2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="64dp"-->
+<!--        android:layout_marginBottom="64dp"-->
+<!--        app:cardCornerRadius="32dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/materialTextView"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+
+<!--        <ImageView-->
+<!--            android:layout_width="150dp"-->
+<!--            android:layout_height="150dp"-->
+<!--            android:src="@drawable/custom_logo"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            android:adjustViewBounds="true"/>-->
+<!--    </androidx.cardview.widget.CardView>-->
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/materialTextView"
+        style="@style/TextAppearance.MaterialComponents.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:text="Keep the switch on to stay safe!"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/switch_main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <Switch
         android:id="@+id/switch_main"
         android:layout_width="200dp"
@@ -18,12 +54,11 @@
         android:paddingTop="20dp"
         android:paddingRight="20dp"
         android:paddingBottom="20dp"
-        android:showText="true"
+        android:showText="false"
         android:text="Switch"
-        android:textAlignment="viewStart"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="#000000"
-        android:textColorLink="#192E9E"
+        android:textColor="#FFF"
         android:textOff="OFF"
         android:textOn="ON"
         android:textSize="24sp"
@@ -32,31 +67,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editText_threshold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        android:textColor="?attr/colorPrimaryDark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!--    <EditText-->
+    <!--        android:id="@+id/editText_threshold"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="8dp"-->
+    <!--        android:layout_marginTop="32dp"-->
+    <!--        android:layout_marginEnd="8dp"-->
+    <!--        android:ems="10"-->
+    <!--        android:inputType="numberDecimal"-->
+    <!--        android:textColor="?attr/colorPrimaryDark"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-    <Button
-        android:id="@+id/btn_update_threshold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_threshold" />
+    <!--    <Button-->
+    <!--        android:id="@+id/btn_update_threshold"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="8dp"-->
+    <!--        android:layout_marginTop="8dp"-->
+    <!--        android:layout_marginEnd="8dp"-->
+    <!--        android:text="Button"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/editText_threshold" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
