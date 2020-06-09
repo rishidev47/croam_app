@@ -68,7 +68,7 @@ public class Profile extends Fragment {
         updateView();
 
         final FloatingActionButton editButton = view.findViewById(R.id.editButton);
-        final Button openFolder = view.findViewById(R.id.openFolder);
+        final TextView openFolder = view.findViewById(R.id.openFolder);
 
         openFolder.setOnClickListener(new View.OnClickListener() {
             @Override

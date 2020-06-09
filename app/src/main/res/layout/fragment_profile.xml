@@ -62,105 +62,114 @@
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
-                <com.google.android.material.textfield.TextInputLayout
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginEnd="32dp"
-                    android:enabled="false"
-                    app:helperText="Phone Number"
-                    app:helperTextTextAppearance="@style/TextAppearance.AppCompat.Title"
-                    app:helperTextEnabled="true">
+                    android:layout_margin="16dp"
+                    app:cardCornerRadius="32dp"
+                    app:cardUseCompatPadding="true">
 
-                    <TextView
-                        android:id="@+id/phone"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:ems="10"
-                        android:text="+91-8619482065"
-                        android:padding="16dp"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                        android:inputType="phone"
-                        android:drawableStart="@drawable/ic_call"
-                        android:drawablePadding="16dp"
-                        android:textSize="25sp"/>
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:orientation="vertical">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginEnd="32dp"
-                    android:enabled="false"
-                    app:helperText="E-mail"
-                    app:helperTextTextAppearance="@style/TextAppearance.AppCompat.Title"
-                    app:helperTextEnabled="true">
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:enabled="false"
+                            app:helperText="Phone Number"
+                            app:helperTextEnabled="true"
+                            app:helperTextTextAppearance="@style/TextAppearance.AppCompat.Title">
 
-                    <TextView
-                        android:id="@+id/email"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:text="abc@gmail.com"
-                        android:padding="16dp"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                        android:inputType="textEmailAddress"
-                        android:drawableStart="@drawable/ic_email"
-                        android:drawablePadding="16dp"
-                        android:textSize="25sp"/>
-                </com.google.android.material.textfield.TextInputLayout>
+                            <TextView
+                                android:id="@+id/phone"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:drawableStart="@drawable/ic_call"
+                                android:drawablePadding="16dp"
+                                android:ems="10"
+                                android:inputType="phone"
+                                android:text="+91-8619482065"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                                android:textSize="18sp" />
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginEnd="32dp"
-                    android:enabled="false"
-                    app:helperText="Date of Birth"
-                    app:helperTextTextAppearance="@style/TextAppearance.AppCompat.Title"
-                    app:helperTextEnabled="true">
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:enabled="false"
+                            app:helperText="E-mail"
+                            app:helperTextEnabled="true"
+                            app:helperTextTextAppearance="@style/TextAppearance.AppCompat.Title">
 
-                    <TextView
-                        android:id="@+id/dob"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:text="22-11-2002"
-                        android:padding="16dp"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                        android:inputType="date"
-                        android:drawableStart="@drawable/ic_dob"
-                        android:drawablePadding="16dp"
-                        android:textSize="25sp"/>
-                </com.google.android.material.textfield.TextInputLayout>
+                            <TextView
+                                android:id="@+id/email"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:drawableStart="@drawable/ic_email"
+                                android:drawablePadding="16dp"
+                                android:inputType="textEmailAddress"
+                                android:text="abc@gmail.com"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                                android:textSize="18sp" />
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/openFolder"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="8dp"
-                    android:padding="8dp"
-                    android:text="Open Captured Images"
-                    app:cornerRadius="16dp"
-                    app:icon="@drawable/ic_folder_open_black_24dp" />
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:enabled="false"
+                            app:helperText="Date of Birth"
+                            app:helperTextEnabled="true"
+                            app:helperTextTextAppearance="@style/TextAppearance.AppCompat.Title">
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_logout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="8dp"
-                    android:padding="8dp"
-                    android:text="Log Out"
-                    app:cornerRadius="16dp"
-                    app:icon="@drawable/ic_power_settings_new_black_24dp" />
+                            <TextView
+                                android:id="@+id/dob"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:drawableStart="@drawable/ic_dob"
+                                android:drawablePadding="16dp"
+                                android:inputType="date"
+                                android:text="22-11-2002"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                                android:textSize="18sp" />
+                        </com.google.android.material.textfield.TextInputLayout>
 
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/openFolder"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="32dp"
+                            android:layout_marginBottom="8dp"
+                            android:drawablePadding="16dp"
+                            android:text="Open Captured Images"
+                            android:textSize="18sp"
+                            android:textColor="#000"
+                            app:drawableStartCompat="@drawable/ic_folder_open_black_24dp"
+                            android:elevation="8dp"
+                            android:clickable="true"
+                            android:focusable="true"/>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_logout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="8dp"
+                            android:padding="8dp"
+                            android:text="Log Out"
+                            app:cornerRadius="16dp"
+                            app:icon="@drawable/ic_power_settings_new_black_24dp" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
             </LinearLayout>
         </ScrollView>
 
@@ -174,9 +183,9 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/colorAccent"
             android:src="@android:drawable/ic_menu_edit"
-            app:tint="#FFFFFF"
-            android:backgroundTint="@color/colorAccent"/>
+            app:tint="#FFFFFF" />
 
 
     </RelativeLayout>
