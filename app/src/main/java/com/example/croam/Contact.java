@@ -154,7 +154,7 @@ public class Contact extends Fragment {
     void updateContactList() {
 
         contactList.clear();
-        contactList.add("POLICE"+"@@"+new PoliceContacts(getContext()).getPoliceContact());
+        contactList.add("NEAREST POLICE"+"@@"+new PoliceContacts(getContext()).getPoliceContact());
 
         for (int i = 0; i < 5; ++i) {
             String n = prefs.getString(names[i], null);

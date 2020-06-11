@@ -23,6 +23,7 @@ import android.media.audiofx.AutomaticGainControl;
 import android.media.audiofx.NoiseSuppressor;
 import android.os.Build;
 import android.os.CountDownTimer;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
@@ -41,7 +42,12 @@ import com.google.android.gms.tasks.Task;
 
 import org.tensorflow.contrib.android.TensorFlowInferenceInterface;
 
+import java.io.BufferedOutputStream;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -274,6 +280,24 @@ public class CRoamService extends Service {
 
     private void record() {
         android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_AUDIO);
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/"+"recordsound");
+        //    /mnt/sdcard/recordsound
+        // Delete any previous recording.
+        DataOutputStream dos=null;
+        if (file.exists())
+            file.delete();
+
+        try {
+            file.createNewFile();
+
+            // Create a DataOuputStream to write the audio data into the saved file.
+            OutputStream os = new FileOutputStream(file);
+            BufferedOutputStream bos = new BufferedOutputStream(os);
+             dos = new DataOutputStream(bos);
+        }catch (Exception e){
+
+        }
+
         //  Log.v(LOG_TAG,"");
         // Estimate the buffer size we'll need for this device.
         int bufferSize =
@@ -336,6 +360,19 @@ public class CRoamService extends Service {
         // Loop, gathering audio data and copying it to a round-robin buffer.
         while (shouldContinue) {
             int numberRead = record.read(audioBuffer, 0, audioBuffer.length);
+            for (int i = 0; i < numberRead; i++) {
+                try {
+                    dos.writeShort(audioBuffer[i]);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            try {
+                dos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
             int maxLength = recordingBuffer.length;
             int newRecordingOffset = recordingOffset + numberRead;
             int secondCopyLength = Math.max(0, newRecordingOffset - maxLength);
