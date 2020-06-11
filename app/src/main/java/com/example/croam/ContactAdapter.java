@@ -75,6 +75,10 @@ public class ContactAdapter extends ArrayAdapter <String> {
 
                 }
             });
+
+            if(contact[0].equals("NEAREST POLICE")){
+                delete_btn.setEnabled(false);
+            }
         }
 
 

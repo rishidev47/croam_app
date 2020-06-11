@@ -33,7 +33,7 @@
             android:textStyle="bold"
             android:layout_below="@+id/contact_name"
             android:layout_marginTop="0dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"/>
 
@@ -47,6 +47,16 @@
             android:layout_margin="16dp"
             android:layout_centerVertical="true"
             app:cornerRadius="16dp"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tap to call!"
+            android:textColor="@color/colorPrimary"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_below="@+id/contact_number"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="4dp"/>
 
     </RelativeLayout>
 
