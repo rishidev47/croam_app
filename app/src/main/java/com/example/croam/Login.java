@@ -1,41 +1,63 @@
 package com.example.croam;
 
-import static com.example.croam.LoginActivity.croam_server_url;
-
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONObject;
 
-import java.util.List;
-import java.util.Objects;
-
 import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Login extends Fragment {
 
+    CoordinatorLayout mCoordinatorLayout;
+    SharedPreferences prefs;
+    SharedPreferences.Editor edit;
+    ProgressBar mProgressBar;
+    LinearLayout bg;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_login, container, false);
+        prefs = PreferenceManager.getDefaultSharedPreferences(
+                getContext().getApplicationContext()); //Get the preferences
+
+        edit = prefs.edit(); //Needed to edit the preference
+
+        String access_token = prefs.getString("access_token", null);
+        if (access_token != null && !access_token.equals("")) {
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            startActivity(intent);
+        }
+        mProgressBar = view.findViewById(R.id.progress_circular);
+        bg = view.findViewById(R.id.bg);
         Button login = view.findViewById(R.id.btn_login);
         final EditText phone = view.findViewById(R.id.editText_login_phone);
         final EditText password = view.findViewById(R.id.editText_login_password);
+        mCoordinatorLayout = view.findViewById(R.id.rootl);
 
         TextView goToSignup = view.findViewById(R.id.text_login);
         goToSignup.setOnClickListener(new View.OnClickListener() {
@@ -55,7 +77,18 @@ public class Login extends Fragment {
                 String input_phone = phone.getText().toString();
                 String input_pswd = password.getText().toString();
 
-                doLogin(input_phone, input_pswd);
+                boolean flag = true;
+                if (input_phone.equals("")) {
+                    phone.setError("Please enter phone number!");
+                    flag = false;
+                }
+                if (input_pswd.equals("")) {
+                    password.setError("Please enter password");
+                    flag = false;
+                }
+                if (flag) {
+                    doLogin(input_phone, input_pswd);
+                }
             }
         });
 
@@ -70,115 +103,71 @@ public class Login extends Fragment {
     }
 
     private void doLogin(final String phone, final String pswd) {
-
-        Log.v("DOLOGIN", phone+" "+pswd);
-        final String[] msg ={"Error"};
-        final Integer[] ret ={-1};
-        final boolean[] status ={false};
-        final JSONObject[] user ={null};
-        Runnable login=new Runnable() {
+        mProgressBar.setVisibility(View.VISIBLE);
+        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        bg.setVisibility(View.VISIBLE);
+        Call<ResponseBody> call = MyApi.Companion.invoke().logIn(phone, pswd);
+        call.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void run() {
+            public void onResponse(Call<ResponseBody> call,
+                    Response<ResponseBody> response) {
+                mProgressBar.setVisibility(View.GONE);
+                bg.setVisibility(View.GONE);
+                getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                String body = null;
                 try {
-                    String charset = "UTF-8";
-                    String requestURL = croam_server_url + "/login";
-                    MultipartUtility multipart = new MultipartUtility(requestURL, charset);
-                    multipart.addFormField("phone", phone);
-                    multipart.addFormField("password", pswd);
-                    multipart.addFormField("dummy",null);
-                    Log.v("DOLOGIN", phone+ " "  +pswd);
-                    List<String> response = multipart.finish();
-                    StringBuilder res = new StringBuilder();
-                    for (String line : response) {
-                        Log.v("rht", "Line : " + line);
-                        res.append(line).append("\n");
-                    }
-                    System.out.println("Server Response on login "+res);
-                    try{
-                        JSONObject jsobj = new JSONObject(res.toString());
-
-                        status[0]= jsobj.getBoolean("status");
-                        msg[0]= jsobj.getString("message");
-                        ret[0]= jsobj.getInt("error");
-                        if(status[0])user[0]= jsobj.getJSONArray("data").getJSONObject(0);
-
-                    }catch (Exception ex){
-                        System.out.println("JSON Error "+ex);
-                    }
-
+                    body = response.body().string();
+                    Log.e("body", body);
                 } catch (Exception e) {
-                    msg[0]=" Connection Error:\n Check Your Internet Connection ";
-                    System.out.println("Error in login" + e);
+                    e.printStackTrace();
                 }
-//                if(getActivity()==null)return;
-                //using LoginActivity.activity to avoid crash in case of switching fragments while results are awaited
-               LoginActivity.activity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if(status[0]){
-                            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
-                                    Objects.requireNonNull(getContext()).getApplicationContext()); //Get the preferences
-                            SharedPreferences.Editor edit = prefs.edit(); //Needed to edit the preference
-                            edit.putString("phone", phone);  //add a String
-                            edit.putString("pswd", pswd);
-                            edit.putBoolean("isLoggedin", true); //add a boolean
-                            try{
-                                edit.putString("name",user[0].getString("name"));
-                                edit.putInt("age",user[0].getInt("age"));
-                                edit.putInt("gender",user[0].getInt("gender"));
-                                edit.putString("id",user[0].getString("id"));
+                Log.e("resp", response.toString());
 
-                            }catch (Exception ex){
-                                System.out.println("Error in getting user data "+ex);
-                            }
-                            Log.d("Prefs login", "onClick: " + prefs.toString());
-                            edit.commit();  // save the edits.
+                try {
 
-                     Toast.makeText(getContext(), msg[0], Toast.LENGTH_SHORT).show();
-                        }else {
+                    JSONObject obj = new JSONObject(body);
 
-                            new AlertDialog.Builder(LoginActivity.activity)
-                                    .setTitle("Login Result")
-                                    .setMessage(msg[0])
-                                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int which) {
-                                        }
-                                    })
-                                    .setNegativeButton(android.R.string.no, null)
-                                    .setIcon(android.R.drawable.ic_dialog_alert)
-                                    .show();
-                            Toast.makeText(LoginActivity.activity, msg[0], Toast.LENGTH_SHORT).show();
-                        }
-                            if (ret[0] == 0) {
+                    Log.e("My App", obj.toString());
+                    Log.e("token", obj.getString("accesstoken"));
+                    JSONObject user = obj.getJSONObject("user");
+                    Log.e("name", user.getString("name"));
+                    edit.putString("access_token", obj.getString("accesstoken"));
+                    edit.putString("name", user.getString("name"));
+                    edit.putString("email", user.getString("email"));
+                    edit.putString("phone", user.getString("number"));
+                    edit.putString("gender", user.getString("gender"));
+//                    edit.putString("dob", dob);
+//                    edit.putString("access_token",token);
+                    edit.commit();
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    startActivity(intent);
 
-                                Intent mIntent = new Intent(getContext(), MainActivity.class);
-                                Objects.requireNonNull(getActivity()).finishAffinity();
-                                startActivity(mIntent);
+                } catch (Throwable t) {
+                    Log.e("My App", t.getMessage());
+                }
 
-                            } else if (ret[0] == 201) {
-                                //user does not exist
-                                Fragment fragment = new Signup();
-                                Objects.requireNonNull(getActivity()).getSupportFragmentManager()
-                                        .beginTransaction()
-                                        .replace(R.id.login_fragment_container, fragment)
-                                        .commit();
-                            } else if(ret[0] == 202) {
-                                // wrong password
-//                    Toast.makeText(getContext(), "Wrong Password", Toast.LENGTH_SHORT).show();
-                            }
-                            else {
-//                    Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
-                            }
-                    }
-                });
 
             }
-        };
-        try{
-            Thread t1 =new Thread(login); t1.start();
-        }catch (Exception ex){
-            System.out.println(ex);
-        }
-//
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                mProgressBar.setVisibility(View.GONE);
+                bg.setVisibility(View.GONE);
+                getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                Log.e("resp", t.getMessage());
+                Snackbar snackbar = Snackbar.make(mCoordinatorLayout, t.getMessage(),
+                        Snackbar.LENGTH_LONG).setAction("RETRY", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        doLogin(phone, pswd);
+                    }
+                });
+                snackbar.setActionTextColor(Color.RED);
+                snackbar.show();
+            }
+        });
+
+
     }
 }
