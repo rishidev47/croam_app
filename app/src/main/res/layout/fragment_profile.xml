@@ -124,7 +124,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="8dp"
                             android:enabled="false"
-                            app:helperText="Date of Birth"
+                            app:helperText="Age"
                             app:helperTextEnabled="true"
                             app:helperTextTextAppearance="@style/TextAppearance.AppCompat.Title">
 
@@ -135,8 +135,8 @@
                                 android:background="@color/white"
                                 android:drawableStart="@drawable/ic_dob"
                                 android:drawablePadding="16dp"
-                                android:inputType="date"
-                                android:text="22-11-2002"
+                                android:inputType="number"
+                                android:text="20"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                                 android:textSize="18sp" />
                         </com.google.android.material.textfield.TextInputLayout>

@@ -6,9 +6,7 @@ import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Multipart
-import retrofit2.http.POST
-import retrofit2.http.Part
+import retrofit2.http.*
 
 
 interface MyApi {
@@ -40,9 +38,19 @@ interface MyApi {
             @Part file: MultipartBody.Part?
     ): Call<ResponseBody?>?
 
-    companion object{
+    @FormUrlEncoded
+    @POST("users/register")
+    fun signUp(@Field("number") number: String, @Field("name") name: String,
+               @Field("password") password: String, @Field("email") email: String,
+               @Field("age") age: String, @Field("gender") gender: String): Call<ResponseBody?>?
+
+    @FormUrlEncoded
+    @POST("users/login")
+    fun logIn(@Field("number") number: String, @Field("password") password: String): Call<ResponseBody?>?
+
+    companion object {
         operator fun invoke(
-        ) : MyApi{
+        ): MyApi {
 
 //            val okkHttpclient = OkHttpClient.Builder()
 //                .addInterceptor(networkConnectionInterceptor)
@@ -50,10 +58,10 @@ interface MyApi {
 
             return Retrofit.Builder()
 //                .client(okkHttpclient)
-                .baseUrl("http://192.168.1.110:8080/api/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-                .create(MyApi::class.java)
+                    .baseUrl("https://backend-279606.el.r.appspot.com/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build()
+                    .create(MyApi::class.java)
         }
     }
 

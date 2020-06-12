@@ -82,16 +82,16 @@ public class CRoamService extends Service {
 
     private static final String LOG_TAG = "AudioRecordTest";
     private static final String OUTPUT_SCORES_NAME = "output0";
-    private static final String INPUT_DATA_NAME = "sequential_1_input";
+    private static final String INPUT_DATA_NAME = "input_1_1";
     public final static String DEBUG_TAG = "MainActivity";
     private static final String clientID = "c26974dfd247815";
-    private static final String MODEL_FILENAME = "file:///android_asset/tf_help_model10dB.pb";
+    private static final String MODEL_FILENAME = "file:///android_asset/model71.pb";
 //private static final String MODEL_FILENAME = "file:///android_asset/help_model.pb";
 //private static final String MODEL_FILENAME = "file:///android_asset/tf_help_model2_after_removing_noise.pb";
     public static final String MyPREFERENCES = "MyPrefs_Anjaneya" ;
 
     private static final int SAMPLE_RATE = 16000;
-    private static final int SAMPLE_DURATION_MS = 3000;
+    private static final int SAMPLE_DURATION_MS = 1000;
     private static final int RECORDING_LENGTH = (int) (SAMPLE_RATE * SAMPLE_DURATION_MS / 1000);
 
     boolean shouldContinueRecognition = true;
@@ -426,7 +426,7 @@ public class CRoamService extends Service {
             if(temp==0)Log.v(LOG_TAG, k+" MFCC Input====> " + Arrays.toString(doubleInputBuffer));
 
             // Run the model.
-            inferenceInterface.feed(INPUT_DATA_NAME, mfccInput, 1, 376, 40);
+            inferenceInterface.feed(INPUT_DATA_NAME, mfccInput, 1, 126, 40);
             inferenceInterface.run(outputScoresNames);
             inferenceInterface.fetch(OUTPUT_SCORES_NAME, outputScores);
 //            Log.v(LOG_TAG, "OUTPUT======> " + Arrays.toString(outputScores));

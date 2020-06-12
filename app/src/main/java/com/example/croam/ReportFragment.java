@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.icu.text.SimpleDateFormat;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
@@ -16,10 +17,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
@@ -30,6 +36,7 @@ import java.io.OutputStream;
 import java.util.Date;
 import java.util.Objects;
 
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import okhttp3.MediaType;
@@ -51,6 +58,9 @@ public class ReportFragment extends Fragment {
     Uri videoUri;
     ImageView reportImage;
     private String currentPhotoPath;
+    LinearLayout bg;
+    ProgressBar mProgressBar;
+    CoordinatorLayout mCoordinatorLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,6 +71,9 @@ public class ReportFragment extends Fragment {
 
         video = view.findViewById(R.id.video);
         reportImage = view.findViewById(R.id.reportImage);
+        bg = view.findViewById(R.id.bg);
+        mProgressBar = view.findViewById(R.id.progress_circular);
+        mCoordinatorLayout = view.findViewById(R.id.rootlr);
 
         final Button captureButton = view.findViewById(R.id.capture);
         description = view.findViewById(R.id.description);
@@ -191,8 +204,11 @@ public class ReportFragment extends Fragment {
         }
     }
 
-    private void uploadFile(Uri fileUri, int code) {
-
+    private void uploadFile(final Uri fileUri, final int code) {
+        mProgressBar.setVisibility(View.VISIBLE);
+        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        bg.setVisibility(View.VISIBLE);
         // https://github.com/iPaulPro/aFileChooser/blob/master/aFileChooser/src/com/ipaulpro
         // /afilechooser/utils/FileUtils.java
         // use the FileUtils to get the actual file by uri
@@ -234,12 +250,26 @@ public class ReportFragment extends Fragment {
             @Override
             public void onResponse(Call<ResponseBody> call,
                     Response<ResponseBody> response) {
-                Log.v("Upload", "success");
+                mProgressBar.setVisibility(View.GONE);
+                bg.setVisibility(View.GONE);
+                getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                Toast.makeText(getContext(),"SUCCESS", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.e("Upload error:", t.getMessage());
+                mProgressBar.setVisibility(View.GONE);
+                bg.setVisibility(View.GONE);
+                getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                Snackbar snackbar = Snackbar.make(mCoordinatorLayout, t.getMessage(),
+                        Snackbar.LENGTH_LONG).setAction("RETRY", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        uploadFile(fileUri, code);
+                    }
+                });
+                snackbar.setActionTextColor(Color.RED);
+                snackbar.show();
             }
         });
     }
