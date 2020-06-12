@@ -13,10 +13,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -63,11 +63,17 @@ public class Contact extends Fragment {
                 startActivityForResult(intent, ADD_CONTACT);
             }
         });
-        final BottomNavigationView navView = ((MainActivity) Objects.requireNonNull(
-                getActivity())).navView;
-        navView.setBackgroundColor(getResources().getColor(R.color.white));
         list.setAdapter(adapter);
         updateContactList();
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+                Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                String phone=contactList.get(position).split("@@",0)[1];
+                callIntent.setData(Uri.parse("tel:"+phone));
+                startActivity(callIntent);
+            }
+        });
         return view;
     }
 
@@ -124,7 +130,7 @@ public class Contact extends Fragment {
                 if (already) {
                     Toast.makeText(getActivity(), "This contact is already added",
                             Toast.LENGTH_LONG).show();
-                } else if (j==-1) {
+                } else if (j == -1) {
                     Toast.makeText(getContext(), "MAX Contacts Added", Toast.LENGTH_LONG).show();
                 } else {
                     edit.putString(contacts[j], number);
@@ -148,6 +154,7 @@ public class Contact extends Fragment {
     void updateContactList() {
 
         contactList.clear();
+        contactList.add("NEAREST POLICE"+"@@"+new PoliceContacts(getContext()).getPoliceContact());
 
         for (int i = 0; i < 5; ++i) {
             String n = prefs.getString(names[i], null);

@@ -8,40 +8,47 @@
     android:foregroundGravity="center"
     tools:context=".SplashScreen">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cardUseCompatPadding="true"
-        app:cardCornerRadius="4dp"
-        android:layout_centerInParent="true"
-        android:elevation="8dp">
+        android:layout_centerInParent="true">
 
-        <ImageView
-            android:id="@+id/imageView"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/newlogo_croam"
+            app:cardUseCompatPadding="true"
+            app:cardCornerRadius="64dp"
             android:layout_centerInParent="true"
-            android:padding="8dp"
-            android:cropToPadding="true"/>
-    </androidx.cardview.widget.CardView>
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/custom_logo" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="STAY SAFE WITH CROAM"
+            android:layout_below="@+id/cardView"
+            android:layout_margin="16dp"
+            android:layout_alignStart="@+id/cardView"
+            android:layout_alignEnd="@+id/cardView"
+            android:layout_centerHorizontal="true"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:autoSizeMaxTextSize="20sp"
+            android:autoSizeMinTextSize="10sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"/>
+
+    </RelativeLayout>
 
 
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="STAY SAFE WITH CROAM"
-        android:layout_below="@+id/cardView"
-        android:layout_margin="8dp"
-        android:padding="8dp"
-        android:layout_centerHorizontal="true"
-        android:textAllCaps="true"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"/>
 
 </RelativeLayout>

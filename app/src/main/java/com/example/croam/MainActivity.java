@@ -104,14 +104,15 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_home:
                     fragment = new Home();
                     break;
-                case R.id.navigation_police:
-                    fragment = new Police();
-                    Bundle b = new Bundle();
-                    Log.d("LATTS", "onNavigationItemSelected: " + latituteField);
-                    Log.d("LATTS", "onNavigationItemSelected: " + longitudeField);
-                    b.putString("lat", latituteField);
-                    b.putString("long", longitudeField);
-                    fragment.setArguments(b);
+                case R.id.navigation_report:
+//                    fragment = new Police();
+//                    Bundle b = new Bundle();
+//                    Log.d("LATTS", "onNavigationItemSelected: " + latituteField);
+//                    Log.d("LATTS", "onNavigationItemSelected: " + longitudeField);
+//                    b.putString("lat", latituteField);
+//                    b.putString("long", longitudeField);
+//                    fragment.setArguments(b);
+                    fragment = new ReportFragment();
 
                     break;
                 case R.id.navigation_contacts:

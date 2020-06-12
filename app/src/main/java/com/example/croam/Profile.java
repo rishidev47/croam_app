@@ -1,9 +1,12 @@
 package com.example.croam;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -27,12 +30,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 public class Profile extends Fragment {
-    private AlertDialog.Builder editDialog;
     private TextView nametxt;
     private TextView phonetxt;
     private TextView emailtxt;
     private TextView dobtxt;
-    private View editbox;
+    private Dialog editDialog;
 //    DBHandler db;
 
     @Override
@@ -41,10 +43,6 @@ public class Profile extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         Button logout = view.findViewById(R.id.btn_logout);
-        final BottomNavigationView navView = ((MainActivity) Objects.requireNonNull(
-                getActivity())).navView;
-        navView.setBackgroundColor(getResources().getColor(R.color.white));
-
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,7 +70,7 @@ public class Profile extends Fragment {
         updateView();
 
         final FloatingActionButton editButton = view.findViewById(R.id.editButton);
-        final Button openFolder = view.findViewById(R.id.openFolder);
+        final TextView openFolder = view.findViewById(R.id.openFolder);
 
         openFolder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,73 +82,10 @@ public class Profile extends Fragment {
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (editbox.getParent() != null) {
-                    ((ViewGroup) editbox.getParent()).removeView(editbox); // <- fix
-                }
-                editDialog.show();
+                dialog();
             }
         });
 
-
-        editDialog = new AlertDialog.Builder(getActivity());
-//        db=new DBHandler(getActivity().getApplicationContext());
-        LayoutInflater inflater1 = (LayoutInflater) Objects.requireNonNull(
-                getContext()).getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        editbox = inflater1.inflate(R.layout.dialog_editprofile, null);
-        String name;
-        String phone;
-        String email;
-        String dob;
-        //To be retrieved from database or server
-//        String[] profile=db.getProfile();
-//        name=profile[0];
-//        phone=profile[1];
-//        email=profile[2];
-//        dob=profile[3];
-
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
-                getContext().getApplicationContext()); //Get the preferences
-        phone = prefs.getString("phone", null); //get a String
-        name = prefs.getString("name", null); //get a String
-        email = prefs.getString("email", null); //get a String
-        int age = prefs.getInt("age", 0); //get a String
-        dob = prefs.getString("dob", null); //get a String
-
-
-        final EditText nameText = editbox.findViewById(R.id.editTextName);
-        final EditText phoneText = editbox.findViewById(R.id.editTextPhone);
-        final EditText emailText = editbox.findViewById(R.id.editTextEmail);
-        final EditText dobText = editbox.findViewById(R.id.editTextDob);
-
-
-        nameText.setText(name);
-        phoneText.setText(phone);
-        emailText.setText(email);
-        dobText.setText(dob);
-
-
-        editDialog.setView(editbox);
-        editDialog.setTitle("Edit Details");
-        editDialog.setPositiveButton("YES",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        String n = nameText.getText().toString();
-                        String p = phoneText.getText().toString();
-                        String e = emailText.getText().toString();
-                        String d = dobText.getText().toString();
-                        update(n, e, p, d);
-                        updateView();
-
-                    }
-                });
-
-        editDialog.setNegativeButton("NO",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getContext(), "Update Cancelled", Toast.LENGTH_SHORT).show();
-                        dialog.cancel();
-                    }
-                });
         return view;
     }
 
@@ -189,18 +124,6 @@ public class Profile extends Fragment {
         emailtxt.setText(email);
         dobtxt.setText(dob);
 
-//        String[] details=db.getProfile();
-//        if(details[0]!=null){
-//            if(!details[0].equals("")){
-////                nametxt.setText(details[0]);
-////                phonetxt.setText(details[1]);
-////                emailtxt.setText(details[2]);
-////                dobtxt.setText(details[3]);
-//            }
-//
-//        }
-//
-
     }
 
     private void openFolder() {
@@ -212,14 +135,59 @@ public class Profile extends Fragment {
         intent.setDataAndType(Uri.withAppendedPath(Uri.fromFile(file), "/CRoam"), "image/*");
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-//        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-//        File sdDir = Environment
-//                .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-//        Uri uri = Uri.parse(Environment.getExternalStoragePublicDirectory(Environment
-//        .DIRECTORY_PICTURES).getPath()
-//                + "/Project1/");
-//        intent.setDataAndType(uri, "image/jpeg");
-////        startActivity(Intent.createChooser(intent, "Open folder"));
-//        startActivity(intent);
+    }
+
+    private void dialog(){
+        editDialog = new Dialog(getContext());
+        editDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        editDialog.setContentView(R.layout.dialog_editprofile);
+        editDialog.setTitle("Edit Profile");
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
+                getContext().getApplicationContext()); //Get the preferences
+        String phone = prefs.getString("phone", null); //get a String
+        String name = prefs.getString("name", null); //get a String
+        String email = prefs.getString("email", null); //get a String
+        int age = prefs.getInt("age", 0); //get a String
+        String dob = prefs.getString("dob", null); //get a String
+
+
+        final EditText nameText = editDialog.findViewById(R.id.editTextName);
+        final EditText phoneText = editDialog.findViewById(R.id.editTextPhone);
+        final EditText emailText = editDialog.findViewById(R.id.editTextEmail);
+        final EditText dobText = editDialog.findViewById(R.id.editTextDob);
+
+
+        nameText.setText(name);
+        phoneText.setText(phone);
+        emailText.setText(email);
+        dobText.setText(dob);
+
+        Button saveButton = editDialog.findViewById(R.id.save_button);
+        Button cancelButton = editDialog.findViewById(R.id.cancel_button);
+        // if button is clicked, close the custom dialog
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String n = nameText.getText().toString();
+                String p = phoneText.getText().toString();
+                String e = emailText.getText().toString();
+                String d = dobText.getText().toString();
+                update(n, e, p, d);
+                updateView();
+                editDialog.cancel();
+            }
+        });
+
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "Update Cancelled", Toast.LENGTH_SHORT).show();
+                editDialog.cancel();
+            }
+        });
+
+        editDialog.show();
     }
 }

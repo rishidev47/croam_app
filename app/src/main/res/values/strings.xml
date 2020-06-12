@@ -2,6 +2,7 @@
     <string name="app_name">CRoam</string>
     <string name="title_home">Home</string>
     <string name="title_police">Police</string>
+    <string name="title_report">Report Incident</string>
     <string name="title_contacts">Contacts</string>
     <string name="title_profile">Profile</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
