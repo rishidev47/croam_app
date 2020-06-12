@@ -73,7 +73,7 @@ public class ReportFragment extends Fragment {
         reportImage = view.findViewById(R.id.reportImage);
         bg = view.findViewById(R.id.bg);
         mProgressBar = view.findViewById(R.id.progress_circular);
-        mCoordinatorLayout = view.findViewById(R.id.rootlr);
+        mCoordinatorLayout = getActivity().findViewById(R.id.mainroot);
 
         final Button captureButton = view.findViewById(R.id.capture);
         description = view.findViewById(R.id.description);
