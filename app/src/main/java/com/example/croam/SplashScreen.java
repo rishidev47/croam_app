@@ -48,8 +48,8 @@ public class SplashScreen extends AppCompatActivity {
     private boolean isOnBoarding() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
                 getApplicationContext()); //Get the preferences
-//        return prefs.getBoolean("new", true);
-        return true;
+        return prefs.getBoolean("new", true);
+//        return true;
     }
 
     boolean isLoggedin() {
