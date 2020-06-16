@@ -312,7 +312,7 @@ public class CRoamService extends Service {
 
         AudioRecord record =
                 new AudioRecord(
-                        MediaRecorder.AudioSource.VOICE_RECOGNITION,
+                        MediaRecorder.AudioSource.DEFAULT,
                         SAMPLE_RATE,
                         AudioFormat.CHANNEL_IN_MONO,
                         AudioFormat.ENCODING_PCM_16BIT,

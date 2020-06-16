@@ -134,7 +134,7 @@ public class Login extends Fragment {
                     Log.e("name", user.getString("name"));
                     edit.putString("access_token", obj.getString("accesstoken"));
                     edit.putString("name", user.getString("name"));
-                    edit.putString("email", user.getString("email"));
+//                    edit.putString("email", user.getString("email"));
                     edit.putString("phone", user.getString("number"));
                     edit.putString("gender", user.getString("gender"));
 //                    edit.putString("dob", dob);
@@ -145,6 +145,11 @@ public class Login extends Fragment {
 
                 } catch (Throwable t) {
                     Log.e("My App", t.getMessage());
+                    Snackbar snackbar = Snackbar.make(mCoordinatorLayout, "Wrong username or password",
+                            Snackbar.LENGTH_LONG);
+                    snackbar.setActionTextColor(Color.RED);
+                    snackbar.show();
+
                 }
 
 
