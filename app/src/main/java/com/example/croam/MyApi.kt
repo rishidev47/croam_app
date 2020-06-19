@@ -34,23 +34,13 @@ interface MyApi {
 
     @Multipart
     @POST("users/addreport")
-    fun uploadImage(
+    fun upload(
             @Part("description") description: RequestBody?,
-            @Part image: MultipartBody.Part?,
+            @Part file: MultipartBody.Part?,
             @Part("latitude") latitude: RequestBody?,
             @Part("longitude") longitude: RequestBody?,
             @HeaderMap headers: MutableMap<String, String>
     ): Call<ResponseBody>?
-
-    @Multipart
-    @POST("users/addreport")
-    fun uploadVideo(
-            @Part("description") description: RequestBody?,
-            @Part("iv") video: RequestBody?,
-            @Part("latitude") latitude: RequestBody?,
-            @Part("longitude") longitude: RequestBody?,
-            @HeaderMap headers: Map<String, String>
-    ): Call<ResponseBody?>?
 
     @FormUrlEncoded
     @POST("users/register")

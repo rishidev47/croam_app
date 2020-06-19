@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.icu.text.SimpleDateFormat;
+import android.location.Location;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
@@ -217,12 +218,20 @@ public class ReportFragment extends Fragment {
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         bg.setVisibility(View.VISIBLE);
+        final Location current = new Location("");
+        SingleShotLocationProvider.requestSingleUpdate(Objects.requireNonNull(getContext()),
+                new SingleShotLocationProvider.LocationCallback() {
+                    @Override
+                    public void onNewLocationAvailable(
+                            SingleShotLocationProvider.GPSCoordinates location) {
+                        current.setLatitude(location.latitude);
+                        current.setLongitude(location.longitude);
+                    }
+                });
         // https://github.com/iPaulPro/aFileChooser/blob/master/aFileChooser/src/com/ipaulpro
         // /afilechooser/utils/FileUtils.java
         // use the FileUtils to get the actual file by uri
         File file = new File(fileUri.getPath());
-
-        RequestBody filePart = RequestBody.create(okhttp3.MultipartBody.FORM, file);
 
         Log.e("File", file.toString());
 
@@ -232,7 +241,8 @@ public class ReportFragment extends Fragment {
         if (code == REQUEST_VIDEO_CAPTURE) {
             requestFile =
                     RequestBody.create(
-                            MediaType.parse(getActivity().getContentResolver().getType(fileUri)),
+                            MediaType.parse(Objects.requireNonNull(
+                                    getActivity().getContentResolver().getType(fileUri))),
                             file
                     );
         }
@@ -244,7 +254,7 @@ public class ReportFragment extends Fragment {
         MultipartBody.Part body =
                 null;
         if (requestFile != null) {
-            body = MultipartBody.Part.createFormData("iv", file.getName(), requestFile);
+            body = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
         }
 
         // add another part within the multipart request
@@ -252,111 +262,63 @@ public class ReportFragment extends Fragment {
         RequestBody description =
                 RequestBody.create(
                         okhttp3.MultipartBody.FORM, descriptionString);
-        RequestBody latitude =
-                RequestBody.create(
-                        okhttp3.MultipartBody.FORM, "243");
-        RequestBody longitude =
-                RequestBody.create(
-                        okhttp3.MultipartBody.FORM, "65");
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
                 Objects.requireNonNull(getContext()).getApplicationContext());
         String token = prefs.getString("access_token", null);
         Map<String, String> auth = new HashMap<>();
         auth.put("Authorization",
-                "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
-                        +
-                        ".eyJpZCI6OCwibmFtZSI6Ik5ldyIsImdlbmRlciI6IjIiLCJudW1iZXIiOiIxMjMiLCJwYXNzd29yZCI6IiQyYiQxMCRJczlMR0JUWGVRdjNselI3SnM2bmpPNnJQcy92azkubHZOUXBkenlNcnVSWlpxa01lak83TyIsImFnZSI6bnVsbCwiZW1haWwiOiJhYmNAZ21haWwuY29tIiwiY3JlYXRlZCI6IjIwMjAtMDYtMTIgMDk6NTE6MTEiLCJpYXQiOjE1OTI0NjUwNzIsImV4cCI6MTU5MzMyOTA3Mn0.7V3_nY5yk5DcZ4dyGLkLEidcnuCh4yWsVn_Fhx6vZhs");
+                "Token "+token);
+        RequestBody latitude =
+                RequestBody.create(
+                        okhttp3.MultipartBody.FORM, String.valueOf(current.getLatitude()));
+        RequestBody longitude =
+                RequestBody.create(
+                        okhttp3.MultipartBody.FORM, String.valueOf(current.getLongitude()));
 
-        if (code == REQUEST_TAKE_PHOTO) {
-            // finally, execute the request
-            Call<ResponseBody> call = MyApi.Companion.invoke().uploadImage(description, body,
-                    latitude, longitude, auth);
-            call.enqueue(new Callback<ResponseBody>() {
-                @Override
-                public void onResponse(Call<ResponseBody> call,
-                        Response<ResponseBody> response) {
-                    mProgressBar.setVisibility(View.GONE);
-                    bg.setVisibility(View.GONE);
-                    Objects.requireNonNull(getActivity()).getWindow().clearFlags(
-                            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                    Toast.makeText(getContext(), "SUCCESS", Toast.LENGTH_LONG).show();
-                    Log.e("resprepo", response.toString());
-                    try {
-                        if (response.body() != null) {
-                            Log.e("re", response.body().string());
-                        } else {
-                            if (response.errorBody() != null) {
-                                Log.e("re", response.errorBody().string());
-                            }
+        // finally, execute the request
+        Call<ResponseBody> call = MyApi.Companion.invoke().upload(description, body,
+                latitude, longitude, auth);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call,
+                    Response<ResponseBody> response) {
+                mProgressBar.setVisibility(View.GONE);
+                bg.setVisibility(View.GONE);
+                Objects.requireNonNull(getActivity()).getWindow().clearFlags(
+                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                Toast.makeText(getContext(), "SUCCESS", Toast.LENGTH_LONG).show();
+                Log.e("resprepo", response.toString());
+                try {
+                    if (response.body() != null) {
+                        Log.e("re", response.body().string());
+                    } else {
+                        if (response.errorBody() != null) {
+                            Log.e("re", response.errorBody().string());
                         }
-                    } catch (IOException e) {
-                        e.printStackTrace();
                     }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
+            }
 
-                @Override
-                public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    Log.e("resprepo", t.toString());
-                    mProgressBar.setVisibility(View.GONE);
-                    bg.setVisibility(View.GONE);
-                    getActivity().getWindow().clearFlags(
-                            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                    Snackbar snackbar = Snackbar.make(mCoordinatorLayout, t.getMessage(),
-                            Snackbar.LENGTH_LONG).setAction("RETRY", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            uploadFile(fileUri, code);
-                        }
-                    });
-                    snackbar.setActionTextColor(Color.RED);
-                    snackbar.show();
-                }
-            });
-        } else {
-            Call<ResponseBody> call = MyApi.Companion.invoke().uploadVideo(description, filePart,
-                    latitude, longitude, auth);
-            call.enqueue(new Callback<ResponseBody>() {
-                @Override
-                public void onResponse(Call<ResponseBody> call,
-                        Response<ResponseBody> response) {
-                    mProgressBar.setVisibility(View.GONE);
-                    bg.setVisibility(View.GONE);
-                    Objects.requireNonNull(getActivity()).getWindow().clearFlags(
-                            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                    Toast.makeText(getContext(), "SUCCESS", Toast.LENGTH_LONG).show();
-                    Log.e("resprepo", response.toString());
-                    try {
-                        if (response.body() != null) {
-                            Log.e("re", response.body().string());
-                        } else {
-                            if (response.errorBody() != null) {
-                                Log.e("re", response.errorBody().string());
-                            }
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.e("resprepo", t.toString());
+                mProgressBar.setVisibility(View.GONE);
+                bg.setVisibility(View.GONE);
+                getActivity().getWindow().clearFlags(
+                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                Snackbar snackbar = Snackbar.make(mCoordinatorLayout, t.getMessage(),
+                        Snackbar.LENGTH_LONG).setAction("RETRY", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        uploadFile(fileUri, code);
                     }
-                }
-
-                @Override
-                public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    Log.e("resprepo", t.toString());
-                    mProgressBar.setVisibility(View.GONE);
-                    bg.setVisibility(View.GONE);
-                    getActivity().getWindow().clearFlags(
-                            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                    Snackbar snackbar = Snackbar.make(mCoordinatorLayout, t.getMessage(),
-                            Snackbar.LENGTH_LONG).setAction("RETRY", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            uploadFile(fileUri, code);
-                        }
-                    });
-                    snackbar.setActionTextColor(Color.RED);
-                    snackbar.show();
-                }
-            });
-        }
+                });
+                snackbar.setActionTextColor(Color.RED);
+                snackbar.show();
+            }
+        });
 
     }
 
