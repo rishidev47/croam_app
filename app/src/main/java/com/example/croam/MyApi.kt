@@ -9,6 +9,7 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
+import java.util.concurrent.TimeUnit
 
 interface MyApi {
 
@@ -64,7 +65,9 @@ interface MyApi {
 // set your desired log level
             logging.setLevel(HttpLoggingInterceptor.Level.BODY)
 
-            val httpClient = OkHttpClient.Builder()
+            val httpClient = OkHttpClient.Builder().connectTimeout(150, TimeUnit.SECONDS)
+                    .writeTimeout(150, TimeUnit.SECONDS)
+                    .readTimeout(150, TimeUnit.SECONDS)
 // add your other interceptors …
 
 // add logging as last interceptor
