@@ -2,8 +2,8 @@ package com.example.croam;
 
 import static android.app.Activity.RESULT_OK;
 
-import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -12,6 +12,7 @@ import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,12 +29,13 @@ import android.widget.Toast;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -54,13 +56,13 @@ public class ReportFragment extends Fragment {
     EditText description;
     Button video;
 
-//    VideoView videoView;
+    //    VideoView videoView;
     Uri videoUri;
     ImageView reportImage;
-    private String currentPhotoPath;
     LinearLayout bg;
     ProgressBar mProgressBar;
     CoordinatorLayout mCoordinatorLayout;
+    private String currentPhotoPath;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -98,16 +100,18 @@ public class ReportFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if(description.getText().toString().equals("")){
+                if (description.getText().toString().equals("")) {
                     description.setError("Please enter description");
                 }
                 if (currentPhotoPath != null) {
-                    if(!description.getText().toString().equals(""))
-                    uploadFile(Uri.parse(currentPhotoPath), REQUEST_TAKE_PHOTO);
+                    if (!description.getText().toString().equals("")) {
+                        uploadFile(Uri.parse(currentPhotoPath), REQUEST_TAKE_PHOTO);
+                    }
 
                 } else if (videoUri != null) {
-                    if(!description.getText().toString().equals(""))
-                    uploadFile(videoUri, REQUEST_VIDEO_CAPTURE);
+                    if (!description.getText().toString().equals("")) {
+                        uploadFile(videoUri, REQUEST_VIDEO_CAPTURE);
+                    }
 
                 } else {
 
@@ -180,23 +184,26 @@ public class ReportFragment extends Fragment {
         if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
             videoUri = intent.getData();
             String[] filePathColumn = {MediaStore.Images.Media.DATA};
-            Cursor cursor = getContext().getContentResolver().query(videoUri, filePathColumn, null, null, null);
+            Cursor cursor = getContext().getContentResolver().query(videoUri, filePathColumn, null,
+                    null, null);
             cursor.moveToFirst();
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             String picturePath = cursor.getString(columnIndex);
             cursor.close();
 
-            Bitmap bitmap = ThumbnailUtils.createVideoThumbnail(picturePath, MediaStore.Video.Thumbnails.FULL_SCREEN_KIND);
-            File file=persistImage(bitmap,"a");
-            Picasso.get().load(file).resize(0,1024).centerCrop().placeholder(R.drawable.report).into(reportImage);
+            Bitmap bitmap = ThumbnailUtils.createVideoThumbnail(picturePath,
+                    MediaStore.Video.Thumbnails.FULL_SCREEN_KIND);
+            File file = persistImage(bitmap, "a");
+            Picasso.get().load(file).resize(0, 1024).centerCrop().placeholder(
+                    R.drawable.report).into(reportImage);
 //            reportImage.setImageBitmap(bitmap);
 
-        }
-         else if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
+        } else if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
             if (currentPhotoPath != null) {
                 File file = new File(Uri.parse(currentPhotoPath).getPath());
 //                uploadFile(Uri.parse(currentPhotoPath), REQUEST_TAKE_PHOTO);
-                Picasso.get().load(file).resize(0,1024).centerCrop().placeholder(R.drawable.report).into(reportImage);
+                Picasso.get().load(file).resize(0, 1024).centerCrop().placeholder(
+                        R.drawable.report).into(reportImage);
 //                reportImage.setImageURI(Uri.parse(currentPhotoPath));
 
             }
@@ -206,13 +213,16 @@ public class ReportFragment extends Fragment {
 
     private void uploadFile(final Uri fileUri, final int code) {
         mProgressBar.setVisibility(View.VISIBLE);
-        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+        Objects.requireNonNull(getActivity()).getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         bg.setVisibility(View.VISIBLE);
         // https://github.com/iPaulPro/aFileChooser/blob/master/aFileChooser/src/com/ipaulpro
         // /afilechooser/utils/FileUtils.java
         // use the FileUtils to get the actual file by uri
         File file = new File(fileUri.getPath());
+
+        RequestBody filePart = RequestBody.create(okhttp3.MultipartBody.FORM, file);
 
         Log.e("File", file.toString());
 
@@ -234,7 +244,7 @@ public class ReportFragment extends Fragment {
         MultipartBody.Part body =
                 null;
         if (requestFile != null) {
-            body = MultipartBody.Part.createFormData("picture", file.getName(), requestFile);
+            body = MultipartBody.Part.createFormData("iv", file.getName(), requestFile);
         }
 
         // add another part within the multipart request
@@ -242,39 +252,115 @@ public class ReportFragment extends Fragment {
         RequestBody description =
                 RequestBody.create(
                         okhttp3.MultipartBody.FORM, descriptionString);
+        RequestBody latitude =
+                RequestBody.create(
+                        okhttp3.MultipartBody.FORM, "243");
+        RequestBody longitude =
+                RequestBody.create(
+                        okhttp3.MultipartBody.FORM, "65");
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
+                Objects.requireNonNull(getContext()).getApplicationContext());
+        String token = prefs.getString("access_token", null);
+        Map<String, String> auth = new HashMap<>();
+        auth.put("Authorization",
+                "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
+                        +
+                        ".eyJpZCI6OCwibmFtZSI6Ik5ldyIsImdlbmRlciI6IjIiLCJudW1iZXIiOiIxMjMiLCJwYXNzd29yZCI6IiQyYiQxMCRJczlMR0JUWGVRdjNselI3SnM2bmpPNnJQcy92azkubHZOUXBkenlNcnVSWlpxa01lak83TyIsImFnZSI6bnVsbCwiZW1haWwiOiJhYmNAZ21haWwuY29tIiwiY3JlYXRlZCI6IjIwMjAtMDYtMTIgMDk6NTE6MTEiLCJpYXQiOjE1OTI0NjUwNzIsImV4cCI6MTU5MzMyOTA3Mn0.7V3_nY5yk5DcZ4dyGLkLEidcnuCh4yWsVn_Fhx6vZhs");
 
-
-        // finally, execute the request
-        Call<ResponseBody> call = MyApi.Companion.invoke().upload(description, body);
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call,
-                    Response<ResponseBody> response) {
-                mProgressBar.setVisibility(View.GONE);
-                bg.setVisibility(View.GONE);
-                getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                Toast.makeText(getContext(),"SUCCESS", Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                mProgressBar.setVisibility(View.GONE);
-                bg.setVisibility(View.GONE);
-                getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                Snackbar snackbar = Snackbar.make(mCoordinatorLayout, t.getMessage(),
-                        Snackbar.LENGTH_LONG).setAction("RETRY", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        uploadFile(fileUri, code);
+        if (code == REQUEST_TAKE_PHOTO) {
+            // finally, execute the request
+            Call<ResponseBody> call = MyApi.Companion.invoke().uploadImage(description, body,
+                    latitude, longitude, auth);
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call,
+                        Response<ResponseBody> response) {
+                    mProgressBar.setVisibility(View.GONE);
+                    bg.setVisibility(View.GONE);
+                    Objects.requireNonNull(getActivity()).getWindow().clearFlags(
+                            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                    Toast.makeText(getContext(), "SUCCESS", Toast.LENGTH_LONG).show();
+                    Log.e("resprepo", response.toString());
+                    try {
+                        if (response.body() != null) {
+                            Log.e("re", response.body().string());
+                        } else {
+                            if (response.errorBody() != null) {
+                                Log.e("re", response.errorBody().string());
+                            }
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                });
-                snackbar.setActionTextColor(Color.RED);
-                snackbar.show();
-            }
-        });
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Log.e("resprepo", t.toString());
+                    mProgressBar.setVisibility(View.GONE);
+                    bg.setVisibility(View.GONE);
+                    getActivity().getWindow().clearFlags(
+                            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                    Snackbar snackbar = Snackbar.make(mCoordinatorLayout, t.getMessage(),
+                            Snackbar.LENGTH_LONG).setAction("RETRY", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            uploadFile(fileUri, code);
+                        }
+                    });
+                    snackbar.setActionTextColor(Color.RED);
+                    snackbar.show();
+                }
+            });
+        } else {
+            Call<ResponseBody> call = MyApi.Companion.invoke().uploadVideo(description, filePart,
+                    latitude, longitude, auth);
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call,
+                        Response<ResponseBody> response) {
+                    mProgressBar.setVisibility(View.GONE);
+                    bg.setVisibility(View.GONE);
+                    Objects.requireNonNull(getActivity()).getWindow().clearFlags(
+                            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                    Toast.makeText(getContext(), "SUCCESS", Toast.LENGTH_LONG).show();
+                    Log.e("resprepo", response.toString());
+                    try {
+                        if (response.body() != null) {
+                            Log.e("re", response.body().string());
+                        } else {
+                            if (response.errorBody() != null) {
+                                Log.e("re", response.errorBody().string());
+                            }
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Log.e("resprepo", t.toString());
+                    mProgressBar.setVisibility(View.GONE);
+                    bg.setVisibility(View.GONE);
+                    getActivity().getWindow().clearFlags(
+                            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                    Snackbar snackbar = Snackbar.make(mCoordinatorLayout, t.getMessage(),
+                            Snackbar.LENGTH_LONG).setAction("RETRY", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            uploadFile(fileUri, code);
+                        }
+                    });
+                    snackbar.setActionTextColor(Color.RED);
+                    snackbar.show();
+                }
+            });
+        }
+
     }
 
-    private  File persistImage(Bitmap bitmap, String name) {
+    private File persistImage(Bitmap bitmap, String name) {
         File filesDir = getContext().getApplicationContext().getFilesDir();
         File imageFile = new File(filesDir, name + ".jpg");
 

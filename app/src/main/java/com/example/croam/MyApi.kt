@@ -1,13 +1,14 @@
 package com.example.croam
 
 import okhttp3.MultipartBody
+import okhttp3.OkHttpClient
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
-
 
 interface MyApi {
 
@@ -32,10 +33,23 @@ interface MyApi {
 
 
     @Multipart
-    @POST("upload")
-    fun upload(
+    @POST("users/addreport")
+    fun uploadImage(
             @Part("description") description: RequestBody?,
-            @Part file: MultipartBody.Part?
+            @Part image: MultipartBody.Part?,
+            @Part("latitude") latitude: RequestBody?,
+            @Part("longitude") longitude: RequestBody?,
+            @HeaderMap headers: MutableMap<String, String>
+    ): Call<ResponseBody>?
+
+    @Multipart
+    @POST("users/addreport")
+    fun uploadVideo(
+            @Part("description") description: RequestBody?,
+            @Part("iv") video: RequestBody?,
+            @Part("latitude") latitude: RequestBody?,
+            @Part("longitude") longitude: RequestBody?,
+            @HeaderMap headers: Map<String, String>
     ): Call<ResponseBody?>?
 
     @FormUrlEncoded
@@ -55,9 +69,23 @@ interface MyApi {
 //            val okkHttpclient = OkHttpClient.Builder()
 //                .addInterceptor(networkConnectionInterceptor)
 //                .build()
+            val logging = HttpLoggingInterceptor()
+// set your desired log level
+// set your desired log level
+            logging.setLevel(HttpLoggingInterceptor.Level.BODY)
+
+            val httpClient = OkHttpClient.Builder()
+// add your other interceptors …
+
+// add logging as last interceptor
+// add your other interceptors …
+
+// add logging as last interceptor
+            httpClient.addInterceptor(logging) // <-- this is the important line!
+
 
             return Retrofit.Builder()
-//                .client(okkHttpclient)
+                    .client(httpClient.build())
                     .baseUrl("https://backend-279606.el.r.appspot.com/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()

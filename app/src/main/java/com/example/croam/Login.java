@@ -20,6 +20,8 @@ import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONObject;
 
+import java.util.Objects;
+
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
@@ -114,7 +116,7 @@ public class Login extends Fragment {
                     Response<ResponseBody> response) {
                 mProgressBar.setVisibility(View.GONE);
                 bg.setVisibility(View.GONE);
-                getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                Objects.requireNonNull(getActivity()).getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 String body = null;
                 try {
                     body = response.body().string();
@@ -134,7 +136,7 @@ public class Login extends Fragment {
                     Log.e("name", user.getString("name"));
                     edit.putString("access_token", obj.getString("accesstoken"));
                     edit.putString("name", user.getString("name"));
-//                    edit.putString("email", user.getString("email"));
+                    edit.putString("email", user.getString("email"));
                     edit.putString("phone", user.getString("number"));
                     edit.putString("gender", user.getString("gender"));
 //                    edit.putString("dob", dob);

@@ -57,5 +57,6 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.github.AppIntro:AppIntro:6.0.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
 }
 
