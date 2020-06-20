@@ -218,16 +218,6 @@ public class ReportFragment extends Fragment {
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         bg.setVisibility(View.VISIBLE);
-        final Location current = new Location("");
-        SingleShotLocationProvider.requestSingleUpdate(Objects.requireNonNull(getContext()),
-                new SingleShotLocationProvider.LocationCallback() {
-                    @Override
-                    public void onNewLocationAvailable(
-                            SingleShotLocationProvider.GPSCoordinates location) {
-                        current.setLatitude(location.latitude);
-                        current.setLongitude(location.longitude);
-                    }
-                });
         // https://github.com/iPaulPro/aFileChooser/blob/master/aFileChooser/src/com/ipaulpro
         // /afilechooser/utils/FileUtils.java
         // use the FileUtils to get the actual file by uri
@@ -251,79 +241,87 @@ public class ReportFragment extends Fragment {
         }
 
         // MultipartBody.Part is used to send also the actual file name
-        MultipartBody.Part body =
-                null;
-        if (requestFile != null) {
-            body = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
-        }
+        final MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(),
+                Objects.requireNonNull(requestFile));
+
 
         // add another part within the multipart request
         String descriptionString = description.getText().toString();
-        RequestBody description =
+        final RequestBody description =
                 RequestBody.create(
                         okhttp3.MultipartBody.FORM, descriptionString);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
                 Objects.requireNonNull(getContext()).getApplicationContext());
         String token = prefs.getString("access_token", null);
-        Map<String, String> auth = new HashMap<>();
+        final Map<String, String> auth = new HashMap<>();
         auth.put("Authorization",
                 "Token "+token);
-        RequestBody latitude =
-                RequestBody.create(
-                        okhttp3.MultipartBody.FORM, String.valueOf(current.getLatitude()));
-        RequestBody longitude =
-                RequestBody.create(
-                        okhttp3.MultipartBody.FORM, String.valueOf(current.getLongitude()));
 
-        // finally, execute the request
-        Call<ResponseBody> call = MyApi.Companion.invoke().upload(description, body,
-                latitude, longitude, auth);
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call,
-                    Response<ResponseBody> response) {
-                mProgressBar.setVisibility(View.GONE);
-                bg.setVisibility(View.GONE);
-                Objects.requireNonNull(getActivity()).getWindow().clearFlags(
-                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                Toast.makeText(getContext(), "SUCCESS", Toast.LENGTH_LONG).show();
-                Log.e("resprepo", response.toString());
-                try {
-                    if (response.body() != null) {
-                        Log.e("re", response.body().string());
-                    } else {
-                        if (response.errorBody() != null) {
-                            Log.e("re", response.errorBody().string());
-                        }
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.e("resprepo", t.toString());
-                mProgressBar.setVisibility(View.GONE);
-                bg.setVisibility(View.GONE);
-                getActivity().getWindow().clearFlags(
-                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                Snackbar snackbar = Snackbar.make(mCoordinatorLayout, t.getMessage(),
-                        Snackbar.LENGTH_LONG).setAction("RETRY", new View.OnClickListener() {
+        SingleShotLocationProvider.requestSingleUpdate(Objects.requireNonNull(getContext()),
+                new SingleShotLocationProvider.LocationCallback() {
                     @Override
-                    public void onClick(View view) {
-                        uploadFile(fileUri, code);
+                    public void onNewLocationAvailable(
+                            SingleShotLocationProvider.GPSCoordinates location) {
+                        Log.e("lat",String.valueOf(location.latitude));
+                        RequestBody latitude =
+                                RequestBody.create(
+                                        okhttp3.MultipartBody.FORM, String.valueOf(location.latitude));
+                        RequestBody longitude =
+                                RequestBody.create(
+                                        okhttp3.MultipartBody.FORM, String.valueOf(location.longitude));
+                        Log.e("long",longitude.toString());
+
+                        // finally, execute the request
+                        Call<ResponseBody> call = MyApi.Companion.invoke().upload(description, body,
+                                latitude, longitude, auth);
+                        Objects.requireNonNull(call).enqueue(new Callback<ResponseBody>() {
+                            @Override
+                            public void onResponse(Call<ResponseBody> call,
+                                    Response<ResponseBody> response) {
+                                mProgressBar.setVisibility(View.GONE);
+                                bg.setVisibility(View.GONE);
+                                Objects.requireNonNull(getActivity()).getWindow().clearFlags(
+                                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                                Toast.makeText(getContext(), "SUCCESS", Toast.LENGTH_LONG).show();
+                                Log.e("resprepo", response.toString());
+                                try {
+                                    if (response.body() != null) {
+                                        Log.e("re", response.body().string());
+                                    } else {
+                                        if (response.errorBody() != null) {
+                                            Log.e("re", response.errorBody().string());
+                                        }
+                                    }
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                Log.e("resprepo", t.toString());
+                                mProgressBar.setVisibility(View.GONE);
+                                bg.setVisibility(View.GONE);
+                                Objects.requireNonNull(getActivity()).getWindow().clearFlags(
+                                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                                Snackbar snackbar = Snackbar.make(mCoordinatorLayout, t.getMessage(),
+                                        Snackbar.LENGTH_LONG).setAction("RETRY", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        uploadFile(fileUri, code);
+                                    }
+                                });
+                                snackbar.setActionTextColor(Color.RED);
+                                snackbar.show();
+                            }
+                        });
                     }
                 });
-                snackbar.setActionTextColor(Color.RED);
-                snackbar.show();
-            }
-        });
 
     }
 
     private File persistImage(Bitmap bitmap, String name) {
-        File filesDir = getContext().getApplicationContext().getFilesDir();
+        File filesDir = Objects.requireNonNull(getContext()).getApplicationContext().getFilesDir();
         File imageFile = new File(filesDir, name + ".jpg");
 
         OutputStream os;
