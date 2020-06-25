@@ -55,6 +55,19 @@ class OnBoardingActivity : AppIntro() {
         ))
 
         addSlide(AppIntroFragment.newInstance(
+                title = "Security on your tips",
+                description = "Press power button 3 times to directly call emergency number!",
+                titleColor = Color.YELLOW,
+                descriptionColor = Color.RED,
+                backgroundColor = R.drawable.gradient4,
+                imageDrawable = R.drawable.power_button_call
+//                backgroundDrawable = R.drawable.gradient4
+
+//                titleTypefaceFontRes = R.font.opensans_regular,
+//                descriptionTypefaceFontRes = R.font.opensans_regular,
+        ))
+
+        addSlide(AppIntroFragment.newInstance(
                 title = "Give permissions to get started",
                 description = "We use permissions only to protect you and by no means we can use it for some other purpose.",
                 titleColor = Color.YELLOW,
@@ -72,7 +85,7 @@ class OnBoardingActivity : AppIntro() {
         setImmersiveMode()
         askForPermissions(
                 permissions = arrayOf(Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_CONTACTS, permission.RECEIVE_SMS, permission.SEND_SMS, permission.WRITE_EXTERNAL_STORAGE, permission.RECORD_AUDIO),
-                slideNumber = 4,
+                slideNumber = 5,
                 required = true)
     }
 

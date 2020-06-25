@@ -8,7 +8,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.icu.text.SimpleDateFormat;
-import android.location.Location;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
@@ -63,7 +62,7 @@ public class ReportFragment extends Fragment {
     LinearLayout bg;
     ProgressBar mProgressBar;
     CoordinatorLayout mCoordinatorLayout;
-    private String currentPhotoPath;
+    private String currentPhotoPath = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -84,6 +83,8 @@ public class ReportFragment extends Fragment {
         captureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                currentPhotoPath = null;
+                videoUri = null;
                 dispatchTakePictureIntent();
             }
         });
@@ -91,6 +92,8 @@ public class ReportFragment extends Fragment {
         video.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                currentPhotoPath = null;
+                videoUri = null;
                 dispatchTakeVideoIntent();
             }
         });
@@ -184,6 +187,7 @@ public class ReportFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
             videoUri = intent.getData();
+            Log.e("viduri", videoUri.toString());
             String[] filePathColumn = {MediaStore.Images.Media.DATA};
             Cursor cursor = getContext().getContentResolver().query(videoUri, filePathColumn, null,
                     null, null);
@@ -221,7 +225,7 @@ public class ReportFragment extends Fragment {
         // https://github.com/iPaulPro/aFileChooser/blob/master/aFileChooser/src/com/ipaulpro
         // /afilechooser/utils/FileUtils.java
         // use the FileUtils to get the actual file by uri
-        File file = new File(fileUri.getPath());
+        File file = new File(FileUtil.getPath(fileUri, getContext()));
 
         Log.e("File", file.toString());
 
@@ -235,6 +239,7 @@ public class ReportFragment extends Fragment {
                                     getActivity().getContentResolver().getType(fileUri))),
                             file
                     );
+            Log.e("vieo", "vie");
         }
         if (code == REQUEST_TAKE_PHOTO) {
             requestFile = RequestBody.create(MediaType.parse("image/*"), file);
@@ -255,21 +260,23 @@ public class ReportFragment extends Fragment {
         String token = prefs.getString("access_token", null);
         final Map<String, String> auth = new HashMap<>();
         auth.put("Authorization",
-                "Token "+token);
+                "Token " + token);
 
         SingleShotLocationProvider.requestSingleUpdate(Objects.requireNonNull(getContext()),
                 new SingleShotLocationProvider.LocationCallback() {
                     @Override
                     public void onNewLocationAvailable(
                             SingleShotLocationProvider.GPSCoordinates location) {
-                        Log.e("lat",String.valueOf(location.latitude));
+                        Log.e("lat", String.valueOf(location.latitude));
                         RequestBody latitude =
                                 RequestBody.create(
-                                        okhttp3.MultipartBody.FORM, String.valueOf(location.latitude));
+                                        okhttp3.MultipartBody.FORM,
+                                        String.valueOf(location.latitude));
                         RequestBody longitude =
                                 RequestBody.create(
-                                        okhttp3.MultipartBody.FORM, String.valueOf(location.longitude));
-                        Log.e("long",longitude.toString());
+                                        okhttp3.MultipartBody.FORM,
+                                        String.valueOf(location.longitude));
+                        Log.e("long", longitude.toString());
 
                         // finally, execute the request
                         Call<ResponseBody> call = MyApi.Companion.invoke().upload(description, body,
@@ -280,6 +287,9 @@ public class ReportFragment extends Fragment {
                                     Response<ResponseBody> response) {
                                 mProgressBar.setVisibility(View.GONE);
                                 bg.setVisibility(View.GONE);
+                                currentPhotoPath = null;
+                                videoUri = null;
+                                reportImage.setImageResource(R.drawable.report);
                                 Objects.requireNonNull(getActivity()).getWindow().clearFlags(
                                         WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                                 Toast.makeText(getContext(), "SUCCESS", Toast.LENGTH_LONG).show();
@@ -304,13 +314,15 @@ public class ReportFragment extends Fragment {
                                 bg.setVisibility(View.GONE);
                                 Objects.requireNonNull(getActivity()).getWindow().clearFlags(
                                         WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                                Snackbar snackbar = Snackbar.make(mCoordinatorLayout, t.getMessage(),
-                                        Snackbar.LENGTH_LONG).setAction("RETRY", new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        uploadFile(fileUri, code);
-                                    }
-                                });
+                                Snackbar snackbar = Snackbar.make(mCoordinatorLayout,
+                                        t.getMessage(),
+                                        Snackbar.LENGTH_LONG).setAction("RETRY",
+                                        new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                uploadFile(fileUri, code);
+                                            }
+                                        });
                                 snackbar.setActionTextColor(Color.RED);
                                 snackbar.show();
                             }
