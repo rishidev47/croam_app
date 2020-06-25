@@ -1,13 +1,26 @@
 package com.example.croam;
 
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+import static android.Manifest.permission.CAMERA;
+import static android.Manifest.permission.READ_CONTACTS;
+import static android.Manifest.permission.RECEIVE_SMS;
+import static android.Manifest.permission.RECORD_AUDIO;
+import static android.Manifest.permission.SEND_SMS;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+
+import static com.example.croam.MainActivity.PERMISSIONS;
+
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.provider.Settings;
 
 import androidx.core.app.ActivityCompat;
 
@@ -17,6 +30,7 @@ public class SingleShotLocationProvider {
     // swap the
     // contents of the else and if. Also be sure to check gps permission/settings are allowed.
     // call usually takes <10ms
+
     public static void requestSingleUpdate(final Context context, final LocationCallback callback) {
         final LocationManager locationManager = (LocationManager) context.getSystemService(
                 Context.LOCATION_SERVICE);
@@ -106,4 +120,6 @@ public class SingleShotLocationProvider {
             latitude = (float) theLatitude;
         }
     }
+
+
 }

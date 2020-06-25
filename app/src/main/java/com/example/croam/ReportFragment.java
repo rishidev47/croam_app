@@ -261,7 +261,6 @@ public class ReportFragment extends Fragment {
         final Map<String, String> auth = new HashMap<>();
         auth.put("Authorization",
                 "Token " + token);
-
         SingleShotLocationProvider.requestSingleUpdate(Objects.requireNonNull(getContext()),
                 new SingleShotLocationProvider.LocationCallback() {
                     @Override
@@ -329,7 +328,17 @@ public class ReportFragment extends Fragment {
                         });
                     }
                 });
-
+        if (currentPhotoPath != null || videoUri != null) {
+            mProgressBar.setVisibility(View.GONE);
+            bg.setVisibility(View.GONE);
+            Objects.requireNonNull(getActivity()).getWindow().clearFlags(
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+            Snackbar snackbar = Snackbar.make(mCoordinatorLayout,
+                    "Please give location access and turn on gps",
+                    Snackbar.LENGTH_LONG);
+            snackbar.setActionTextColor(Color.RED);
+            snackbar.show();
+        }
     }
 
     private File persistImage(Bitmap bitmap, String name) {
