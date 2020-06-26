@@ -2,12 +2,18 @@ package com.example.croam;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.icu.text.SimpleDateFormat;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.LocationManager;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
@@ -33,12 +39,16 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import okhttp3.MediaType;
@@ -217,22 +227,24 @@ public class ReportFragment extends Fragment {
     }
 
     private void uploadFile(final Uri fileUri, final int code) {
+        // https://github.com/iPaulPro/aFileChooser/blob/master/aFileChooser/src/com/ipaulpro
+        // /afilechooser/utils/FileUtils.java
+        // use the FileUtils to get the actual file by uri
         mProgressBar.setVisibility(View.VISIBLE);
         Objects.requireNonNull(getActivity()).getWindow().setFlags(
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         bg.setVisibility(View.VISIBLE);
-        // https://github.com/iPaulPro/aFileChooser/blob/master/aFileChooser/src/com/ipaulpro
-        // /afilechooser/utils/FileUtils.java
-        // use the FileUtils to get the actual file by uri
-        File file = new File(FileUtil.getPath(fileUri, getContext()));
+        File file= null;
 
-        Log.e("File", file.toString());
+
 
         RequestBody requestFile = null;
 
         // create RequestBody instance from file
         if (code == REQUEST_VIDEO_CAPTURE) {
+            file= new File(FileUtil.getPath(fileUri, getContext()));
+            Log.e("File", file.toString());
             requestFile =
                     RequestBody.create(
                             MediaType.parse(Objects.requireNonNull(
@@ -242,11 +254,14 @@ public class ReportFragment extends Fragment {
             Log.e("vieo", "vie");
         }
         if (code == REQUEST_TAKE_PHOTO) {
+            file = new File(fileUri.getPath());
+            Log.e("File", file.toString());
             requestFile = RequestBody.create(MediaType.parse("image/*"), file);
         }
 
         // MultipartBody.Part is used to send also the actual file name
-        final MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(),
+        final MultipartBody.Part body = MultipartBody.Part.createFormData("file", Objects.requireNonNull(
+                file).getName(),
                 Objects.requireNonNull(requestFile));
 
 
@@ -261,11 +276,13 @@ public class ReportFragment extends Fragment {
         final Map<String, String> auth = new HashMap<>();
         auth.put("Authorization",
                 "Token " + token);
+        final ArrayList<Boolean> flag = new ArrayList<>();
         SingleShotLocationProvider.requestSingleUpdate(Objects.requireNonNull(getContext()),
                 new SingleShotLocationProvider.LocationCallback() {
                     @Override
                     public void onNewLocationAvailable(
                             SingleShotLocationProvider.GPSCoordinates location) {
+                        flag.add(true);
                         Log.e("lat", String.valueOf(location.latitude));
                         RequestBody latitude =
                                 RequestBody.create(
@@ -277,9 +294,37 @@ public class ReportFragment extends Fragment {
                                         String.valueOf(location.longitude));
                         Log.e("long", longitude.toString());
 
+                        Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
+                        List<Address> addresses = null;
+                         RequestBody country = null;
+                         RequestBody state = null;
+                         RequestBody city = null;
+                        try {
+                            addresses = geocoder.getFromLocation(location.latitude,
+                                        location.longitude, 1);
+                            String cityName = addresses.get(0).getLocality();
+                            String stateName = addresses.get(0).getAdminArea();
+                            String countryName = addresses.get(0).getCountryName();
+
+                           country =
+                                    RequestBody.create(
+                                            okhttp3.MultipartBody.FORM, countryName);
+                            state =
+                                    RequestBody.create(
+                                            okhttp3.MultipartBody.FORM, stateName);
+                            city =
+                                    RequestBody.create(
+                                            okhttp3.MultipartBody.FORM, cityName);
+
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+
                         // finally, execute the request
                         Call<ResponseBody> call = MyApi.Companion.invoke().upload(description, body,
-                                latitude, longitude, auth);
+                                latitude, longitude, country, state, city, auth);
                         Objects.requireNonNull(call).enqueue(new Callback<ResponseBody>() {
                             @Override
                             public void onResponse(Call<ResponseBody> call,
@@ -328,17 +373,37 @@ public class ReportFragment extends Fragment {
                         });
                     }
                 });
-        if (currentPhotoPath != null || videoUri != null) {
-            mProgressBar.setVisibility(View.GONE);
-            bg.setVisibility(View.GONE);
-            Objects.requireNonNull(getActivity()).getWindow().clearFlags(
-                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-            Snackbar snackbar = Snackbar.make(mCoordinatorLayout,
-                    "Please give location access and turn on gps",
-                    Snackbar.LENGTH_LONG);
-            snackbar.setActionTextColor(Color.RED);
-            snackbar.show();
+
+        if(flag.size()==0){Log.e("get","fvs");
+            final LocationManager locationManager = (LocationManager) getContext().getSystemService(
+                    Context.LOCATION_SERVICE);
+            boolean isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+            if (ActivityCompat.checkSelfPermission(getContext(),
+                    Manifest.permission.ACCESS_FINE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                    getContext(),
+                    Manifest.permission.ACCESS_COARSE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED || !isGPSEnabled){
+                mProgressBar.setVisibility(View.GONE);
+                bg.setVisibility(View.GONE);
+                Objects.requireNonNull(getActivity()).getWindow().clearFlags(
+                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                Snackbar snackbar = Snackbar.make(mCoordinatorLayout,
+                        "Please give location access and turn on gps",
+                        Snackbar.LENGTH_LONG).setAction("RETRY",
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                uploadFile(fileUri, code);
+                            }
+                        });
+                snackbar.setActionTextColor(Color.RED);
+                snackbar.show();
+            }
+
         }
+
+
     }
 
     private File persistImage(Bitmap bitmap, String name) {

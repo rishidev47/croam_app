@@ -40,6 +40,9 @@ interface MyApi {
             @Part file: MultipartBody.Part?,
             @Part("latitude") latitude: RequestBody?,
             @Part("longitude") longitude: RequestBody?,
+            @Part("country") country: RequestBody?,
+            @Part("state") state: RequestBody?,
+            @Part("city") city: RequestBody?,
             @HeaderMap headers: MutableMap<String, String>
     ): Call<ResponseBody>?
 
