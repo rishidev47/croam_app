@@ -63,6 +63,39 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/premium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:cardCornerRadius="32dp"
+                    app:cardUseCompatPadding="true"
+                    app:cardBackgroundColor="@color/colorPrimary">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:src="@drawable/premium_badge"/>
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Get Premium Membership Now!"
+                            android:singleLine="true"
+                            android:autoSizeMaxTextSize="16sp"
+                            android:autoSizeMinTextSize="12sp"
+                            android:gravity="center_vertical"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"/>
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
@@ -166,6 +199,7 @@
                             android:padding="8dp"
                             android:text="Log Out"
                             app:cornerRadius="16dp"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                             app:icon="@drawable/ic_power_settings_new_black_24dp" />
 
                     </LinearLayout>
