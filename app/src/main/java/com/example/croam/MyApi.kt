@@ -69,6 +69,16 @@ interface MyApi {
     @POST("users/login")
     fun logIn(@Field("number") number: String, @Field("password") password: String): Call<ResponseBody?>?
 
+    @GET("users/forgetPassword")
+    fun forgotPass( @QueryMap query: Map<String,String>): Call<ResponseBody?>?
+
+    @GET("users/verify")
+    fun verifyOtp(@QueryMap query: Map<String,String>): Call<ResponseBody?>?
+
+    @FormUrlEncoded
+    @PUT("users/resetPassword")
+    fun resetPass(@Field("number") number: String, @Field("newPass") password: String): Call<ResponseBody?>?
+
     companion object {
         operator fun invoke(
         ): MyApi {
@@ -81,9 +91,9 @@ interface MyApi {
 // set your desired log level
             logging.setLevel(HttpLoggingInterceptor.Level.BODY)
 
-            val httpClient = OkHttpClient.Builder().connectTimeout(150, TimeUnit.SECONDS)
-                    .writeTimeout(150, TimeUnit.SECONDS)
-                    .readTimeout(150, TimeUnit.SECONDS)
+            val httpClient = OkHttpClient.Builder().connectTimeout(60, TimeUnit.SECONDS)
+                    .writeTimeout(60, TimeUnit.SECONDS)
+                    .readTimeout(60, TimeUnit.SECONDS)
 // add your other interceptors …
 
 // add logging as last interceptor
