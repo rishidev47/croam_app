@@ -32,7 +32,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".PasswordRecoveryActivity" android:noHistory="true"></activity>
+        <activity android:name=".ViewImagesActivity"></activity>
+        <activity
+            android:name=".PasswordRecoveryActivity"
+            android:noHistory="true" />
         <activity android:name=".PaymentActivity" />
         <activity android:name=".OnBoardingActivity" />
 
