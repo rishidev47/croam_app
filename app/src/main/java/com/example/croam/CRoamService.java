@@ -58,6 +58,8 @@ import java.util.concurrent.locks.ReentrantLock;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -125,6 +127,8 @@ public class CRoamService extends Service {
     private FusedLocationProviderClient mFusedLocationClient;
     private LocationRequest mLocationRequest;
     private Location mLocation;
+    private LocalBroadcastManager localBroadcaster=null;
+
     public CRoamService(){super();}
 
     public static int emergencycontacts() {
@@ -219,6 +223,7 @@ public class CRoamService extends Service {
                 onNewLocation(locationResult.getLastLocation());
             }
         };
+        localBroadcaster = LocalBroadcastManager.getInstance(this);
 
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(1000);
@@ -412,7 +417,8 @@ public class CRoamService extends Service {
         double[] doubleInputBuffer = new double[RECORDING_LENGTH];
         final float[] outputScores = new float[1];
         String[] outputScoresNames = new String[]{OUTPUT_SCORES_NAME};
-        int k = 0;
+        float score[] = new float[5];
+        int k=0;
         int temp = 0;
         while (shouldContinueRecognition) {
             k++;
@@ -445,6 +451,12 @@ public class CRoamService extends Service {
             inferenceInterface.run(outputScoresNames);
             inferenceInterface.fetch(OUTPUT_SCORES_NAME, outputScores);
 //            Log.v(LOG_TAG, "OUTPUT======> " + Arrays.toString(outputScores));
+            score[k%5]=outputScores[0];
+            Log.d("SCORE", "INTENT SENDING.......: "+score);
+            Intent recogResultIntent=new  Intent();
+            recogResultIntent.setAction("SEND_ML_OUTPUT");
+            recogResultIntent.putExtra("SCORE",score);
+            localBroadcaster.sendBroadcast(recogResultIntent);
 
             boolean isRecognised = outputScores[0] > threshold;
 //            final Handler handler = new Handler(Looper.getMainLooper());
