@@ -1,7 +1,5 @@
 package com.example.croam;
 
-import static java.security.AccessController.getContext;
-
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -13,17 +11,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.location.Location;
 import android.media.AudioFormat;
-import android.media.AudioManager;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
-import android.media.audiofx.AcousticEchoCanceler;
-import android.media.audiofx.AutomaticGainControl;
-import android.media.audiofx.NoiseSuppressor;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.Environment;
@@ -33,8 +26,6 @@ import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
 import android.util.Log;
-import android.view.View;
-import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -44,7 +35,6 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 
 import org.tensorflow.contrib.android.TensorFlowInferenceInterface;
 
@@ -174,7 +164,7 @@ public class CRoamService extends Service {
             auth.put("Authorization",
                     "Token " + token);
 
-            Log.e("fda","AFDdddddddddddddd");
+            Log.e("fda", "AFDdddddddddddddd");
 
             Call<ResponseBody> call = MyApi.Companion.invoke().uploadfile(body, auth);
             Objects.requireNonNull(call).enqueue(new Callback<ResponseBody>() {
@@ -382,9 +372,6 @@ public class CRoamService extends Service {
         }
         short[] audioBuffer = new short[bufferSize / 2];
 
-        ((AudioManager) getSystemService(Context.AUDIO_SERVICE)).setParameters(
-                "noise_suppression=on");
-
         AudioRecord record =
                 new AudioRecord(
                         MediaRecorder.AudioSource.DEFAULT,
@@ -392,35 +379,6 @@ public class CRoamService extends Service {
                         AudioFormat.CHANNEL_IN_MONO,
                         AudioFormat.ENCODING_PCM_16BIT,
                         bufferSize);
-
-
-        if (NoiseSuppressor.isAvailable()) {
-            Log.e("noise", "Yes");
-            NoiseSuppressor noiseSuppressor = NoiseSuppressor.create(record.getAudioSessionId());
-            noiseSuppressor.setEnabled(true);
-        } else {
-            Log.e("noise", "no");
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            if (NoiseSuppressor.create(record.getAudioSessionId()) == null) {
-                Log.i("noise", "NoiseSuppressor not present :(");
-            } else {
-                Log.i("noise", "NoiseSuppressor enabled!");
-            }
-
-            if (AutomaticGainControl.create(record.getAudioSessionId()) == null) {
-                Log.i("noise", "AutomaticGainControl not present :(");
-            } else {
-                Log.i("noise", "AutomaticGainControl enabled!");
-            }
-
-            if (AcousticEchoCanceler.create(record.getAudioSessionId()) == null) {
-                Log.i("noise", "AcousticEchoCanceler not present :(");
-            } else {
-                Log.i("noise", "AcousticEchoCanceler enabled!");
-            }
-        }
 
         if (record.getState() != AudioRecord.STATE_INITIALIZED) {
             Log.e(LOG_TAG, "Audio Record can't initialize!");
@@ -495,8 +453,7 @@ public class CRoamService extends Service {
             for (int i = 0; i < RECORDING_LENGTH; ++i) {
                 doubleInputBuffer[i] = inputBuffer[i] / 32767.0;
             }
-            ((AudioManager) getSystemService(Context.AUDIO_SERVICE)).setParameters(
-                    "noise_suppression=on");
+
             //MFCC java library.
             MFCC mfccConvert = new MFCC();
 //            float[] mfccInput = mfccConvert.process(doubleInputBuffer);
