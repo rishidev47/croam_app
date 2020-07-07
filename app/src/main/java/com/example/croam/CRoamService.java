@@ -1,5 +1,6 @@
 package com.example.croam;
 
+import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -26,6 +27,7 @@ import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -36,6 +38,8 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.tensorflow.contrib.android.TensorFlowInferenceInterface;
 
 import java.io.BufferedOutputStream;
@@ -93,7 +97,7 @@ public class CRoamService extends Service {
     public static String url = null;
     public static String phone;
     public static int noofemergencycontacts = 0;
-    public static double threshold = 0.8;
+    public static double threshold = 0.9;
     public static Context mContext = null;
     static SharedPreferences prefs;
     static ArrayList<String> contactinfo = new ArrayList<>();
@@ -121,10 +125,7 @@ public class CRoamService extends Service {
     private FusedLocationProviderClient mFusedLocationClient;
     private LocationRequest mLocationRequest;
     private Location mLocation;
-
-    public CRoamService() {
-        super();
-    }
+    public CRoamService(){super();}
 
     public static int emergencycontacts() {
         int x = 0;
@@ -173,7 +174,15 @@ public class CRoamService extends Service {
                         Response<ResponseBody> response) {
                     Log.e("resp", response.body().toString());
                     String url = null;
-                    sendSMS("My incident image url is" + url);
+                    try {
+                        JSONObject obj = new JSONObject(response.body().string());
+                        url = obj.getString("url");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    sendSMS("My incident image url is: " + url);
                 }
 
                 @Override
@@ -470,6 +479,15 @@ public class CRoamService extends Service {
 //            Log.v(LOG_TAG, "OUTPUT======> " + Arrays.toString(outputScores));
 
             boolean isRecognised = outputScores[0] > threshold;
+//            final Handler handler = new Handler(Looper.getMainLooper());
+//            handler.post(new Runnable() {
+//                @Override
+//                public void run() {
+//                    Toast.makeText(getApplicationContext(), String.valueOf(outputScores[0]), Toast.LENGTH_LONG).show();
+//                }
+//            });
+
+            Log.e(LOG_TAG, String.valueOf(outputScores[0]));
             // Log.d(TAG, "Output Score Of recognition: "+Arrays.toString(outputScores));
             if (isRecognised) {
                 Log.d(TAG, "recognized: " + Arrays.toString(outputScores));
