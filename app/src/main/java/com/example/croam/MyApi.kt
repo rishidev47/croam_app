@@ -49,15 +49,16 @@ interface MyApi {
     @Multipart
     @POST("users/uploadfile")
     fun uploadfile(
-            @Part("description") description: RequestBody?,
+//            @Part("description") description: RequestBody?,
             @Part file: MultipartBody.Part?,
-            @Part("latitude") latitude: RequestBody?,
-            @Part("longitude") longitude: RequestBody?,
-            @Part("country") country: RequestBody?,
-            @Part("state") state: RequestBody?,
-            @Part("city") city: RequestBody?,
+//            @Part("latitude") latitude: RequestBody?,
+//            @Part("longitude") longitude: RequestBody?,
+//            @Part("country") country: RequestBody?,
+//            @Part("state") state: RequestBody?,
+//            @Part("city") city: RequestBody?,
             @HeaderMap headers: MutableMap<String, String>
     ): Call<ResponseBody>?
+
 
     @FormUrlEncoded
     @POST("users/register")
