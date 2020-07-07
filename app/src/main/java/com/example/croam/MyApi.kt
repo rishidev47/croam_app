@@ -1,13 +1,15 @@
 package com.example.croam
 
 import okhttp3.MultipartBody
+import okhttp3.OkHttpClient
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
-
+import java.util.concurrent.TimeUnit
 
 interface MyApi {
 
@@ -32,11 +34,31 @@ interface MyApi {
 
 
     @Multipart
-    @POST("upload")
+    @POST("users/addreport")
     fun upload(
             @Part("description") description: RequestBody?,
-            @Part file: MultipartBody.Part?
-    ): Call<ResponseBody?>?
+            @Part file: MultipartBody.Part?,
+            @Part("latitude") latitude: RequestBody?,
+            @Part("longitude") longitude: RequestBody?,
+            @Part("country") country: RequestBody?,
+            @Part("state") state: RequestBody?,
+            @Part("city") city: RequestBody?,
+            @HeaderMap headers: MutableMap<String, String>
+    ): Call<ResponseBody>?
+
+    @Multipart
+    @POST("users/uploadfile")
+    fun uploadfile(
+//            @Part("description") description: RequestBody?,
+            @Part file: MultipartBody.Part?,
+//            @Part("latitude") latitude: RequestBody?,
+//            @Part("longitude") longitude: RequestBody?,
+//            @Part("country") country: RequestBody?,
+//            @Part("state") state: RequestBody?,
+//            @Part("city") city: RequestBody?,
+            @HeaderMap headers: MutableMap<String, String>
+    ): Call<ResponseBody>?
+
 
     @FormUrlEncoded
     @POST("users/register")
@@ -48,6 +70,16 @@ interface MyApi {
     @POST("users/login")
     fun logIn(@Field("number") number: String, @Field("password") password: String): Call<ResponseBody?>?
 
+    @GET("users/forgetPassword")
+    fun forgotPass( @QueryMap query: Map<String,String>): Call<ResponseBody?>?
+
+    @GET("users/verify")
+    fun verifyOtp(@QueryMap query: Map<String,String>): Call<ResponseBody?>?
+
+    @FormUrlEncoded
+    @PUT("users/resetPassword")
+    fun resetPass(@Field("number") number: String, @Field("newPass") password: String): Call<ResponseBody?>?
+
     companion object {
         operator fun invoke(
         ): MyApi {
@@ -55,9 +87,25 @@ interface MyApi {
 //            val okkHttpclient = OkHttpClient.Builder()
 //                .addInterceptor(networkConnectionInterceptor)
 //                .build()
+            val logging = HttpLoggingInterceptor()
+// set your desired log level
+// set your desired log level
+            logging.setLevel(HttpLoggingInterceptor.Level.BODY)
+
+            val httpClient = OkHttpClient.Builder().connectTimeout(60, TimeUnit.SECONDS)
+                    .writeTimeout(60, TimeUnit.SECONDS)
+                    .readTimeout(60, TimeUnit.SECONDS)
+// add your other interceptors …
+
+// add logging as last interceptor
+// add your other interceptors …
+
+// add logging as last interceptor
+            httpClient.addInterceptor(logging) // <-- this is the important line!
+
 
             return Retrofit.Builder()
-//                .client(okkHttpclient)
+                    .client(httpClient.build())
                     .baseUrl("https://backend-279606.el.r.appspot.com/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()

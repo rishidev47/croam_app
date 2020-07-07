@@ -20,6 +20,8 @@ import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONObject;
 
+import java.util.Objects;
+
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
@@ -71,6 +73,15 @@ public class Login extends Fragment {
             }
         });
 
+        TextView forgotPass = view.findViewById(R.id.text_forgot_pass);
+        forgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), PasswordRecoveryActivity.class);
+                startActivity(intent);
+            }
+        });
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,7 +125,7 @@ public class Login extends Fragment {
                     Response<ResponseBody> response) {
                 mProgressBar.setVisibility(View.GONE);
                 bg.setVisibility(View.GONE);
-                getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                Objects.requireNonNull(getActivity()).getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 String body = null;
                 try {
                     body = response.body().string();
@@ -145,6 +156,11 @@ public class Login extends Fragment {
 
                 } catch (Throwable t) {
                     Log.e("My App", t.getMessage());
+                    Snackbar snackbar = Snackbar.make(mCoordinatorLayout, "Wrong username or password",
+                            Snackbar.LENGTH_LONG);
+                    snackbar.setActionTextColor(Color.RED);
+                    snackbar.show();
+
                 }
 
 

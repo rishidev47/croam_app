@@ -1,5 +1,6 @@
 package com.example.croam;
 
+import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -15,12 +16,8 @@ import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.location.Location;
 import android.media.AudioFormat;
-import android.media.AudioManager;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
-import android.media.audiofx.AcousticEchoCanceler;
-import android.media.audiofx.AutomaticGainControl;
-import android.media.audiofx.NoiseSuppressor;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.Environment;
@@ -30,6 +27,7 @@ import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -40,6 +38,8 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.tensorflow.contrib.android.TensorFlowInferenceInterface;
 
 import java.io.BufferedOutputStream;
@@ -50,100 +50,168 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.locks.ReentrantLock;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CRoamService extends Service {
+    public final static String DEBUG_TAG = "MainActivity";
+    //private static final String MODEL_FILENAME = "file:///android_asset/help_model.pb";
+//private static final String MODEL_FILENAME =
+// "file:///android_asset/tf_help_model2_after_removing_noise.pb";
+    public static final String MyPREFERENCES = "MyPrefs_Anjaneya";
+    public static final String CHANNEL_ID = "ForegroundServiceChannel";
     private static final String CONTACT1 = "contact1";
     private static final String CONTACT2 = "contact2";
     private static final String CONTACT3 = "contact3";
     private static final String CONTACT4 = "contact4";
     private static final String CONTACT5 = "contact5";
-    private static String[] contacts = {CONTACT1, CONTACT2, CONTACT3, CONTACT4, CONTACT5};
-
-    private static String TAG="croamService";
-    public static String croam_server_url="http://192.168.43.35:3000";
-    public static boolean screenOff1=false;
-    public static boolean screenOff2=false;
-    public static boolean screenOn1=false;
-    public static boolean screenOn2=false;
-    public static double lat;
-    public static double lng;
-    public static String allmobilenumberofpolice="01126597272";
-    public static String url=null;
-    public static String phone;
-    private Thread recordingThread;
-    private Thread recognitionThread;
-
     private static final String LOG_TAG = "AudioRecordTest";
     private static final String OUTPUT_SCORES_NAME = "output0";
     private static final String INPUT_DATA_NAME = "input_1_1";
-    public final static String DEBUG_TAG = "MainActivity";
     private static final String clientID = "c26974dfd247815";
     private static final String MODEL_FILENAME = "file:///android_asset/model71.pb";
-//private static final String MODEL_FILENAME = "file:///android_asset/help_model.pb";
-//private static final String MODEL_FILENAME = "file:///android_asset/tf_help_model2_after_removing_noise.pb";
-    public static final String MyPREFERENCES = "MyPrefs_Anjaneya" ;
-
     private static final int SAMPLE_RATE = 16000;
     private static final int SAMPLE_DURATION_MS = 1000;
     private static final int RECORDING_LENGTH = (int) (SAMPLE_RATE * SAMPLE_DURATION_MS / 1000);
+    public static String croam_server_url = "http://192.168.43.35:3000";
+    public static boolean screenOff1 = false;
+    public static boolean screenOff2 = false;
+    public static boolean screenOn1 = false;
+    public static boolean screenOn2 = false;
+    public static double lat;
+    public static double lng;
+    public static String allmobilenumberofpolice = "01126597272";
+    public static String url = null;
+    public static String phone;
+    public static int noofemergencycontacts = 0;
+    public static double threshold = 0.9;
+    public static Context mContext = null;
+    static SharedPreferences prefs;
+    static ArrayList<String> contactinfo = new ArrayList<>();
+    private static String[] contacts = {CONTACT1, CONTACT2, CONTACT3, CONTACT4, CONTACT5};
+    private static String TAG = "croamService";
+    private static int recognitionResultLength = 5;
 
+    static {
+        System.loadLibrary("native-mfcc-lib");
+    }
+
+    private final ReentrantLock recordingBufferLock = new ReentrantLock();
+    public String AddressURL;
+    public MyBroadCastReciever myBroadcastReciever;
     boolean shouldContinueRecognition = true;
     boolean shouldContinue = true;
     short[] recordingBuffer = new short[RECORDING_LENGTH];
     int recordingOffset = 0;
-
-    private final ReentrantLock recordingBufferLock = new ReentrantLock();
+    private Thread recordingThread;
+    private Thread recognitionThread;
     private TensorFlowInferenceInterface inferenceInterface;
-
-    private static int recognitionResultLength = 5;
     private boolean[] recognitionResult = new boolean[recognitionResultLength];
-
-    public String AddressURL;
     private Camera camera;
-
-    public static int noofemergencycontacts=0;
-    public native float[] nativeMFCC(double[] buffer);
-
-    public MyBroadCastReciever myBroadcastReciever;
-    public static final String CHANNEL_ID = "ForegroundServiceChannel";
     private LocationCallback mLocationCallback;
     private FusedLocationProviderClient mFusedLocationClient;
     private LocationRequest mLocationRequest;
     private Location mLocation;
-    public static double threshold = 0.8;
-    public static Context mContext=null;
-    static SharedPreferences prefs;
+    public CRoamService(){super();}
 
-    static ArrayList<String> contactinfo = new ArrayList<>();
-    public CRoamService() {
-        super();
-    }
-
-    public static int emergencycontacts(){
-        int x=0;
-        for(String c:contacts){
-            if(prefs.getString(c,null)!=null){
+    public static int emergencycontacts() {
+        int x = 0;
+        for (String c : contacts) {
+            if (prefs.getString(c, null) != null) {
                 ++x;
-                contactinfo.add(x-1, prefs.getString(c, null));
+                contactinfo.add(x - 1, prefs.getString(c, null));
             }
         }
         return x;
     }
+
+    public static void sendSMS(String message) {
+        noofemergencycontacts = emergencycontacts();
+        System.out.println("Number of emergency contacts " + noofemergencycontacts);
+
+        for (int i = 1; i <= noofemergencycontacts; i++) {
+            SmsManager smsManager = SmsManager.getDefault();
+            smsManager.sendTextMessage(contactinfo.get(i), null, message, null, null);
+            Log.v(DEBUG_TAG, "SMS SENT TO " + contactinfo.get(i));
+        }
+    }
+
+    public static void getImgurContent(String filePath) throws Exception {
+
+        try {
+            File uploadFile1 = new File(filePath);
+            RequestBody requestFile = null;
+            requestFile = RequestBody.create(MediaType.parse("image/*"), uploadFile1);
+            // MultipartBody.Part is used to send also the actual file name
+            final MultipartBody.Part body = MultipartBody.Part.createFormData("file",
+                    Objects.requireNonNull(
+                            uploadFile1).getName(),
+                    Objects.requireNonNull(requestFile));
+            String token = prefs.getString("access_token", null);
+            final Map<String, String> auth = new HashMap<>();
+            auth.put("Authorization",
+                    "Token " + token);
+
+            Log.e("fda", "AFDdddddddddddddd");
+
+            Call<ResponseBody> call = MyApi.Companion.invoke().uploadfile(body, auth);
+            Objects.requireNonNull(call).enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call,
+                        Response<ResponseBody> response) {
+                    Log.e("resp", response.body().toString());
+                    String url = null;
+                    try {
+                        JSONObject obj = new JSONObject(response.body().string());
+                        url = obj.getString("url");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    sendSMS("My incident image url is: " + url);
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                }
+            });
+
+        } catch (Exception e) {
+            System.out.println("Error in photohandling" + e);
+        }
+
+    }
+
+    public static void sendImageLink(String imageURL) {
+        sendSMS("Image is at: " + imageURL);
+    }
+
+    public native float[] nativeMFCC(double[] buffer);
+
     @Override
     public void onCreate() {
-        mContext=getBaseContext();
+        mContext = getBaseContext();
         inferenceInterface = new TensorFlowInferenceInterface(getAssets(), MODEL_FILENAME);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); //Get the preferences
-        noofemergencycontacts=emergencycontacts();
-        croam_server_url=prefs.getString("server_url",croam_server_url);
+        prefs = PreferenceManager.getDefaultSharedPreferences(
+                getApplicationContext()); //Get the preferences
+        noofemergencycontacts = emergencycontacts();
+        croam_server_url = prefs.getString("server_url", croam_server_url);
         mLocationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(LocationResult locationResult) {
@@ -161,8 +229,8 @@ public class CRoamService extends Service {
 
         IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
         filter.addAction(Intent.ACTION_SCREEN_OFF);
-        myBroadcastReciever=new MyBroadCastReciever(this);
-        registerReceiver((myBroadcastReciever),filter);
+        myBroadcastReciever = new MyBroadCastReciever(this);
+        registerReceiver((myBroadcastReciever), filter);
 
         if (!getPackageManager()
                 .hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
@@ -171,14 +239,15 @@ public class CRoamService extends Service {
         } else {
             int cameraId = findCamera();
             if (cameraId < 0) {
-                Toast.makeText(this, "No front facing camera found."+ cameraId,
+                Toast.makeText(this, "No front facing camera found." + cameraId,
                         Toast.LENGTH_LONG).show();
                 Log.v(DEBUG_TAG, "Camera not OK");
             } else {
 
 //                if(camera!=null)
-                if(camera==null)camera = Camera.open(cameraId);
-                else{
+                if (camera == null) {
+                    camera = Camera.open(cameraId);
+                } else {
 
                 }
 //                    Log.v(DEBUG_TAG, "Camera ID: " + camera.toString());
@@ -186,11 +255,13 @@ public class CRoamService extends Service {
 
         }
     }
+
     private void startLocationUpdates() {
         mFusedLocationClient.requestLocationUpdates(mLocationRequest,
                 mLocationCallback,
                 Looper.getMainLooper());
     }
+
     private void getLastLocation() {
         try {
             mFusedLocationClient.getLastLocation()
@@ -211,6 +282,7 @@ public class CRoamService extends Service {
             Log.e(TAG, "Lost location permission." + unlikely);
         }
     }
+
     private void onNewLocation(Location location) {
         Log.i(TAG, "New location: " + location);
         mLocation = location;
@@ -226,7 +298,7 @@ public class CRoamService extends Service {
         Toast.makeText(this, "service started", Toast.LENGTH_SHORT).show();
         createNotificationChannel();
         Intent openIntent = new Intent(this, MainActivity.class);
-        openIntent.putExtra("OPENED_FROM_NOTIFICATION",true);
+        openIntent.putExtra("OPENED_FROM_NOTIFICATION", true);
         openIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
         PendingIntent openPendingIntent = PendingIntent.getActivity(this,
@@ -241,7 +313,7 @@ public class CRoamService extends Service {
         startForeground(1, notification);
 
 
-        if(shouldContinueRecognition){
+        if (shouldContinueRecognition) {
             startRecording();
             startRecognition();
 
@@ -277,26 +349,8 @@ public class CRoamService extends Service {
         }
     }
 
-
     private void record() {
         android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_AUDIO);
-        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/"+"recordsound");
-        //    /mnt/sdcard/recordsound
-        // Delete any previous recording.
-        DataOutputStream dos=null;
-        if (file.exists())
-            file.delete();
-
-        try {
-            file.createNewFile();
-
-            // Create a DataOuputStream to write the audio data into the saved file.
-            OutputStream os = new FileOutputStream(file);
-            BufferedOutputStream bos = new BufferedOutputStream(os);
-             dos = new DataOutputStream(bos);
-        }catch (Exception e){
-
-        }
 
         //  Log.v(LOG_TAG,"");
         // Estimate the buffer size we'll need for this device.
@@ -308,44 +362,13 @@ public class CRoamService extends Service {
         }
         short[] audioBuffer = new short[bufferSize / 2];
 
-        ((AudioManager)getSystemService(Context.AUDIO_SERVICE)).setParameters("noise_suppression=on");
-
         AudioRecord record =
                 new AudioRecord(
-                        MediaRecorder.AudioSource.VOICE_RECOGNITION,
+                        MediaRecorder.AudioSource.DEFAULT,
                         SAMPLE_RATE,
                         AudioFormat.CHANNEL_IN_MONO,
                         AudioFormat.ENCODING_PCM_16BIT,
                         bufferSize);
-
-
-        if(NoiseSuppressor.isAvailable()){
-            Log.e("noise","Yes");
-            NoiseSuppressor noiseSuppressor = NoiseSuppressor.create(record.getAudioSessionId());
-            noiseSuppressor.setEnabled(true);
-        }else{
-            Log.e("noise","no");
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            if ( NoiseSuppressor.create(record.getAudioSessionId()) == null) {
-                Log.i("noise","NoiseSuppressor not present :(");
-            } else {
-                Log.i("noise","NoiseSuppressor enabled!");
-            }
-
-            if (AutomaticGainControl.create(record.getAudioSessionId()) == null) {
-                Log.i("noise","AutomaticGainControl not present :(");
-            } else {
-                Log.i("noise","AutomaticGainControl enabled!");
-            }
-
-            if (AcousticEchoCanceler.create(record.getAudioSessionId()) == null) {
-                Log.i("noise","AcousticEchoCanceler not present :(");
-            } else {
-                Log.i("noise","AcousticEchoCanceler enabled!");
-            }
-        }
 
         if (record.getState() != AudioRecord.STATE_INITIALIZED) {
             Log.e(LOG_TAG, "Audio Record can't initialize!");
@@ -360,19 +383,6 @@ public class CRoamService extends Service {
         // Loop, gathering audio data and copying it to a round-robin buffer.
         while (shouldContinue) {
             int numberRead = record.read(audioBuffer, 0, audioBuffer.length);
-            for (int i = 0; i < numberRead; i++) {
-                try {
-                    dos.writeShort(audioBuffer[i]);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            try {
-                dos.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
             int maxLength = recordingBuffer.length;
             int newRecordingOffset = recordingOffset + numberRead;
             int secondCopyLength = Math.max(0, newRecordingOffset - maxLength);
@@ -383,7 +393,8 @@ public class CRoamService extends Service {
             recordingBufferLock.lock();
             try {
                 System.arraycopy(audioBuffer, 0, recordingBuffer, recordingOffset, firstCopyLength);
-                System.arraycopy(audioBuffer, firstCopyLength, recordingBuffer, 0, secondCopyLength);
+                System.arraycopy(audioBuffer, firstCopyLength, recordingBuffer, 0,
+                        secondCopyLength);
                 recordingOffset = newRecordingOffset % maxLength;
             } finally {
                 recordingBufferLock.unlock();
@@ -393,18 +404,19 @@ public class CRoamService extends Service {
         record.stop();
         record.release();
     }
+
     private void recognize() {
-        threshold=MainActivity.threshold;
+        threshold = MainActivity.threshold;
         Log.v(LOG_TAG, "Start recognition");
         short[] inputBuffer = new short[RECORDING_LENGTH];
         double[] doubleInputBuffer = new double[RECORDING_LENGTH];
         final float[] outputScores = new float[1];
         String[] outputScoresNames = new String[]{OUTPUT_SCORES_NAME};
-        int k=0;
-        int temp=0;
-        while(shouldContinueRecognition) {
+        int k = 0;
+        int temp = 0;
+        while (shouldContinueRecognition) {
             k++;
-            temp=k%50;
+            temp = k % 50;
             recordingBufferLock.lock();
             try {
                 int maxLength = recordingBuffer.length;
@@ -418,12 +430,15 @@ public class CRoamService extends Service {
             for (int i = 0; i < RECORDING_LENGTH; ++i) {
                 doubleInputBuffer[i] = inputBuffer[i] / 32767.0;
             }
- ((AudioManager)getSystemService(Context.AUDIO_SERVICE)).setParameters("noise_suppression=on");
+
             //MFCC java library.
             MFCC mfccConvert = new MFCC();
 //            float[] mfccInput = mfccConvert.process(doubleInputBuffer);
             float[] mfccInput = nativeMFCC(doubleInputBuffer);
-            if(temp==0)Log.v(LOG_TAG, k+" MFCC Input====> " + Arrays.toString(doubleInputBuffer));
+            if (temp == 0) {
+                Log.v(LOG_TAG,
+                        k + " MFCC Input====> " + Arrays.toString(doubleInputBuffer));
+            }
 
             // Run the model.
             inferenceInterface.feed(INPUT_DATA_NAME, mfccInput, 1, 126, 40);
@@ -432,16 +447,25 @@ public class CRoamService extends Service {
 //            Log.v(LOG_TAG, "OUTPUT======> " + Arrays.toString(outputScores));
 
             boolean isRecognised = outputScores[0] > threshold;
-           // Log.d(TAG, "Output Score Of recognition: "+Arrays.toString(outputScores));
-            if(isRecognised) {
-                Log.d(TAG, "recognized: "+Arrays.toString(outputScores));
+//            final Handler handler = new Handler(Looper.getMainLooper());
+//            handler.post(new Runnable() {
+//                @Override
+//                public void run() {
+//                    Toast.makeText(getApplicationContext(), String.valueOf(outputScores[0]), Toast.LENGTH_LONG).show();
+//                }
+//            });
+
+            Log.e(LOG_TAG, String.valueOf(outputScores[0]));
+            // Log.d(TAG, "Output Score Of recognition: "+Arrays.toString(outputScores));
+            if (isRecognised) {
+                Log.d(TAG, "recognized: " + Arrays.toString(outputScores));
                 //  getCurrentLocation();
 
                 boolean isPreviousRecognised = false;
-                for(boolean i : recognitionResult) {
+                for (boolean i : recognitionResult) {
                     isPreviousRecognised |= i;
                 }
-                if(isPreviousRecognised) {
+                if (isPreviousRecognised) {
                 } else {
 //                    Log.d(TAG, "recognized: "+Arrays.toString(outputScores));
 
@@ -451,17 +475,18 @@ public class CRoamService extends Service {
 //                    runOnUiThread(new Runnable() {
 //                        public void run()
 //                        {
-//                            Toast.makeText(getBaseContext(), "detected help", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(getBaseContext(), "detected help", Toast
+//                            .LENGTH_SHORT).show();
 //                            //Toast.makeText(ctx, toast, Toast.LENGTH_SHORT).show();
 //                        }
 //                    });
                 }
 
             }
-            for(int i = 0; i < recognitionResultLength - 1; i++) {
-                recognitionResult[i] = recognitionResult[i+1];
+            for (int i = 0; i < recognitionResultLength - 1; i++) {
+                recognitionResult[i] = recognitionResult[i + 1];
             }
-            recognitionResult[recognitionResultLength-1] = isRecognised;
+            recognitionResult[recognitionResultLength - 1] = isRecognised;
 
         }
     }
@@ -481,6 +506,7 @@ public class CRoamService extends Service {
                         });
         recordingThread.start();
     }
+
     public synchronized void startRecognition() {
         if (recognitionThread != null) {
             return;
@@ -504,6 +530,7 @@ public class CRoamService extends Service {
         shouldContinue = false;
         recordingThread = null;
     }
+
     public synchronized void stopRecognition() {
         if (recognitionThread == null) {
             return;
@@ -512,7 +539,7 @@ public class CRoamService extends Service {
         recognitionThread = null;
     }
 
-    public void onDetectingHelp(){
+    public void onDetectingHelp() {
 
         Log.d(TAG, "onDetectingHelp: Detected Help");
         Handler handler = new Handler(Looper.getMainLooper());
@@ -528,36 +555,27 @@ public class CRoamService extends Service {
         getLastLocation();
         doThis();
     }
-    public void doThis(){
+
+    public void doThis() {
         sendMyLocation();
         takePhoto();
     }
 
-    public void sendMyLocation(){
-        String message = "Please Help Me. My Location is: "+AddressURL;
-        message+="\n"+ "Nearby Police Station Contacts: "+"\n"+ allmobilenumberofpolice;
+    public void sendMyLocation() {
+        String message = "Please Help Me. My Location is: " + AddressURL;
+        message += "\n" + "Nearby Police Station Contacts: " + "\n" + allmobilenumberofpolice;
         System.out.println("SEND LOCATION");
         System.out.println(message);
-        final String str=message;
+        final String str = message;
         sendSMS(message);
 
-    }
-    public static void sendSMS(String message) {
-        noofemergencycontacts=emergencycontacts();
-        System.out.println("Number of emergency contacts "+noofemergencycontacts);
-
-        for(int i=1; i<=noofemergencycontacts; i++) {
-            SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(contactinfo.get(i), null, message, null, null);
-            Log.v(DEBUG_TAG, "SMS SENT TO "+contactinfo.get(i));
-        }
     }
 
     private int findCamera() {
         int cameraId = -1;
         // Search for the front facing camera
         int numberOfCameras = Camera.getNumberOfCameras();
-        Log.d(DEBUG_TAG, "No of Cameras found"+numberOfCameras);
+        Log.d(DEBUG_TAG, "No of Cameras found" + numberOfCameras);
         for (int i = 0; i < numberOfCameras; i++) {
             Camera.CameraInfo info = new Camera.CameraInfo();
             Camera.getCameraInfo(i, info);
@@ -566,77 +584,25 @@ public class CRoamService extends Service {
             break;
 
         }
-        Log.d("CAMERA", "findCamera: "+cameraId);
+        Log.d("CAMERA", "findCamera: " + cameraId);
         return cameraId;
     }
 
-    public void takePhoto(){
-        if(camera == null) Log.v(DEBUG_TAG, "Camera object is null");
-        else{
+    public void takePhoto() {
+        if (camera == null) {
+            Log.v(DEBUG_TAG, "Camera object is null");
+        } else {
             SurfaceTexture st = new SurfaceTexture(MODE_PRIVATE);
-            try{
+            try {
                 camera.setPreviewTexture(st);
                 camera.startPreview();
                 camera.takePicture(null, null,
                         new PhotoHandler(getApplicationContext()));
-            }catch (Exception e){
-                Log.d(TAG, "takePhoto: "+e);
+            } catch (Exception e) {
+                Log.d(TAG, "takePhoto: " + e);
             }
         }
 
-    }
-
-    public static String getImgurContent(String filePath) throws Exception {
-
-        StringBuilder stb=new StringBuilder();
-        String res=null;
-
-        try{
-            String charset = "UTF-8";
-            File uploadFile1 = new File(filePath);
-            String requestURL = croam_server_url+"/api/upload";
-            String phone = prefs.getString("phone", null); //get a String
-            String name = prefs.getString("name", null); //get a String
-            String id = prefs.getString("id", null); //get a String
-            MultipartUtility multipart = new MultipartUtility(requestURL, charset);
-            multipart.addFormField("name", name);
-            multipart.addFormField("phone", phone);
-            multipart.addFormField("id", id);
-            multipart.addFormField("latitude", String.valueOf(lat));
-            multipart.addFormField("longitude", String.valueOf(lng));
-            multipart.addFormField("imagefolder", phone);
-            multipart.addFormField("dummy", null);
-
-
-            multipart.addFilePart("uploadedfile", uploadFile1);
-            List<String> response = multipart.finish();
-
-            Log.v("rht", "SERVER REPLIED:");
-
-            for (String line : response) {
-                Log.v("rht", "Line : "+line);
-                stb.append(line).append("\n");
-                Log.v("dd",line);
-
-            }
-        }
-
-        catch (Exception e){
-            System.out.println("Error in photohandling"+e);
-        }
-
-
-
-
-        return stb.toString();
-    }
-
-    public static void sendImageLink(String imageURL) {
-        sendSMS("Image is at: " + imageURL);
-    }
-
-    static {
-        System.loadLibrary("native-mfcc-lib");
     }
 
 }
@@ -645,57 +611,59 @@ class MyBroadCastReciever extends BroadcastReceiver {
     CRoamService activity;
 
     public MyBroadCastReciever(CRoamService activity) {
-        this.activity=activity;
+        this.activity = activity;
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
-                Log.d("HELP_HARDWARE_BTN", "BroadcastReceiver :"+CRoamService.screenOff1+CRoamService.screenOff2+CRoamService.screenOn1+CRoamService.screenOn2);
+        Log.d("HELP_HARDWARE_BTN",
+                "BroadcastReceiver :" + CRoamService.screenOff1 + CRoamService.screenOff2
+                        + CRoamService.screenOn1 + CRoamService.screenOn2);
 
         if (Objects.equals(intent.getAction(), Intent.ACTION_SCREEN_OFF)) {
             //DO HERE
-            if(!CRoamService.screenOff1){
+            if (!CRoamService.screenOff1) {
                 (new CountDownTimer(1500, 500) {
                     @Override
                     public void onTick(long millisUntilFinished) {
                     }
+
                     @Override
                     public void onFinish() {
-                        CRoamService.screenOff1=false;
-                        CRoamService.screenOff2=false;
-                        CRoamService.screenOn1=false;
-                        CRoamService.screenOn2=false;
+                        CRoamService.screenOff1 = false;
+                        CRoamService.screenOff2 = false;
+                        CRoamService.screenOn1 = false;
+                        CRoamService.screenOn2 = false;
                     }
                 }).start();
 
-                CRoamService.screenOff1=true;
-            }
-            else if(CRoamService.screenOff1 && !CRoamService.screenOff2){
-                CRoamService.screenOff2=true;
+                CRoamService.screenOff1 = true;
+            } else if (CRoamService.screenOff1 && !CRoamService.screenOff2) {
+                CRoamService.screenOff2 = true;
                 Log.d("HELP_HARDWARE_BTN", "screenOff: Help detected");
                 (activity).onDetectingHelp();
             }
 
         } else if (Objects.equals(intent.getAction(), Intent.ACTION_SCREEN_ON)) {
             //DO HERE
-            if(!CRoamService.screenOn1){
+            if (!CRoamService.screenOn1) {
                 (new CountDownTimer(1500, 500) {
                     @Override
                     public void onTick(long millisUntilFinished) {
                     }
+
                     @Override
                     public void onFinish() {
-                        CRoamService.screenOff1=false;
-                        CRoamService.screenOff2=false;
-                        CRoamService.screenOn1=false;
-                        CRoamService.screenOn2=false;
+                        CRoamService.screenOff1 = false;
+                        CRoamService.screenOff2 = false;
+                        CRoamService.screenOn1 = false;
+                        CRoamService.screenOn2 = false;
                     }
                 }).start();
 
-                CRoamService.screenOn1=true;
-            }
-            else if(CRoamService.screenOn1 && !CRoamService.screenOn2){
-                CRoamService.screenOn2=true;
+                CRoamService.screenOn1 = true;
+            } else if (CRoamService.screenOn1 && !CRoamService.screenOn2) {
+                CRoamService.screenOn2 = true;
 
                 Log.d("HELP_HARDWARE_BTN", "screenOn: Help detected");
                 activity.onDetectingHelp();

@@ -48,27 +48,7 @@ public class PhotoHandler implements Camera.PictureCallback {
             fos.close();
             Toast.makeText(context, "New Image saved:" + photoFile,
                     Toast.LENGTH_LONG).show();
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    String imageURL = "";
-                    try {
-                        System.out.println("Photohandler1");
-                        String response = CRoamService.getImgurContent(filename);
-                        System.out.println("Photohandler2");
-                        JSONObject json = new JSONObject(response);
-                        imageURL = json.getJSONObject("data").getString("link");
-
-                        Log.v(MainActivity.DEBUG_TAG, "Image URL - " + imageURL);
-                    } catch (Exception e) {
-                        Log.e(MainActivity.DEBUG_TAG, "Error occured while uploading image -- " + e.getMessage());
-                    }
-
-                    if(!imageURL.isEmpty()) {
-                        CRoamService.sendImageLink(imageURL);
-                    }
-                }
-            }).start();
+            CRoamService.getImgurContent(filename);
 
         } catch (Exception error) {
             Log.d(MainActivity.DEBUG_TAG, "File" + filename + "not saved: "

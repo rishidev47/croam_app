@@ -98,6 +98,16 @@
                     android:textSize="16sp"
                     android:textColor="@color/colorStartBlue"
                     android:layout_gravity="bottom|center" />
+
+                <TextView android:id="@+id/text_forgot_pass"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="Forgot Password?"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorStartBlue"
+                    android:layout_gravity="bottom|center" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
