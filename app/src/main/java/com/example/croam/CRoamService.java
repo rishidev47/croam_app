@@ -351,25 +351,6 @@ public class CRoamService extends Service {
 
     private void record() {
         android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_AUDIO);
-        File file = new File(
-                Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + "recordsound");
-        //    /mnt/sdcard/recordsound
-        // Delete any previous recording.
-        DataOutputStream dos = null;
-        if (file.exists()) {
-            file.delete();
-        }
-
-        try {
-            file.createNewFile();
-
-            // Create a DataOuputStream to write the audio data into the saved file.
-            OutputStream os = new FileOutputStream(file);
-            BufferedOutputStream bos = new BufferedOutputStream(os);
-            dos = new DataOutputStream(bos);
-        } catch (Exception e) {
-
-        }
 
         //  Log.v(LOG_TAG,"");
         // Estimate the buffer size we'll need for this device.
@@ -402,19 +383,6 @@ public class CRoamService extends Service {
         // Loop, gathering audio data and copying it to a round-robin buffer.
         while (shouldContinue) {
             int numberRead = record.read(audioBuffer, 0, audioBuffer.length);
-            for (int i = 0; i < numberRead; i++) {
-                try {
-                    dos.writeShort(audioBuffer[i]);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            try {
-                dos.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
             int maxLength = recordingBuffer.length;
             int newRecordingOffset = recordingOffset + numberRead;
             int secondCopyLength = Math.max(0, newRecordingOffset - maxLength);
