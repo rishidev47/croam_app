@@ -152,27 +152,27 @@
                                 android:textSize="18sp" />
                         </com.google.android.material.textfield.TextInputLayout>
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="8dp"
-                            android:enabled="false"
-                            app:helperText="Age"
-                            app:helperTextEnabled="true"
-                            app:helperTextTextAppearance="@style/TextAppearance.AppCompat.Title">
+<!--                        <com.google.android.material.textfield.TextInputLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_margin="8dp"-->
+<!--                            android:enabled="false"-->
+<!--                            app:helperText="Age"-->
+<!--                            app:helperTextEnabled="true"-->
+<!--                            app:helperTextTextAppearance="@style/TextAppearance.AppCompat.Title">-->
 
-                            <TextView
-                                android:id="@+id/dob"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@color/white"
-                                android:drawableStart="@drawable/ic_dob"
-                                android:drawablePadding="16dp"
-                                android:inputType="number"
-                                android:text="20"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                                android:textSize="18sp" />
-                        </com.google.android.material.textfield.TextInputLayout>
+<!--                            <TextView-->
+<!--                                android:id="@+id/dob"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:background="@color/white"-->
+<!--                                android:drawableStart="@drawable/ic_dob"-->
+<!--                                android:drawablePadding="16dp"-->
+<!--                                android:inputType="number"-->
+<!--                                android:text="20"-->
+<!--                                android:textAppearance="@style/TextAppearance.AppCompat.Title"-->
+<!--                                android:textSize="18sp" />-->
+<!--                        </com.google.android.material.textfield.TextInputLayout>-->
 
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/openFolder"

@@ -37,7 +37,7 @@
                     android:gravity="center"
                     android:paddingTop="16dp"
                     android:paddingBottom="16dp"
-                    android:text="report an incident"
+                    android:text="report"
                     android:textAllCaps="true"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="25sp" />
