@@ -9,9 +9,11 @@ import static android.Manifest.permission.SEND_SMS;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 import android.app.ActivityManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
@@ -23,6 +25,7 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -35,6 +38,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -67,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String CONTACT4 = "contact4";
     private static final String CONTACT5 = "contact5";
     private static String[] contacts = {CONTACT1, CONTACT2, CONTACT3, CONTACT4, CONTACT5};
-
-
+    public float ml_output_score[] =new float[5];
+    BroadcastReceiver score_receiver= null;
     static ArrayList<String> contactinfo = new ArrayList<>();
 
     public static int emergencycontacts(){
@@ -82,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         return x;
     }
 
-    private boolean loadFragment(Fragment fragment) {
+    private boolean loadFragment(Fragment fragment){
         //switching fragment
         if (fragment != null) {
             getSupportFragmentManager()
@@ -166,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         loadFragment(new Home());
 
+
         // Emergency contact
         noofemergencycontacts = emergencycontacts();
 
@@ -178,6 +183,24 @@ public class MainActivity extends AppCompatActivity {
 //
 //            return;
 //        }
+        score_receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                float score[] = intent.getFloatArrayExtra("SCORE");
+                Log.d("SCORE", "onReceive: "+score);
+                if(score!=null){
+                    for(int i=0; i<5;i++){
+                        ml_output_score[i]=score[i];
+                    }
+
+                }
+                else{
+
+                }
+
+                // do something here.
+            }
+        };
 
         if (!getPackageManager()
                 .hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
@@ -362,5 +385,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        IntentFilter filter=new IntentFilter();
+        filter.addAction("SEND_ML_OUTPUT");
+        LocalBroadcastManager.getInstance(this).registerReceiver(score_receiver,filter);
+    }
 
+    @Override
+    protected void onStop() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(score_receiver);
+        super.onStop();
+    }
 }
