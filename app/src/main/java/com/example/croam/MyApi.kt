@@ -80,6 +80,9 @@ interface MyApi {
     @PUT("users/resetPassword")
     fun resetPass(@Field("number") number: String, @Field("newPass") password: String): Call<ResponseBody?>?
 
+    @GET("users/reports")
+    fun getReports(@HeaderMap headers: MutableMap<String, String>): Call<ResponseBody?>?
+
     companion object {
         operator fun invoke(
         ): MyApi {

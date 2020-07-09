@@ -53,6 +53,14 @@ public class Home extends Fragment {
 //        final EditText txt_threshold = view.findViewById(R.id.editText_threshold);
 //        btn_update_threshold=view.findViewById(R.id.btn_update_threshold);
         toggleSwitch=view.findViewById(R.id.switch_main);
+        Button button = view.findViewById(R.id.newsButton);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), NewsActivity.class);
+                startActivity(intent);
+            }
+        });
 //        videoView = view.findViewById(R.id.videoView);
 
         if(((MainActivity)getActivity()).isOn){
