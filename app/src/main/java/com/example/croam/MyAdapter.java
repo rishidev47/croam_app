@@ -2,11 +2,19 @@ package com.example.croam;
 
 
 import android.content.Context;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.media.ThumbnailUtils;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -15,11 +23,11 @@ import androidx.recyclerview.widget.RecyclerView;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
 
-    private List<String> mediaList;
-    private Context mContext;
+    private List<File> mediaList;
+    public Context mContext;
     private OnItemListener mOnItemListener;
 
-    public MyAdapter(List<String> modelList, Context context, OnItemListener mOnItemListener) {
+    public MyAdapter(List<File> modelList, Context context, OnItemListener mOnItemListener) {
         mediaList = modelList;
         mContext = context;
         this.mOnItemListener = mOnItemListener;
@@ -54,19 +62,27 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             View.OnClickListener {
 
         public TextView linkTextView;
+        public ImageView image;
         OnItemListener onItemListener;
 
         public MyViewHolder(@NonNull final View itemView, final OnItemListener onItemListener) {
             super(itemView);
             this.onItemListener = onItemListener;
             linkTextView = itemView.findViewById(R.id.text_view);
+            image=itemView.findViewById(R.id.image);
             itemView.setOnClickListener(this);
 
         }
 
 
-        public void bindData(final String link, Context context) {
-            linkTextView.setText(link);
+        public void bindData(final File file, Context context) {
+            linkTextView.setText(file.getName());
+            if(file.getName().endsWith(".mp4")){
+                Picasso.get().load(R.drawable.play_button).resize(100,100).centerCrop().into(image);
+            }else{
+                Picasso.get().load(file).resize(100,100).centerCrop().into(image);
+            }
+
         }
 
         @Override

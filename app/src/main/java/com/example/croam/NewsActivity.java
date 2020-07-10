@@ -7,8 +7,10 @@ import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -21,10 +23,13 @@ import retrofit2.Response;
 
 public class NewsActivity extends AppCompatActivity {
 
+    ArrayList<ReportModel> reportsList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
+        reportsList = new ArrayList<>();
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
                 this.getApplicationContext());
@@ -43,6 +48,18 @@ public class NewsActivity extends AppCompatActivity {
 
                     JSONArray reports = new JSONArray(response.body().string());
                     Log.e("news", reports.toString());
+
+                    for (int i = 0; i < reports.length(); i++) {
+                        JSONObject report = reports.getJSONObject(i);
+                        Log.e("report", report.toString());
+                        reportsList.add(
+                                new ReportModel(report.getString("name"), report.getString("media"),
+                                        report.getString("longitude"), report.getString("latitude"),
+                                        report.getString("country"), report.getString("state"),
+                                        report.getString("city"), report.getString("description"),
+                                        report.getString("created")));
+
+                    }
 //                    {"id":1,"name":"New","media":"https:\/\/storage.googleapis
 //                    .com\/report-media\/VID_20200626_120950.mp4","latitude":"28.433556",
 //                    "longitude":"77.31817","country":"India","state":"Haryana",

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class ViewImagesActivity extends AppCompatActivity implements MyAdapter.OnItemListener {
     File file;
-    ArrayList<String> list;
+    ArrayList<File> list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +30,7 @@ public class ViewImagesActivity extends AppCompatActivity implements MyAdapter.O
 
         list = new ArrayList<>();
         for(File f : listFile){
-            list.add(f.getName());
+            list.add(f);
         }
        RecyclerView recyclerView = findViewById(R.id.recycler_view);
 
@@ -53,7 +53,7 @@ public class ViewImagesActivity extends AppCompatActivity implements MyAdapter.O
     public void onLinkClick(int position) {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
-        intent.setDataAndType(Uri.withAppendedPath(Uri.fromFile(file), ""+list.get(position)), "image/*");
+        intent.setDataAndType(Uri.withAppendedPath(Uri.fromFile(file), ""+list.get(position).getName()), "image/*");
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
