@@ -17,6 +17,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.JsonObject;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -138,7 +144,22 @@ public class Signup extends Fragment {
                 mProgressBar.setVisibility(View.GONE);
                 bg.setVisibility(View.GONE);
                 getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                Toast.makeText(getContext(), "Successfully registered", Toast.LENGTH_LONG).show();
+                JSONObject jsonObject = null;
+                try {
+//                    Log.e("signup", response.body().string());
+                    jsonObject = new JSONObject(response.body().string());
+                    Log.e("abc", jsonObject.toString());
+                    if(jsonObject.has("status")){
+                        Toast.makeText(getContext(), jsonObject.getString("status") , Toast.LENGTH_LONG).show();
+                    }else{
+                        Toast.makeText(getContext(), jsonObject.getString("error") , Toast.LENGTH_LONG).show();
+                    }
+
+
+                } catch (IOException | JSONException e) {
+                    e.printStackTrace();
+                }
+
                 Fragment fragment = new Login();
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
