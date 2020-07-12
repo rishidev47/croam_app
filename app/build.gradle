@@ -59,5 +59,6 @@ dependencies {
     implementation 'com.github.AppIntro:AppIntro:6.0.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
     implementation 'com.razorpay:checkout:1.5.16'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }
 
