@@ -4,6 +4,7 @@
     <string name="title_police">Police</string>
     <string name="title_report">Report Incident</string>
     <string name="title_contacts">ICE</string>
+    <string name="title_news">News</string>
     <string name="title_profile">Profile</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

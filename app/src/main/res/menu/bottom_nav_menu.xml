@@ -3,30 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_nav_home"
-        app:showAsAction="ifRoom"
         android:enabled="true"
-        android:title="@string/title_home" />
+        android:icon="@drawable/ic_nav_home"
+        android:title="@string/title_home"
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/navigation_report"
-        android:icon="@drawable/ic_videocam_black_24dp"
-        app:showAsAction="ifRoom"
         android:enabled="true"
-        android:title="@string/title_report" />
+        android:icon="@drawable/ic_videocam_black_24dp"
+        android:title="@string/title_report"
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/navigation_contacts"
-        android:icon="@drawable/ic_nav_contacts"
-        app:showAsAction="ifRoom"
         android:enabled="true"
-        android:title="@string/title_contacts" />
+        android:icon="@drawable/ic_nav_contacts"
+        android:title="@string/title_contacts"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/navigation_news"
+        android:enabled="true"
+        android:icon="@drawable/ic_news_admin"
+        android:title="@string/title_news"
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/navigation_profile"
-        android:icon="@drawable/ic_nav_profile"
-        app:showAsAction="ifRoom"
         android:enabled="true"
-        android:title="@string/title_profile" />
+        android:icon="@drawable/ic_nav_profile"
+        android:title="@string/title_profile"
+        app:showAsAction="ifRoom" />
 
 </menu>
