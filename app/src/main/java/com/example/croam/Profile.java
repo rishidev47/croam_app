@@ -36,7 +36,7 @@ public class Profile extends Fragment {
     private TextView nametxt;
     private TextView phonetxt;
     private TextView emailtxt;
-    private TextView dobtxt;
+//    private TextView dobtxt;
     private Dialog editDialog;
 //    DBHandler db;
 
@@ -77,7 +77,7 @@ public class Profile extends Fragment {
         nametxt = view.findViewById(R.id.name);
         phonetxt = view.findViewById(R.id.phone);
         emailtxt = view.findViewById(R.id.email);
-        dobtxt = view.findViewById(R.id.dob);
+//        dobtxt = view.findViewById(R.id.dob);
 
         updateView();
 
@@ -134,7 +134,7 @@ public class Profile extends Fragment {
         nametxt.setText(name);
         phonetxt.setText(phone);
         emailtxt.setText(email);
-        dobtxt.setText(dob);
+//        dobtxt.setText(dob);
 
     }
 

@@ -18,6 +18,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.StrictMode;
@@ -121,6 +122,12 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.navigation_contacts:
                     fragment = new Contact();
+                    break;
+                case R.id.navigation_news:
+                    Intent viewIntent =
+                            new Intent("android.intent.action.VIEW",
+                                    Uri.parse("https://frontend-69.appspot.com/"));
+                    startActivity(viewIntent);
                     break;
                 case R.id.navigation_profile:
                     fragment = new Profile();

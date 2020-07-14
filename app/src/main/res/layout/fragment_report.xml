@@ -37,7 +37,7 @@
                     android:gravity="center"
                     android:paddingTop="16dp"
                     android:paddingBottom="16dp"
-                    android:text="report an incident"
+                    android:text="report"
                     android:textAllCaps="true"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="25sp" />
@@ -47,11 +47,11 @@
             <ImageView
                 android:id="@+id/reportImage"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="250dp"
                 android:layout_below="@+id/cardView"
                 android:layout_centerHorizontal="true"
                 android:layout_margin="16dp"
-                android:scaleType="centerCrop"
+                android:scaleType="fitCenter"
                 android:src="@drawable/report" />
 
             <com.google.android.material.button.MaterialButton

@@ -267,7 +267,7 @@ public class ReportFragment extends Fragment {
 
         // add another part within the multipart request
         String descriptionString = description.getText().toString();
-        final RequestBody description =
+        final RequestBody descriptionBody =
                 RequestBody.create(
                         okhttp3.MultipartBody.FORM, descriptionString);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
@@ -323,12 +323,13 @@ public class ReportFragment extends Fragment {
 
 
                         // finally, execute the request
-                        Call<ResponseBody> call = MyApi.Companion.invoke().upload(description, body,
+                        Call<ResponseBody> call = MyApi.Companion.invoke().upload(descriptionBody, body,
                                 latitude, longitude, country, state, city, auth);
                         Objects.requireNonNull(call).enqueue(new Callback<ResponseBody>() {
                             @Override
                             public void onResponse(Call<ResponseBody> call,
                                     Response<ResponseBody> response) {
+                                description.setText("");
                                 mProgressBar.setVisibility(View.GONE);
                                 bg.setVisibility(View.GONE);
                                 currentPhotoPath = null;
