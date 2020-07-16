@@ -83,6 +83,13 @@ interface MyApi {
     @GET("users/reports")
     fun getReports(@HeaderMap headers: MutableMap<String, String>): Call<ResponseBody?>?
 
+    @GET("users/isactive/{number}")
+    fun isPremium(@Path("number") number: String): Call<ResponseBody?>?
+
+    @FormUrlEncoded
+    @PUT("users/update_active")
+    fun setPremium(@Field("number") number: String, @Field("active_till")date: String): Call<ResponseBody?>?
+
     companion object {
         operator fun invoke(
         ): MyApi {

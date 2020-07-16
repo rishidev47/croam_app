@@ -1,6 +1,7 @@
 package com.example.croam;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -13,6 +14,17 @@ import com.razorpay.Checkout;
 import com.razorpay.PaymentResultListener;
 
 import org.json.JSONObject;
+
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Objects;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PaymentActivity extends Activity implements PaymentResultListener {
     private static final String TAG = PaymentActivity.class.getSimpleName();
@@ -97,11 +109,61 @@ public class PaymentActivity extends Activity implements PaymentResultListener {
     @SuppressWarnings("unused")
     @Override
     public void onPaymentSuccess(String razorpayPaymentID) {
+
+//        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
+//                getApplicationContext());
+//        Call<ResponseBody> call = MyApi.Companion.invoke().setPremium(
+//                Objects.requireNonNull(prefs.getString("phone", null)), output);
+//        Objects.requireNonNull(call).enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call,
+//                    Response<ResponseBody> response) {
+//                try {
+//                    Log.e("payment", response.body().string());
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//
+//            }
+//        });
         try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+            Calendar c = Calendar.getInstance();
+            Date currentTime = c.getTime();
+            c.setTime(currentTime);
+            c.add(Calendar.DATE, 365);
+            String output = sdf.format(c.getTime());
+            Log.e("pay", output);
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
+                    getApplicationContext());
+            Call<ResponseBody> call = MyApi.Companion.invoke().setPremium(
+                    Objects.requireNonNull(prefs.getString("phone", null)), output);
+            Objects.requireNonNull(call).enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call,
+                        Response<ResponseBody> response) {
+                    try {
+                        Log.e("payment", response.body().string());
+                        Intent intent = new Intent(PaymentActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                }
+            });
             Toast.makeText(this, "Payment Successful: " + razorpayPaymentID,
                     Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
-            Log.e(TAG, "Exception in onPaymentSuccess", e);
+            e.printStackTrace();
         }
     }
 

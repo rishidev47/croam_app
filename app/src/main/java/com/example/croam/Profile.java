@@ -1,15 +1,11 @@
 package com.example.croam;
 
 import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,36 +13,70 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.material.textview.MaterialTextView;
 
-import java.io.File;
-import java.util.ArrayList;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Profile extends Fragment {
     private TextView nametxt;
     private TextView phonetxt;
     private TextView emailtxt;
-//    private TextView dobtxt;
+    //    private TextView dobtxt;
     private Dialog editDialog;
+    private String activeTill;
 //    DBHandler db;
+
+    private boolean isPremium = true;
+    private TextInputLayout membership;
+    private TextInputLayout till;
+    private ProgressBar bar;
+    private ProgressBar bar2;
+    private CardView premium;
+    private TextView status;
+    private TextView date;
+    private MaterialTextView premiumButon;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        Button logout = view.findViewById(R.id.btn_logout);
-        CardView premium = view.findViewById(R.id.premium);
+        premium = view.findViewById(R.id.premium);
+        status = view.findViewById(R.id.status);
+        premiumButon = view.findViewById(R.id.button_premium);
+        bar2 = view.findViewById(R.id.progress_circular2);
+        date = view.findViewById(R.id.premium_date);
+        membership = view.findViewById(R.id.status_layout);
+        till = view.findViewById(R.id.premium_layout);
+        membership.setVisibility(View.GONE);
+        till.setVisibility(View.GONE);
+        bar = view.findViewById(R.id.progress_circular);
+        bar.setVisibility(View.VISIBLE);
+        bar2.setVisibility(View.VISIBLE);
+        premium.setVisibility(View.GONE);
         premium.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,6 +85,10 @@ public class Profile extends Fragment {
 
             }
         });
+        premium.setEnabled(false);
+        getPremiumStatus();
+
+        Button logout = view.findViewById(R.id.btn_logout);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,7 +179,7 @@ public class Profile extends Fragment {
 
     }
 
-    private void dialog(){
+    private void dialog() {
         editDialog = new Dialog(getContext());
         editDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         editDialog.setContentView(R.layout.dialog_editprofile);
@@ -197,5 +231,69 @@ public class Profile extends Fragment {
         });
 
         editDialog.show();
+    }
+
+
+    void getPremiumStatus() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(
+                getContext().getApplicationContext());
+        final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+
+        Call<ResponseBody> call = MyApi.Companion.invoke().isPremium(
+                Objects.requireNonNull(prefs.getString("phone", null)));
+        Objects.requireNonNull(call).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call,
+                    Response<ResponseBody> response) {
+                Log.e("profile", response.toString());
+                try {
+
+                    JSONObject jsonObject = new JSONObject(response.body().string());
+                    activeTill = jsonObject.getString("active_till");
+                    Calendar c = Calendar.getInstance();
+                    Date currentTime = c.getTime();
+                    c.setTime(currentTime);
+                    c.add(Calendar.DATE, 365);
+                    String output = sdf.format(c.getTime());
+                    Log.e("profile", output);
+                    try {
+                        Date d = sdf.parse(activeTill);
+                        if (activeTill.equals("null") || (new Date().after(d))) {
+                            isPremium = false;
+                            Log.e("profile", "notprem");
+                        }
+                    } catch (ParseException ex) {
+                        Log.v("Exception", ex.getLocalizedMessage());
+                        isPremium = false;
+                        Log.e("profile", "notprem");
+                    }
+                    bar.setVisibility(View.GONE);
+                    membership.setVisibility(View.VISIBLE);
+                    till.setVisibility(View.VISIBLE);
+                    bar2.setVisibility(View.GONE);
+                    premium.setVisibility(View.VISIBLE);
+
+                } catch (IOException | JSONException e) {
+                    e.printStackTrace();
+                }
+                if (!isPremium) {
+                    premium.setEnabled(true);
+                }else{
+                    DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(getContext().getApplicationContext());
+                    status.setText("PREMIUM");
+                    try {
+                        date.setText(dateFormat.format(sdf.parse(activeTill)));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    premiumButon.setText("Already Premium Member!");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                getPremiumStatus();
+            }
+        });
     }
 }
