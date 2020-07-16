@@ -47,7 +47,7 @@ class EndlessService : Service() {
         myBroadcastReciever = MyBroadCastReciever(this)
         registerReceiver(myBroadcastReciever, filter)
         val notification = createNotification()
-        startForeground(1, notification)
+        startForeground(10, notification)
     }
 
     override fun onDestroy() {
@@ -123,10 +123,10 @@ class EndlessService : Service() {
         ) else Notification.Builder(this)
 
         return builder
-                .setContentTitle("Endless Service")
-                .setContentText("This is your favorite endless service working")
+                .setContentTitle("Hardware Button Service")
+                .setContentText("Press power button 3 times for help detection")
                 .setContentIntent(pendingIntent)
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.drawable.newlogo_croam)
                 .setTicker("Ticker text")
                 .setPriority(Notification.PRIORITY_HIGH) // for under android 26 compatibility
                 .build()
@@ -156,7 +156,6 @@ internal class MyBroadCastReciever(var activity: EndlessService) : BroadcastRece
         Log.d("HELP_HARDWARE_BTN",
                 "BroadcastReceiver :" + CRoamService.screenOff1 + CRoamService.screenOff2
                         + CRoamService.screenOn1 + CRoamService.screenOn2)
-
         if (intent.action == Intent.ACTION_SCREEN_OFF) {
             //DO HERE
             if (!CRoamService.screenOff1) {
@@ -174,6 +173,7 @@ internal class MyBroadCastReciever(var activity: EndlessService) : BroadcastRece
                 CRoamService.screenOff2 = true
                 Log.e("HELP_HARDWARE_BTN", "screenOff: Help detected")
 //                croam.onDetectingHelp()
+                activity.startCroamService()
             }
         } else if (intent.action == Intent.ACTION_SCREEN_ON) {
             //DO HERE
@@ -192,6 +192,7 @@ internal class MyBroadCastReciever(var activity: EndlessService) : BroadcastRece
             } else if (CRoamService.screenOn1 && !CRoamService.screenOn2) {
                 CRoamService.screenOn2 = true
                 Log.e("HELP_HARDWARE_BTN", "screenOn: Help detected")
+                activity.startCroamService()
 //                croam.onDetectingHelp()
             }
         }

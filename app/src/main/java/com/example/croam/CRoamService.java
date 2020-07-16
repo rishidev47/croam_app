@@ -355,6 +355,7 @@ public class CRoamService extends Service {
         super.onDestroy();
         stopRecognition();
         stopRecording();
+        mFusedLocationClient.removeLocationUpdates(new LocationCallback());
 //        unregisterReceiver(myBroadcastReciever);
     }
 

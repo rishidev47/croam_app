@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        if (intent.getBooleanExtra("OPENED_FROM_NOTIFICATION", false)) {
+        if (intent.getBooleanExtra("OPENED_FROM_NOTIFICATION", false) && isMyServiceRunning(CRoamService.class)) {
 //            Log.d(TAG, "onNewIntent: opened");
             isOn = true;
             loadFragment(new Home());
