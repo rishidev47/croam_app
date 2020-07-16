@@ -1,5 +1,6 @@
 package com.example.croam;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -57,6 +58,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
@@ -127,9 +129,11 @@ public class CRoamService extends Service {
     private FusedLocationProviderClient mFusedLocationClient;
     private LocationRequest mLocationRequest;
     private Location mLocation;
-    private LocalBroadcastManager localBroadcaster=null;
+    private LocalBroadcastManager localBroadcaster = null;
 
-    public CRoamService(){super();}
+    public CRoamService() {
+        super();
+    }
 
     public static int emergencycontacts() {
         int x = 0;
@@ -232,10 +236,10 @@ public class CRoamService extends Service {
         startLocationUpdates();
         getLastLocation();
 
-        IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
-        filter.addAction(Intent.ACTION_SCREEN_OFF);
-        myBroadcastReciever = new MyBroadCastReciever(this);
-        registerReceiver((myBroadcastReciever), filter);
+//        IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
+//        filter.addAction(Intent.ACTION_SCREEN_OFF);
+//        myBroadcastReciever = new MyBroadCastReciever(this);
+//        registerReceiver((myBroadcastReciever), filter);
 
         if (!getPackageManager()
                 .hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
@@ -259,9 +263,22 @@ public class CRoamService extends Service {
             }
 
         }
+
     }
 
     private void startLocationUpdates() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         mFusedLocationClient.requestLocationUpdates(mLocationRequest,
                 mLocationCallback,
                 Looper.getMainLooper());
@@ -324,6 +341,11 @@ public class CRoamService extends Service {
 
         }
 
+        String ip = Objects.requireNonNull(intent.getExtras()).getString("inputExtra");
+        assert ip != null;
+        if(ip.equals("hardwareButton")){
+            onDetectingHelp();
+        }
 
         return START_NOT_STICKY;
     }
@@ -333,7 +355,8 @@ public class CRoamService extends Service {
         super.onDestroy();
         stopRecognition();
         stopRecording();
-        unregisterReceiver(myBroadcastReciever);
+        mFusedLocationClient.removeLocationUpdates(new LocationCallback());
+//        unregisterReceiver(myBroadcastReciever);
     }
 
     @Nullable
@@ -619,67 +642,67 @@ public class CRoamService extends Service {
 
 }
 
-class MyBroadCastReciever extends BroadcastReceiver {
-    CRoamService activity;
-
-    public MyBroadCastReciever(CRoamService activity) {
-        this.activity = activity;
-    }
-
-    @Override
-    public void onReceive(Context context, Intent intent) {
-        Log.d("HELP_HARDWARE_BTN",
-                "BroadcastReceiver :" + CRoamService.screenOff1 + CRoamService.screenOff2
-                        + CRoamService.screenOn1 + CRoamService.screenOn2);
-
-        if (Objects.equals(intent.getAction(), Intent.ACTION_SCREEN_OFF)) {
-            //DO HERE
-            if (!CRoamService.screenOff1) {
-                (new CountDownTimer(1500, 500) {
-                    @Override
-                    public void onTick(long millisUntilFinished) {
-                    }
-
-                    @Override
-                    public void onFinish() {
-                        CRoamService.screenOff1 = false;
-                        CRoamService.screenOff2 = false;
-                        CRoamService.screenOn1 = false;
-                        CRoamService.screenOn2 = false;
-                    }
-                }).start();
-
-                CRoamService.screenOff1 = true;
-            } else if (CRoamService.screenOff1 && !CRoamService.screenOff2) {
-                CRoamService.screenOff2 = true;
-                Log.d("HELP_HARDWARE_BTN", "screenOff: Help detected");
-                (activity).onDetectingHelp();
-            }
-
-        } else if (Objects.equals(intent.getAction(), Intent.ACTION_SCREEN_ON)) {
-            //DO HERE
-            if (!CRoamService.screenOn1) {
-                (new CountDownTimer(1500, 500) {
-                    @Override
-                    public void onTick(long millisUntilFinished) {
-                    }
-
-                    @Override
-                    public void onFinish() {
-                        CRoamService.screenOff1 = false;
-                        CRoamService.screenOff2 = false;
-                        CRoamService.screenOn1 = false;
-                        CRoamService.screenOn2 = false;
-                    }
-                }).start();
-
-                CRoamService.screenOn1 = true;
-            } else if (CRoamService.screenOn1 && !CRoamService.screenOn2) {
-                CRoamService.screenOn2 = true;
-
-                Log.d("HELP_HARDWARE_BTN", "screenOn: Help detected");
-                activity.onDetectingHelp();
-            }
-        }
-    }
-}
+//class MyBroadCastReciever extends BroadcastReceiver {
+//    CRoamService activity;
+//
+//    public MyBroadCastReciever(CRoamService activity) {
+//        this.activity = activity;
+//    }
+//
+//    @Override
+//    public void onReceive(Context context, Intent intent) {
+//        Log.d("HELP_HARDWARE_BTN",
+//                "BroadcastReceiver :" + CRoamService.screenOff1 + CRoamService.screenOff2
+//                        + CRoamService.screenOn1 + CRoamService.screenOn2);
+//
+//        if (Objects.equals(intent.getAction(), Intent.ACTION_SCREEN_OFF)) {
+//            //DO HERE
+//            if (!CRoamService.screenOff1) {
+//                (new CountDownTimer(1500, 500) {
+//                    @Override
+//                    public void onTick(long millisUntilFinished) {
+//                    }
+//
+//                    @Override
+//                    public void onFinish() {
+//                        CRoamService.screenOff1 = false;
+//                        CRoamService.screenOff2 = false;
+//                        CRoamService.screenOn1 = false;
+//                        CRoamService.screenOn2 = false;
+//                    }
+//                }).start();
+//
+//                CRoamService.screenOff1 = true;
+//            } else if (CRoamService.screenOff1 && !CRoamService.screenOff2) {
+//                CRoamService.screenOff2 = true;
+//                Log.d("HELP_HARDWARE_BTN", "screenOff: Help detected");
+//                (activity).onDetectingHelp();
+//            }
+//
+//        } else if (Objects.equals(intent.getAction(), Intent.ACTION_SCREEN_ON)) {
+//            //DO HERE
+//            if (!CRoamService.screenOn1) {
+//                (new CountDownTimer(1500, 500) {
+//                    @Override
+//                    public void onTick(long millisUntilFinished) {
+//                    }
+//
+//                    @Override
+//                    public void onFinish() {
+//                        CRoamService.screenOff1 = false;
+//                        CRoamService.screenOff2 = false;
+//                        CRoamService.screenOn1 = false;
+//                        CRoamService.screenOn2 = false;
+//                    }
+//                }).start();
+//
+//                CRoamService.screenOn1 = true;
+//            } else if (CRoamService.screenOn1 && !CRoamService.screenOn2) {
+//                CRoamService.screenOn2 = true;
+//
+//                Log.d("HELP_HARDWARE_BTN", "screenOn: Help detected");
+//                activity.onDetectingHelp();
+//            }
+//        }
+//    }
+//}
