@@ -161,7 +161,7 @@ public class Login extends Fragment {
                     try {
                         JSONObject obj = new JSONObject(body);
                         Snackbar snackbar = Snackbar.make(mCoordinatorLayout,
-                                obj.getString("error"),
+                                obj.getString("status"),
                                 Snackbar.LENGTH_LONG);
                         snackbar.setActionTextColor(Color.RED);
                         snackbar.show();
