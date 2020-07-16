@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Objects;
@@ -125,7 +126,8 @@ public class Login extends Fragment {
                     Response<ResponseBody> response) {
                 mProgressBar.setVisibility(View.GONE);
                 bg.setVisibility(View.GONE);
-                Objects.requireNonNull(getActivity()).getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                Objects.requireNonNull(getActivity()).getWindow().clearFlags(
+                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 String body = null;
                 try {
                     body = response.body().string();
@@ -155,15 +157,22 @@ public class Login extends Fragment {
                     startActivity(intent);
 
                 } catch (Throwable t) {
-                    Log.e("My App", t.getMessage());
-                    Snackbar snackbar = Snackbar.make(mCoordinatorLayout, "Wrong username or password",
-                            Snackbar.LENGTH_LONG);
-                    snackbar.setActionTextColor(Color.RED);
-                    snackbar.show();
-
+//                    Log.e("My App", t.getMessage());
+                    try {
+                        JSONObject obj = new JSONObject(body);
+                        Snackbar snackbar = Snackbar.make(mCoordinatorLayout,
+                                obj.getString("error"),
+                                Snackbar.LENGTH_LONG);
+                        snackbar.setActionTextColor(Color.RED);
+                        snackbar.show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Snackbar snackbar = Snackbar.make(mCoordinatorLayout, t.getMessage(),
+                                Snackbar.LENGTH_LONG);
+                        snackbar.setActionTextColor(Color.RED);
+                        snackbar.show();
+                    }
                 }
-
-
             }
 
             @Override
