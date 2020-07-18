@@ -153,7 +153,7 @@ public class Login extends Fragment {
 //                    edit.putString("dob", dob);
 //                    edit.putString("access_token",token);
                     edit.commit();
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    Intent intent = new Intent(getActivity(), PersonalizationActivity.class);
                     startActivity(intent);
 
                 } catch (Throwable t) {

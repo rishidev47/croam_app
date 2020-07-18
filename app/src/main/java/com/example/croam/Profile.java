@@ -279,7 +279,8 @@ public class Profile extends Fragment {
                 if (!isPremium) {
                     premium.setEnabled(true);
                 }else{
-                    DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(getContext().getApplicationContext());
+                    DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(
+                            Objects.requireNonNull(getContext()).getApplicationContext());
                     status.setText("PREMIUM");
                     try {
                         date.setText(dateFormat.format(sdf.parse(activeTill)));

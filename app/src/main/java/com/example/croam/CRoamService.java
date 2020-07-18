@@ -101,7 +101,7 @@ public class CRoamService extends Service {
     public static String url = null;
     public static String phone;
     public static int noofemergencycontacts = 0;
-    public static double threshold = 0.9;
+    public static double threshold = 0.96;
     public static Context mContext = null;
     static SharedPreferences prefs;
     static ArrayList<String> contactinfo = new ArrayList<>();
